@@ -1,0 +1,12 @@
+SELECT * FROM `obat` WHERE 1;
+SELECT * FROM `obat` WHERE nama_obat;
+SELECT * FROM `obat`;
+SELECT * FROM `obat_masuk`;
+SELECT * FROM `obat` WHERE harga_beli;
+SELECT * FROM `obat` WHERE harga_jual;
+SELECT * FROM `obat` WHERE harga_beli > 100000;
+SELECT * FROM `obat` WHERE harga_jual < 10000;
+SELECT * FROM `obat_masuk` WHERE kode_transaksi;
+SELECT * FROM `obat_masuk` WHERE kode_obat;
+
+
