@@ -1,0 +1,8 @@
+UPDATE `obat` SET `nama_obat`= 'Lactamil'
+WHERE `harga_beli` = 'Rp175.000';
+UPDATE `obat_masuk` SET `kode_transaksi`= 'h9567834'
+WHERE `kode_obat` = '12345';
+UPDATE `obat` SET `harga_jual`= 'Rp400.000'
+WHERE `harga_beli` = 'Rp175.000';
+DELETE FROM `obat` WHERE nama_obat = 'Promag';
+DELETE FROM `obat_masuk` WHERE kode_transaksi = 'd45256';
