@@ -4,7 +4,7 @@ $buku = mysqli_query($mysqli, "SELECT buku.*, nama_pengarang, nama_penerbit, kat
             LEFT JOIN  pengarang ON pengarang.id_pengarang = buku.id_pengarang
             LEFT JOIN  penerbit ON penerbit.id_penerbit = buku.id_penerbit
             LEFT JOIN  katalog ON katalog.id_katalog = buku.id_katalog
-            ORDER BY judul ASC");
+            ORDER BY isbn ASC");
 ?>
 
 <html>
@@ -40,7 +40,7 @@ $buku = mysqli_query($mysqli, "SELECT buku.*, nama_pengarang, nama_penerbit, kat
         </div>
     </nav>
 
-    <a class="btn btn-success ml-5" href="add.php">Add New Buku</a><br /><br />
+    <a class="btn btn-success ml-5 mt-5" href="add.php">Add New Buku</a><br /><br />
 
     <table class="table" width='80%' border=1>
         <tr>

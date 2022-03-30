@@ -2,6 +2,7 @@
 
 <head>
 	<title>Add Penerbit</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
 <?php
@@ -10,37 +11,34 @@ $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
 ?>
 
 <body>
-	<a href="index.php">Go to Home</a>
-	<br /><br />
+	<div class="container">
+		<a class="btn btn-light" href="index.php">Go to Home</a>
+		<br /><br />
 
-	<form action="" method="post" name="form1">
-		<table width="25%" border="0">
-			<tr>
-				<td>ID Penerbit</td>
-				<td><input type="text" name="id_penerbit"></td>
-			</tr>
-			<tr>
-				<td>Nama Penerbit</td>
-				<td><input type="text" name="nama_penerbit"></td>
-			</tr>
-			<tr>
-				<td>email</td>
-				<td><input type="text" name="email"></td>
-			</tr>
-			<tr>
-				<td>telp</td>
-				<td><input type="text" name="telp"></td>
-			</tr>
-			<tr>
-				<td>Alamat</td>
-				<td><textarea type="text" name="alamat"></textarea></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="Submit" value="Add"></td>
-			</tr>
-		</table>
-	</form>
+		<form action="add.php" method="post">
+			<div class="form-group">
+				<label for="id_penerbit">ID Penerbit</label>
+				<input type="text" class="form-control" id="id_penerbit" name="id_penerbit">
+			</div>
+			<div class="form-group">
+				<label for="nama_penerbit">Nama Penerbit</label>
+				<input type="text" class="form-control" id="nama_penerbit" name="nama_penerbit">
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="text" class="form-control" id="email" name="email">
+			</div>
+			<div class="form-group">
+				<label for="telp">Telpon</label>
+				<input type="text" class="form-control" id="telp" name="telp">
+			</div>
+			<div class="form-group">
+				<label for="alamat">Alamat</label>
+				<input type="text" class="form-control" id="alamat" name="alamat">
+			</div>
+			<button type="submit" name="Submit" class="btn btn-primary">Add</button>
+		</form>
+	</div>
 
 	<?php
 

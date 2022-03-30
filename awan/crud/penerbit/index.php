@@ -36,7 +36,7 @@ $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
         </div>
     </nav>
 
-    <a class="btn btn-success ml-5" href="add.php">Add New Penerbit</a><br /><br />
+    <a class="btn btn-success ml-5 mt-5" href="add.php">Add New Penerbit</a><br /><br />
 
     <table class="table" width='80%' border=1>
         <tr>

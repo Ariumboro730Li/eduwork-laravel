@@ -36,7 +36,7 @@ $pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang");
         </div>
     </nav>
 
-    <a class="btn btn-success ml-5" href="add.php">Add New Pengarang</a><br /><br />
+    <a class="btn btn-success ml-5 mt-5" href="add.php">Add New Pengarang</a><br /><br />
 
     <table class="table" width='80%' border=1>
         <tr>

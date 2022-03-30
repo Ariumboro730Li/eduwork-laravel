@@ -36,7 +36,7 @@ $katalog = mysqli_query($mysqli, "SELECT * FROM katalog ORDER BY id_katalog ASC"
         </div>
     </nav>
 
-    <a class="btn btn-success ml-5" href="add.php">Add New Katalog</a><br /><br />
+    <a class="btn btn-success ml-5 mt-5" href="add.php">Add New Katalog</a><br /><br />
 
     <table class="table" width='80%' border=1>
         <tr>

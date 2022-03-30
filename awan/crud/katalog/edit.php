@@ -2,6 +2,7 @@
 
 <head>
 	<title>Edit Katalog</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
 <?php
@@ -15,26 +16,22 @@ while ($data_katalog = mysqli_fetch_array($katalog)) {
 ?>
 
 <body>
-	<a href="index.php">Go Back</a>
-	<br /><br />
+	<div class="container">
+		<a class="btn btn-light" href="index.php">Go Back</a>
+		<br /><br />
 
-	<form action="" method="post">
-		<table width="25%" border="0">
-			<tr>
-				<td>ID Katalog</td>
-				<td style="font-size: 11pt;"><?php echo $id_katalog; ?> </td>
-				<input type="hidden" name="id_katalog" value="<?php echo $id_katalog; ?>">
-			</tr>
-			<tr>
-				<td>Nama Katalog</td>
-				<td><input type="text" name="nama" value="<?php echo $nama; ?>"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="update" value="Update"></td>
-			</tr>
-		</table>
-	</form>
+		<form style="width: 50%;" action="" method="post">
+			<div class="form-group">
+				<label for="id_katalog">ID Katalog</label>
+				<input type="text" class="form-control" id="id_katalog" name="id_katalog" value="<?php echo $id_katalog; ?>">
+			</div>
+			<div class="form-group">
+				<label for="nama">Nama</label>
+				<input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama; ?>">
+			</div>
+			<button type="submit" name="update" class="btn btn-primary">Update</button>
+		</form>
+	</div>
 
 	<?php
 

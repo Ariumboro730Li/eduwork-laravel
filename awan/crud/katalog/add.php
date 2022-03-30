@@ -2,28 +2,26 @@
 
 <head>
 	<title>Add Buku</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
 <body>
-	<a href="index.php">Go Back</a>
-	<br /><br />
+	<div class="container">
+		<a class="btn btn-light" href="index.php">Go Back</a>
+		<br /><br />
 
-	<form action="add.php" method="post" name="form1">
-		<table width="25%" border="0">
-			<tr>
-				<td>ID Katalog</td>
-				<td><input type="text" name="id_katalog"></td>
-			</tr>
-			<tr>
-				<td>nama</td>
-				<td><input type="text" name="nama"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="Submit" value="Add"></td>
-			</tr>
-		</table>
-	</form>
+		<form style="width: 50%;" action="" method="post">
+			<div class="form-group">
+				<label for="id_katalog">ID Katalog</label>
+				<input type="text" class="form-control" id="id_katalog" name="id_katalog">
+			</div>
+			<div class="form-group">
+				<label for="nama">Nama</label>
+				<input type="text" class="form-control" id="nama" name="nama">
+			</div>
+			<button type="submit" name="Submit" class="btn btn-primary">Add</button>
+		</form>
+	</div>
 
 	<?php
 	include_once("connect.php");

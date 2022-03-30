@@ -2,6 +2,7 @@
 
 <head>
 	<title>Edit Penerbit</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
 <?php
@@ -19,37 +20,34 @@ while ($penerbit_data = mysqli_fetch_array($penerbit)) {
 ?>
 
 <body>
-	<a href="index.php">Go to Back</a>
-	<br /><br />
+	<div class="container">
+		<a class="btn btn-light" href="index.php">Go to Back</a>
+		<br /><br />
 
-	<form action="edit.php?id_penerbit=<?php echo $id_penerbit; ?>" method="post">
-		<table width="25%" border="0">
-			<tr>
-				<td>ID Penerbit</td>
-				<td style="font-size: 11pt;"><?php echo $id_penerbit; ?> </td>
-			</tr>
-			<tr>
-				<td>Nama Penerbit</td>
-				<td><input type="text" name="nama_penerbit" value="<?php echo $nama_penerbit; ?>"></td>
-			</tr>
-			<tr>
-				<td>Telpon</td>
-				<td><input type="text" name="telp" value="<?php echo $telp; ?>"></td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td><input type="text" name="email" value="<?php echo $email; ?>"></td>
-			</tr>
-			<tr>
-				<td>Alamat</td>
-				<td><input type="text" name="alamat" value="<?php echo $alamat; ?>"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="update" value="Update"></td>
-			</tr>
-		</table>
-	</form>
+		<form action="edit.php?id_penerbit=<?php echo $id_penerbit; ?>" method="post">
+			<div class="form-group">
+				<label for="id_penerbit">ID Penerbit</label>
+				<input type="text" class="form-control" id="id_penerbit" name="id_penerbit" value="<?php echo $id_penerbit; ?>">
+			</div>
+			<div class="form-group">
+				<label for="nama_penerbit">Nama Penerbit</label>
+				<input type="text" class="form-control" id="nama_penerbit" name="nama_penerbit" value="<?php echo $nama_penerbit; ?>">
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="text" class="form-control" id="email" name="email" value="<?php echo $telp; ?>">
+			</div>
+			<div class="form-group">
+				<label for="telp">Telpon</label>
+				<input type="text" class="form-control" id="telp" name="telp" value="<?php echo $email; ?>">
+			</div>
+			<div class="form-group">
+				<label for="alamat">Alamat</label>
+				<input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $alamat; ?>">
+			</div>
+			<button type="submit" name="update" class="btn btn-primary">Update</button>
+		</form>
+	</div>
 
 	<?php
 

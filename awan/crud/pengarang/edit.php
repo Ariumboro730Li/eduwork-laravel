@@ -2,12 +2,13 @@
 
 <head>
 	<title>Edit Pengarang</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
 <?php
 include_once("connect.php");
 $id_pengarang = $_GET['id_pengarang'];
-$pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang");
+$pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang WHERE id_pengarang = '$id_pengarang'");
 
 while ($pengarang_data = mysqli_fetch_array($pengarang)) {
 	$id_pengarang = $pengarang_data['id_pengarang'];
@@ -19,37 +20,35 @@ while ($pengarang_data = mysqli_fetch_array($pengarang)) {
 ?>
 
 <body>
-	<a href="index.php">Go Back</a>
-	<br /><br />
 
-	<form action="edit.php?id_pengarang=<?php echo $id_pengarang; ?>" method="post">
-		<table width="25%" border="0">
-			<tr>
-				<td>ID pengarang</td>
-				<td style="font-size: 11pt;"><?php echo $id_pengarang; ?> </td>
-			</tr>
-			<tr>
-				<td>Nama pengarang</td>
-				<td><input type="text" name="nama_pengarang" value="<?php echo $nama_pengarang; ?>"></td>
-			</tr>
-			<tr>
-				<td>email</td>
-				<td><input type="text" name="email" value="<?php echo $email; ?>"></td>
-			</tr>
-			<tr>
-				<td>telp</td>
-				<td><input type="text" name="telp" value="<?php echo $telp; ?>"></td>
-			</tr>
-			<tr>
-				<td>alamat</td>
-				<td><textarea type="text" name="alamat" value="<?php echo $alamat; ?>"></textarea></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="update" value="Update"></td>
-			</tr>
-		</table>
-	</form>
+	<div class="container">
+		<a class="btn btn-light" href="index.php">Go Back</a>
+		<br /><br />
+
+		<form action="edit.php?id_pengarang=<?php echo $id_pengarang; ?>" method="post">
+			<div class="form-group">
+				<label for="id_pengarang">ID pengarang</label>
+				<input type="text" class="form-control" id="id_pengarang" name="id_pengarang" value="<?php echo $id_pengarang; ?>">
+			</div>
+			<div class="form-group">
+				<label for="nama_pengarang">Nama pengarang</label>
+				<input type="text" class="form-control" id="nama_pengarang" name="nama_pengarang" value="<?php echo $nama_pengarang; ?>">
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>">
+			</div>
+			<div class="form-group">
+				<label for="telp">Telp</label>
+				<input type="telp" class="form-control" id="telp" name="telp" value="<?php echo $telp; ?>">
+			</div>
+			<div class="form-group">
+				<label for="alamat">Alamat</label>
+				<input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $alamat; ?>">
+			</div>
+			<button type="submit" name="update" class="btn btn-primary">Update</button>
+		</form>
+	</div>
 
 	<?php
 

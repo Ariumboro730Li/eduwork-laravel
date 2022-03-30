@@ -2,6 +2,7 @@
 
 <head>
 	<title>Add Pengarang</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
 <?php
@@ -10,33 +11,34 @@ $pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang");
 ?>
 
 <body>
-	<a href="index.php">Go Back</a>
-	<br /><br />
+	<div class="container">
+		<a class="btn btn-light" href="index.php">Go Back</a>
+		<br /><br />
 
-	<form action="" method="post" name="form1">
-		<table width="25%" border="0">
-			<tr>
-				<td>ID pengarang</td>
-				<td><input type="text" name="id_pengarang"></td>
-			</tr>
-			<tr>
-				<td>Nama pengarang</td>
-				<td><input type="text" name="nama_pengarang"></td>
-			</tr>
-			<tr>
-				<td>email</td>
-				<td><input type="text" name="email"></td>
-			</tr>
-			<tr>
-				<td>telp</td>
-				<td><input type="text" name="telp"></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" name="Submit" value="Add"></td>
-			</tr>
-		</table>
-	</form>
+		<form action="" method="post">
+			<div class="form-group">
+				<label for="id_pengarang">ID Pengarang</label>
+				<input type="text" class="form-control" id="id_pengarang" name="id_pengarang">
+			</div>
+			<div class="form-group">
+				<label for="nama_pengarang">Nama Pengarang</label>
+				<input type="text" class="form-control" id="nama_pengarang" name="nama_pengarang">
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<input type="text" class="form-control" id="email" name="email">
+			</div>
+			<div class="form-group">
+				<label for="telp">Telpon</label>
+				<input type="text" class="form-control" id="telp" name="telp">
+			</div>
+			<div class="form-group">
+				<label for="alamat">Alamat</label>
+				<input type="text" class="form-control" id="alamat" name="alamat">
+			</div>
+			<button type="submit" name="Submit" class="btn btn-primary">Add</button>
+		</form>
+	</div>
 
 	<?php
 
