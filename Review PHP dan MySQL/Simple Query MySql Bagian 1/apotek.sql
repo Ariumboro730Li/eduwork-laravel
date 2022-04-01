@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2022 at 01:48 AM
+-- Generation Time: Apr 01, 2022 at 09:12 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -31,8 +31,8 @@ CREATE TABLE `obat` (
   `id` int(11) NOT NULL,
   `barcode` varchar(11) NOT NULL,
   `nama_obat` varchar(128) NOT NULL,
-  `jenis_obat` varchar(128) NOT NULL,
-  `harga_obat` int(11) NOT NULL,
+  `id_jenis` varchar(128) NOT NULL,
+  `id_harga` int(11) NOT NULL,
   `id_penjual` int(11) NOT NULL,
   `qty_stock` int(11) DEFAULT NULL,
   `tahun` int(11) DEFAULT NULL
@@ -42,7 +42,7 @@ CREATE TABLE `obat` (
 -- Dumping data for table `obat`
 --
 
-INSERT INTO `obat` (`id`, `barcode`, `nama_obat`, `jenis_obat`, `harga_obat`, `id_penjual`, `qty_stock`, `tahun`) VALUES
+INSERT INTO `obat` (`id`, `barcode`, `nama_obat`, `id_jenis`, `id_harga`, `id_penjual`, `qty_stock`, `tahun`) VALUES
 (1, '909-181', 'Panadol', 'Sakit Kepala', 2500, 1, 100, 2020),
 (2, '929 -181', 'Paramex', 'Sakit Kepala', 3000, 2, 50, 2021),
 (3, '009-281', 'antangin', 'Masuk Angin', 2250, 3, 60, 2022),

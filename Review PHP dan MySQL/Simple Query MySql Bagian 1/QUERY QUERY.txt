@@ -1,13 +1,13 @@
 QUERY QUERY
 
-1.SELECT * FROM 'obat'ORDER BY barcode DESC
-2.SELECT * FROM 'obat'ORDER BY judul ASC
-3.SELECT * FROM 'obat' WHERE judul LIKE '%dewasa%'
-4.SELECT * FROM 'obat' WHERE judul LIKE '%anak%'
-5.SELECT id_penjual, SUM(qty_stock) as total FROM 'obat'GROUP BY id_penjual
-6.SELECT id_jenis, SUM(qty_stock) as total FROM 'obat' GROUP BY id_jenis
-7.SELECT id_harga, SUM(qty_stock) as total FROM 'obat'GROUP BY id_harga
-8.SELECT tahun, SUM(qty_stock) as total FROM 'obat'GROUP BY tahun
-9.SELECT tahun, SUM(qty_stock) as total FROM 'obat'WHERE tahun >= 2020 GROUP BY tahun ORDER BY tahun DESC
-10.SELECT tahun, SUM(qty_stock) as total FROM 'obat'GROUP BY tahun ORDER BY tahun ASC
-11.SELECT tahun, SUM(qty_stock) as total FROM 'obat'GROUP BY tahun ORDER BY tahun DESC
+1. SELECT * FROM `obat` ORDER BY barcode DESC;
+2. SELECT * FROM `obat` ORDER BY nama_obat ASC;
+3. SELECT * FROM `obat` WHERE nama_obat LIKE '%dewasa%';
+4. SELECT * FROM `obat` WHERE nama_obat LIKE '%anak%';
+5. SELECT id_penjual, SUM(qty_stock) as total FROM 'obat'GROUP BY id_penjual 
+6. SELECT id_jenis, SUM(qty_stock) as total FROM 'obat' GROUP BY id_jenis
+7. SELECT id_harga, SUM(qty_stock) as total FROM 'obat'GROUP BY id_harga
+8. SELECT tahun, SUM(qty_stock) as total FROM 'obat'GROUP BY tahun
+9. SELECT tahun, SUM(qty_stock) as total FROM 'obat'WHERE tahun >= 2020 GROUP BY tahun ORDER BY tahun DESC
+10. SELECT tahun, SUM(qty_stock) as total FROM 'obat'GROUP BY tahun ORDER BY tahun ASC
+11. SELECT tahun, SUM(qty_stock) as total FROM 'obat'GROUP BY tahun ORDER BY tahun DESC
