@@ -19,7 +19,9 @@
 	  <button v-on:click="say('what')">Say what</button>
 	</div>
 
-	<button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+	<div id="example-4">
+	  <button v-on:click="say('done')">Submit</button>
+	</div>
 </body>
 </html>
 
@@ -59,17 +61,12 @@
 	  }
 	})
 
-
-	var example4 = new Vue({
+	new Vue({
 	  el: '#example-4',
-	methods: {
-	  warn: function (message, event) {
-	    // now we have access to the native event
-	    if (event) {
-	      event.preventDefault()
+	  methods: {
+	    say: function (message) {
+	      alert(message)
 	    }
-	    alert(message)
-	  	}
 	  }
 	})
 </script>
