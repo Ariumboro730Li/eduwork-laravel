@@ -1,5 +1,5 @@
 Update obat
-1.UPDATE obat SET nama_obat = ‘Paramex’ WHERE ‘barcode’ = ‘909-181’
+1.UPDATE obat SET nama_obat = ‘Paramex’ WHERE barcode = ‘909-181’
 
 2.UPDATE obat SET barcode = ‘327-981’ WHERE id = 6
 
