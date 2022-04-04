@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+include_once "functions.php";
+
+
 include_once("connect.php");
 $katalog = mysqli_query($mysqli, "SELECT * FROM katalog ORDER BY id_katalog ASC");
 ?>
@@ -35,33 +40,44 @@ $katalog = mysqli_query($mysqli, "SELECT * FROM katalog ORDER BY id_katalog ASC"
                     <li class="nav-item">
                         <a class="nav-link active" href="homepage.php">Katalog</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="peminjam.php">Peminjam</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <!-- check if sessions flashdata_exist success exist -->
+    <div class="container-fluid">
+        <?php if (flashdata_exist('success')) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= get_flashdata('success'); ?>
+            </div>
+        <?php endif; ?>
 
-    <a class="btn btn-success ml-5 mt-5" href="add_katalog.php">Add New Katalog</a><br /><br />
+        <a class="btn btn-success ml-5 mt-5" href="add_katalog.php">Add New Katalog</a><br /><br />
 
-    <table class="table" width='80%' border=1>
-        <tr>
-            <th>ID Katalog</th>
-            <th>Nama Katalog</th>
-            <th>Aksi</th>
-        </tr>
-        <?php
-        while ($data_katalog = mysqli_fetch_array($katalog)) {
-            echo "<tr>";
-            echo "<td>" . $data_katalog['id_katalog'] . "</td>";
-            echo "<td>" . $data_katalog['nama'] . "</td>";
-            echo "<td><a class='btn btn-primary' href='edit_katalog.php?id_katalog=$data_katalog[id_katalog]'>Edit</a> | <a class='btn btn-danger' href='delete_katalog.php?id_katalog=$data_katalog[id_katalog]'>Delete</a></td></tr>";
-        }
-        ?>
-    </table>
+        <table class="table" width='80%' border=1>
+            <tr>
+                <th>ID Katalog</th>
+                <th>Nama Katalog</th>
+                <th>Aksi</th>
+            </tr>
+            <?php
+            while ($data_katalog = mysqli_fetch_array($katalog)) {
+                echo "<tr>";
+                echo "<td>" . $data_katalog['id_katalog'] . "</td>";
+                echo "<td>" . $data_katalog['nama'] . "</td>";
+                echo "<td><a class='btn btn-primary' href='edit_katalog.php?id_katalog=$data_katalog[id_katalog]'>Edit</a> | <a class='btn btn-danger' href='delete_katalog.php?id_katalog=$data_katalog[id_katalog]'>Delete</a></td></tr>";
+            }
+            ?>
+        </table>
+    </div>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <!-- Footer -->
     <footer class="bg-primary text-white text-center pb-5">
-      <p>Created With <i class="bi bi-heart-fill text-danger"></i> By <a href="https://www.instagram.com/dorkasa.n.sinambela/" class="text-white fw-bold">Dorkas A.N. Sinambela"></a></p>
+        <p>Created With <i class="bi bi-heart-fill text-danger"></i> By <a href="https://www.instagram.com/dorkasa.n.sinambela/" class="text-white fw-bold">Dorkas A.N. Sinambela"></a></p>
     </footer>
     <!-- Akhir Footer -->
 </body>

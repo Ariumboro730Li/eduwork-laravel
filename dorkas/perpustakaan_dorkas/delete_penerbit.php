@@ -1,16 +1,19 @@
 <?php
+session_start();
+
+include_once "functions.php";
+
 include_once("connect.php");
 
 $id_penerbit = $_GET['id_penerbit'];
 
 $result = mysqli_query($mysqli, "DELETE FROM penerbit WHERE id_penerbit='$id_penerbit'");
 
-if (!$result) {
-    echo mysqli_error($mysqli);
+if ($result) {
+    // set success message to index page
+    set_flashdata('success', 'penerbit deleted successfully.');
+    header("Location:index.php");
 } else {
-    // After delete redirect to Home, so that latest user list will be displayed.
+    set_flashdata('success', 'penerbit failed to delete.');
     header("Location:index.php");
 }
-
-// After delete redirect to Home, so that latest user list will be displayed.
-// header("Location:index.php");

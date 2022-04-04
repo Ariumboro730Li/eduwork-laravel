@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Apr 2022 pada 13.56
+-- Waktu pembuatan: 04 Apr 2022 pada 12.22
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.2
 
@@ -85,7 +85,7 @@ CREATE TABLE `buku` (
 INSERT INTO `buku` (`isbn`, `judul`, `tahun`, `id_penerbit`, `id_pengarang`, `id_katalog`, `qty_stok`, `harga_pinjam`) VALUES
 ('000-001', 'HTML', 2022, 'PN01', 'PG02', 'KG2', 100, 0),
 ('002-291', 'Lancar Javascript', 2018, 'PN02', 'PG05', 'KG2', 8, 5000),
-('009-281', 'Basic PHP', 2021, 'PN04', 'PG01', 'KG1', 19, 7500),
+('009-281', 'Basic PHP', 2021, 'PN04', 'PG01', 'KG1', 19, 1000),
 ('092-111', 'Belajar PHP', 2010, 'PN01', 'PG01', 'KG0', 12, 12000),
 ('377-482', 'MySQL Dasar', 2020, 'PN04', 'PG04', 'KG0', 20, 4000),
 ('381-561', 'Basic Vue.js', 2014, 'PN03', 'PG01', 'KG2', 5, 5000),
@@ -96,7 +96,8 @@ INSERT INTO `buku` (`isbn`, `judul`, `tahun`, `id_penerbit`, `id_pengarang`, `id
 ('882-191', 'Belajar CSS', 2020, 'PN03', 'PG05', 'KG0', 8, 12000),
 ('882-291', 'Belajar Laravel', 2020, 'PN03', 'PG05', 'KG1', 3, 11500),
 ('902-191', 'CSS Part 2', 2020, 'PN04', 'PG05', 'KG0', 8, 15000),
-('929-181', 'Basic JQuery', 2019, 'PN01', 'PG05', 'KG0', 11, 5500),
+('929-080', 'Golang', 2022, 'PN01', 'PG01', 'KG0', 45, 0),
+('929-181', 'Basic JQuery', 2019, 'PN01', 'PG05', 'KG0', 11, 550),
 ('977-381', 'CSS Part 1', 2018, 'PN01', 'PG01', 'KG0', 9, 8000),
 ('999-281', 'Laravel Part 2', 2020, 'PN04', 'PG05', 'KG1', 11, 13000);
 
@@ -164,7 +165,7 @@ INSERT INTO `katalog` (`id_katalog`, `nama`) VALUES
 ('KG1', 'Buku Anak'),
 ('KG2', 'Buku Belajar'),
 ('KG3', 'Buku Belajar Agama'),
-('KG4', 'Buku Kesehatan');
+('KG6', 'Buku programming');
 
 -- --------------------------------------------------------
 
@@ -216,10 +217,11 @@ CREATE TABLE `penerbit` (
 INSERT INTO `penerbit` (`id_penerbit`, `nama_penerbit`, `email`, `telp`, `alamat`) VALUES
 ('PN01', 'Penerbit 01', 'penerbit@perpus.co.id', '0219999333', 'Surabaya'),
 ('PN02', 'Penerbit 02', 'penerbit2@gmail.com', '08765158111', 'Bandung'),
-('PN03', 'Penerbit 03', 'penerbit3@gmail.com', NULL, 'Jakarta Barat'),
+('PN03', 'Penerbit 03', 'penerbit3@gmail.com', '081233331243', 'Jakarta Barat'),
 ('PN04', 'Penerbit 04', 'penerbit4@gmail.com', '08972017209', 'Jakarta Selatan'),
-('PN05', 'Penerbit 05', 'penerbit5@gmail.com', '08972187209', 'Jakarta Selatan'),
 ('PN06', 'Penerbit 06', 'penerbit6@gmail.com', '08112187209', 'Jakarta Barat'),
+('PN09', 'Adi Saputra', 'dedikasilumbantobing8@gmail.com', '081243210987', 'Semarang'),
+('PN12', 'Dorkas Sinambela', 'pendukungdorkas1@gmail.com', '0238279023', 'afef'),
 ('PN18', 'Dorkas Sinambela', 'dorkassinambela85@gmail.com', '085268750340', 'Medan');
 
 -- --------------------------------------------------------
@@ -246,8 +248,7 @@ INSERT INTO `pengarang` (`id_pengarang`, `nama_pengarang`, `email`, `telp`, `ala
 ('PG03', 'Pengarang 03', 'pengarang3@perpus.co.id', '092921199', 'Banten'),
 ('PG04', 'Pengarang 04', 'pengarang4@perpus.co.id', '93938199', 'Jakarta'),
 ('PG05', 'Pengarang 05', 'pengarang5@perpus.co.id', '93938199', 'Cimahi'),
-('PG06', 'Pengarang 06', 'pengarang6@perpus.co.id', '0818176111', 'Cimahi'),
-('PG07', 'Pengarang 07', 'pengarang7@perpus.co.id', '08181762291', 'Semarang'),
+('PG09', 'Bayu Sinambela', 'dorkassinambela707@gmail.com', '081256789012', 'Siantar'),
 ('PN16', 'Marta Uli Situmorang', 'marta12@gmail.com', '081261332365', 'Pematangsiantar');
 
 --

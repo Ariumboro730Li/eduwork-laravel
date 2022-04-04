@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+include_once "functions.php";
+
 include_once("connect.php");
 $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
 ?>
@@ -35,11 +39,18 @@ $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
                     <li class="nav-item">
                         <a class="nav-link" href="homepage.php">Katalog</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="peminjam.php">Peminjam</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
-
+    <?php if (flashdata_exist('success')) : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= get_flashdata('success'); ?>
+        </div>
+    <?php endif; ?>
     <a class="btn btn-success ml-5 mt-5" href="add_penerbit.php">Add New Penerbit</a><br /><br />
 
     <table class="table" width='80%' border=1>
@@ -67,7 +78,7 @@ $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <!-- Footer -->
     <footer class="bg-primary text-white text-center pb-5">
-      <p>Created With <i class="bi bi-heart-fill text-danger"></i> By <a href="https://www.instagram.com/dorkasa.n.sinambela/" class="text-white fw-bold">Dorkas A.N. Sinambela"></a></p>
+        <p>Created With <i class="bi bi-heart-fill text-danger"></i> By <a href="https://www.instagram.com/dorkasa.n.sinambela/" class="text-white fw-bold">Dorkas A.N. Sinambela"></a></p>
     </footer>
     <!-- Akhir Footer -->
 </body>
