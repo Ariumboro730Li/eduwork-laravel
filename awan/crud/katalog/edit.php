@@ -23,11 +23,11 @@ while ($data_katalog = mysqli_fetch_array($katalog)) {
 		<form style="width: 50%;" action="" method="post">
 			<div class="form-group">
 				<label for="id_katalog">ID Katalog</label>
-				<input type="text" class="form-control" id="id_katalog" name="id_katalog" value="<?php echo $id_katalog; ?>">
+				<input type="text" class="form-control" id="id_katalog" name="id_katalog" value="<?php echo $id_katalog; ?>" required>
 			</div>
 			<div class="form-group">
 				<label for="nama">Nama</label>
-				<input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama; ?>">
+				<input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama; ?>" required>
 			</div>
 			<button type="submit" name="update" class="btn btn-primary">Update</button>
 		</form>
@@ -41,7 +41,7 @@ while ($data_katalog = mysqli_fetch_array($katalog)) {
 		$id_katalog = $_POST['id_katalog'];
 		$nama = $_POST['nama'];
 
-		include_once("connect.php");
+		include_once("../connect.php");
 
 		$result = mysqli_query($mysqli, "UPDATE katalog SET nama = '$nama' WHERE id_katalog = '$id_katalog';");
 

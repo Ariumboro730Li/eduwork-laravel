@@ -6,7 +6,7 @@
 </head>
 
 <?php
-include_once("connect.php");
+include_once("../connect.php");
 $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
 ?>
 
@@ -18,23 +18,23 @@ $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
 		<form action="add.php" method="post">
 			<div class="form-group">
 				<label for="id_penerbit">ID Penerbit</label>
-				<input type="text" class="form-control" id="id_penerbit" name="id_penerbit">
+				<input type="text" class="form-control" id="id_penerbit" name="id_penerbit" required>
 			</div>
 			<div class="form-group">
 				<label for="nama_penerbit">Nama Penerbit</label>
-				<input type="text" class="form-control" id="nama_penerbit" name="nama_penerbit">
+				<input type="text" class="form-control" id="nama_penerbit" name="nama_penerbit" required>
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="text" class="form-control" id="email" name="email">
+				<input type="email" class="form-control" id="email" name="email" required>
 			</div>
 			<div class="form-group">
 				<label for="telp">Telpon</label>
-				<input type="text" class="form-control" id="telp" name="telp">
+				<input type="text" class="form-control" id="telp" name="telp" onkeypress="return hanyaAngka(event)" maxlength="15" required>
 			</div>
 			<div class="form-group">
 				<label for="alamat">Alamat</label>
-				<input type="text" class="form-control" id="alamat" name="alamat">
+				<input type="text" class="form-control" id="alamat" name="alamat" required>
 			</div>
 			<button type="submit" name="Submit" class="btn btn-primary">Add</button>
 		</form>
@@ -50,13 +50,23 @@ $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
 		$email = $_POST['email'];
 		$alamat = $_POST['alamat'];
 
-		include_once("connect.php");
+		include_once("../connect.php");
 
 		$result = mysqli_query($mysqli, "INSERT INTO `penerbit` (`id_penerbit`, `nama_penerbit`, `email`, `telp`, `alamat`) VALUES ('$id_penerbit', '$nama_penerbit', '$email', '$telp', '$alamat');");
 
 		header("Location:index.php");
 	}
 	?>
+
+	<script>
+		function hanyaAngka(evt) {
+			var charCode = (evt.which) ? evt.which : event.keyCode
+			if (charCode > 31 && (charCode < 48 || charCode > 57))
+
+				return false;
+			return true;
+		}
+	</script>
 </body>
 
 </html>

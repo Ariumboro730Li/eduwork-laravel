@@ -6,7 +6,7 @@
 </head>
 
 <?php
-include_once("connect.php");
+include_once("../connect.php");
 $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
 $pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang");
 $katalog = mysqli_query($mysqli, "SELECT * FROM katalog");
@@ -22,19 +22,19 @@ $katalog = mysqli_query($mysqli, "SELECT * FROM katalog");
 				<form action="add.php" method="post">
 					<div class="form-group">
 						<label for="isbn">ISBN</label>
-						<input type="text" class="form-control" id="isbn" name="isbn">
+						<input type="text" class="form-control" id="isbn" name="isbn" required>
 					</div>
 					<div class="form-group">
 						<label for="judul">Judul</label>
-						<input type="text" class="form-control" id="judul" name="judul">
+						<input type="text" class="form-control" id="judul" name="judul" required>
 					</div>
 					<div class="form-group">
 						<label for="tahun">Tahun</label>
-						<input type="text" class="form-control" id="tahun" name="tahun">
+						<input type="text" class="form-control" id="tahun" name="tahun" required>
 					</div>
 					<div class="form-group">
 						<label for="penerbit">Penerbit</label>
-						<select class="form-control" id="penerbit" name="id_penerbit">
+						<select class="form-control" id="penerbit" name="id_penerbit" required>
 							<?php
 							while ($penerbit_data = mysqli_fetch_array($penerbit)) {
 								echo "<option value='" . $penerbit_data['id_penerbit'] . "'>" . $penerbit_data['nama_penerbit'] . "</option>";
@@ -44,7 +44,7 @@ $katalog = mysqli_query($mysqli, "SELECT * FROM katalog");
 					</div>
 					<div class="form-group">
 						<label for="pengarang">pengarang</label>
-						<select class="form-control" id="pengarang" name="id_pengarang">
+						<select class="form-control" id="pengarang" name="id_pengarang" required>
 							<?php
 							while ($pengarang_data = mysqli_fetch_array($pengarang)) {
 								echo "<option value='" . $pengarang_data['id_pengarang'] . "'>" . $pengarang_data['nama_pengarang'] . "</option>";
@@ -54,7 +54,7 @@ $katalog = mysqli_query($mysqli, "SELECT * FROM katalog");
 					</div>
 					<div class="form-group">
 						<label for="katalog">katalog</label>
-						<select class="form-control" id="katalog" name="id_katalog">
+						<select class="form-control" id="katalog" name="id_katalog" required>
 							<?php
 							while ($katalog_data = mysqli_fetch_array($katalog)) {
 								echo "<option value='" . $katalog_data['id_katalog'] . "'>" . $katalog_data['nama'] . "</option>";
@@ -64,11 +64,11 @@ $katalog = mysqli_query($mysqli, "SELECT * FROM katalog");
 					</div>
 					<div class="form-group">
 						<label for="qty_stok">Qty Stok</label>
-						<input type="text" class="form-control" id="qty_stok" name="qty_stok">
+						<input type="text" class="form-control" id="qty_stok" name="qty_stok" required>
 					</div>
 					<div class="form-group">
 						<label for="harga_pinjam">Harga Pinjam</label>
-						<input type="text" class="form-control" id="harga_pinjam" name="harga_pinjam">
+						<input type="text" class="form-control" id="harga_pinjam" name="harga_pinjam" required>
 					</div>
 					<button type="submit" name="Submit" class="btn btn-primary">Add</button>
 				</form>
@@ -89,7 +89,7 @@ $katalog = mysqli_query($mysqli, "SELECT * FROM katalog");
 		$qty_stok = $_POST['qty_stok'];
 		$harga_pinjam = $_POST['harga_pinjam'];
 
-		include_once("connect.php");
+		include_once("../connect.php");
 
 		$result = mysqli_query($mysqli, "INSERT INTO `buku` (`isbn`, `judul`, `tahun`, `id_penerbit`, `id_pengarang`, `id_katalog`, `qty_stok`, `harga_pinjam`) VALUES ('$isbn', '$judul', '$tahun', '$id_penerbit', '$id_pengarang', '$id_katalog', '$qty_stok', '$harga_pinjam');");
 

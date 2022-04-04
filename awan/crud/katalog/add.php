@@ -13,18 +13,18 @@
 		<form style="width: 50%;" action="" method="post">
 			<div class="form-group">
 				<label for="id_katalog">ID Katalog</label>
-				<input type="text" class="form-control" id="id_katalog" name="id_katalog">
+				<input type="text" class="form-control" id="id_katalog" name="id_katalog" required>
 			</div>
 			<div class="form-group">
 				<label for="nama">Nama</label>
-				<input type="text" class="form-control" id="nama" name="nama">
+				<input type="text" class="form-control" id="nama" name="nama" required>
 			</div>
 			<button type="submit" name="Submit" class="btn btn-primary">Add</button>
 		</form>
 	</div>
 
 	<?php
-	include_once("connect.php");
+	include_once("../connect.php");
 
 	// Check If form submitted, insert form data into users table.
 	if (isset($_POST['Submit'])) {

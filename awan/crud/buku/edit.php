@@ -6,7 +6,7 @@
 </head>
 
 <?php
-include_once("connect.php");
+include_once("../connect.php");
 $isbn = $_GET['isbn'];
 
 $buku = mysqli_query($mysqli, "SELECT * FROM buku WHERE isbn='$isbn'");
@@ -36,19 +36,19 @@ while ($buku_data = mysqli_fetch_array($buku)) {
 				<form action="edit.php?isbn=<?php echo $isbn; ?>" method="post">
 					<div class="form-group">
 						<label for="isbn">ISBN</label>
-						<input type="text" class="form-control" id="isbn" name="isbn" value="<?php echo $isbn; ?>">
+						<input type="text" class="form-control" id="isbn" name="isbn" value="<?php echo $isbn; ?>" required>
 					</div>
 					<div class="form-group">
 						<label for="judul">Judul</label>
-						<input type="text" class="form-control" id="judul" name="judul" value="<?php echo $judul; ?>">
+						<input type="text" class="form-control" id="judul" name="judul" value="<?php echo $judul; ?>" required>
 					</div>
 					<div class="form-group">
 						<label for="tahun">Tahun</label>
-						<input type="text" class="form-control" id="tahun" name="tahun" value="<?php echo $tahun; ?>">
+						<input type="text" class="form-control" id="tahun" name="tahun" value="<?php echo $tahun; ?>" required>
 					</div>
 					<div class="form-group">
 						<label for="penerbit">Penerbit</label>
-						<select class="form-control" id="penerbit" name="id_penerbit">
+						<select class="form-control" id="penerbit" name="id_penerbit" required>
 							<?php
 							while ($penerbit_data = mysqli_fetch_array($penerbit)) {
 								echo "<option " . ($penerbit_data['id_penerbit'] == $id_penerbit ? 'selected' : '') . " value='" . $penerbit_data['id_penerbit'] . "'>" . $penerbit_data['nama_penerbit'] . "</option>";
@@ -58,7 +58,7 @@ while ($buku_data = mysqli_fetch_array($buku)) {
 					</div>
 					<div class="form-group">
 						<label for="pengarang">pengarang</label>
-						<select class="form-control" id="pengarang" name="id_pengarang">
+						<select class="form-control" id="pengarang" name="id_pengarang" required>
 							<?php
 							while ($pengarang_data = mysqli_fetch_array($pengarang)) {
 								echo "<option " . ($pengarang_data['id_pengarang'] == $id_pengarang ? 'selected' : '') . " value='" . $pengarang_data['id_pengarang'] . "'>" . $pengarang_data['nama_pengarang'] . "</option>";
@@ -68,7 +68,7 @@ while ($buku_data = mysqli_fetch_array($buku)) {
 					</div>
 					<div class="form-group">
 						<label for="katalog">katalog</label>
-						<select class="form-control" id="katalog" name="id_katalog">
+						<select class="form-control" id="katalog" name="id_katalog" required>
 							<?php
 							while ($katalog_data = mysqli_fetch_array($katalog)) {
 								echo "<option " . ($katalog_data['id_katalog'] == $id_katalog ? 'selected' : '') . " value='" . $katalog_data['id_katalog'] . "'>" . $katalog_data['nama'] . "</option>";
@@ -78,11 +78,11 @@ while ($buku_data = mysqli_fetch_array($buku)) {
 					</div>
 					<div class="form-group">
 						<label for="qty_stok">Qty Stok</label>
-						<input type="text" class="form-control" id="qty_stok" name="qty_stok" value="<?php echo $qty_stok; ?>">
+						<input type="text" class="form-control" id="qty_stok" name="qty_stok" value="<?php echo $qty_stok; ?>" required>
 					</div>
 					<div class="form-group">
 						<label for="harga_pinjam">Harga Pinjam</label>
-						<input type="text" class="form-control" id="harga_pinjam" name="harga_pinjam" value="<?php echo $harga_pinjam; ?>">
+						<input type="text" class="form-control" id="harga_pinjam" name="harga_pinjam" value="<?php echo $harga_pinjam; ?>" required>
 					</div>
 					<button type="submit" name="update" class="btn btn-primary">Update</button>
 				</form>
@@ -104,7 +104,7 @@ while ($buku_data = mysqli_fetch_array($buku)) {
 		$qty_stok = $_POST['qty_stok'];
 		$harga_pinjam = $_POST['harga_pinjam'];
 
-		include_once("connect.php");
+		include_once("../connect.php");
 
 		$result = mysqli_query($mysqli, "UPDATE buku SET judul = '$judul', tahun = '$tahun', id_penerbit = '$id_penerbit', id_pengarang = '$id_pengarang', id_katalog = '$id_katalog', qty_stok = '$qty_stok', harga_pinjam = '$harga_pinjam' WHERE isbn = '$isbn';");
 

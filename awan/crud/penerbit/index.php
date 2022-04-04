@@ -1,5 +1,5 @@
 <?php
-include_once("connect.php");
+include_once("../connect.php");
 $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
 ?>
 
@@ -13,23 +13,23 @@ $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/awan/crud/">Perpus-nich</a>
+            <a class="navbar-brand" href="../">Perpus-nich</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="/awan/crud/buku/">Buku</a>
+                        <a class="nav-link " aria-current="page" href="../buku/">Buku</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/awan/crud/penerbit/">Penerbit</a>
+                        <a class="nav-link active" href="../penerbit/">Penerbit</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/awan/crud/pengarang/">Pengarang</a>
+                        <a class="nav-link" href="../pengarang/">Pengarang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/awan/crud/katalog/">Katalog</a>
+                        <a class="nav-link" href="../katalog/">Katalog</a>
                     </li>
                 </ul>
             </div>

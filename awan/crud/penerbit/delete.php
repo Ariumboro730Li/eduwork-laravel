@@ -1,5 +1,5 @@
 <?php
-include_once("connect.php");
+include_once("../connect.php");
 
 $id_penerbit = $_GET['id_penerbit'];
 

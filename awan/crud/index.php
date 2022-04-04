@@ -19,16 +19,16 @@
             <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/awan/crud/buku/">Buku</a>
+                        <a class="nav-link" aria-current="page" href="buku/">Buku</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/awan/crud/penerbit/">Penerbit</a>
+                        <a class="nav-link" href="penerbit/">Penerbit</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/awan/crud/pengarang/">Pengarang</a>
+                        <a class="nav-link" href="pengarang/">Pengarang</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/awan/crud/katalog/">Katalog</a>
+                        <a class="nav-link" href="katalog/">Katalog</a>
                     </li>
                 </ul>
             </div>
