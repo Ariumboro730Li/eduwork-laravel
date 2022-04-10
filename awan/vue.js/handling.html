@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Vue.js | Eduwork</title>
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    li {
+        margin-top: 1.5rem;
+    }
+
+    button {
+        margin-top: 0.5rem;
+        margin-left: 0.5rem;
+    }
+</style>
+
+<body>
+    <h1>Belajar Event Handling</h1>
+
+    <div id="app">
+        <ul>
+            <li>Inline Handlers <br>
+                <button @click="count++">Tambah 1</button>
+                <p>Hitungannya: {{ count }}</p>
+            </li>
+            <li>Method Handlers <br>
+                <button @click="greet">Salam!</button>
+            </li>
+            <li>Calling Method in inline Handlers <br>
+                <button @click="say('hallo')">Katakan hallo</button>
+                <button @click="say('bye')">katakan bye</button>
+            </li>
+            <li>Accessing Event Argument in inline Handlers <br>
+                <form action="">
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama">
+                    <!-- using $event special variable -->
+                    <button @click="warn('Form belum bisa dikirim.', $event)">
+                        Submit
+                    </button>
+                </form>
+            </li>
+            <li>Event Modifiers <br>
+                <a href="https://youtube.com" @click.prevent="tekan()">link stop</a> <br>
+            </li>
+            <li>Key Modifiers <br>
+                <form action="">
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama" @keyup.enter="submit">
+                    <p>tekan enter untuk mengirim data</p>
+                </form>
+            </li>
+            <li>System Modifier Key <br>
+                <form action="">
+                    <label for="nama">Nama</label>
+                    <input type="text" name="nama" id="nama" @keyup.alt.enter="reset()">
+                    <p>tekan alt + enter untuk mengosongkan data</p>
+                </form>
+            </li>
+
+            <li>.exact Modifier <br>
+                <button @click.ctrl.exact="tekan()">A</button>
+                <p>button berfungsi jika sambil menekan tombol ctrl</p>
+            </li>
+        </ul>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    count: 0,
+                    name: 'Awan'
+                }
+            },
+            methods: {
+                greet(event) {
+                    // `this` inside methods points to the current active instance
+                    alert(`Haii ${this.name}!`)
+                },
+                say(message) {
+                    alert(message)
+                },
+                warn(message, event) {
+                    // now we have access to the native event
+                    if (event) {
+                        event.preventDefault()
+                    }
+                    alert(message)
+                },
+                tekan() {
+                    alert("Link Youtube")
+                },
+                reset() {
+                    document.getElementById("nama").value = ""
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
