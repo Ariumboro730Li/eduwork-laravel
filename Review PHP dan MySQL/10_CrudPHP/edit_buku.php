@@ -1,0 +1,128 @@
+<html>
+<head>
+	<title>Edit Buku</title>
+
+</head>
+
+<center>
+    <a href="index.php">Buku</a> |
+    <a href="index_penerbit.php">Penerbit</a> |
+    <a href="index_pengarang.php">Pengarang</a> |
+    <a href="index_katalog.php">Katalog</a>
+    <hr>
+</center>
+
+<?php
+	include_once("connect.php");
+	$isbn = $_GET['isbn'];
+
+	$buku = mysqli_query($mysqli, "SELECT * FROM buku WHERE isbn='$isbn'");
+    $penerbit = mysqli_query($mysqli, "SELECT * FROM  penerbit");
+    $pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang");
+    $katalog = mysqli_query($mysqli, "SELECT * FROM katalog");
+
+    while($buku_data = mysqli_fetch_array($buku))
+    {
+    	$judul = $buku_data['judul'];
+    	$isbn = $buku_data['isbn'];
+    	$tahun = $buku_data['tahun'];
+    	$id_penerbit = $buku_data['id_penerbit'];
+    	$id_pengarang = $buku_data['id_pengarang'];
+    	$id_katalog = $buku_data['id_katalog'];
+    	$qty_stok = $buku_data['qty_stok'];
+    	$harga_pinjam = $buku_data['harga_pinjam'];
+    }
+?>
+ 
+<body>
+	<a class="btn btn-primary" href="index.php">Go Home</a>
+	<br/><br/>
+ 
+	<form action="edit.php?isbn=<?php echo $isbn; ?>" method="post">
+		<table width="25%" border="0">
+			<tr>
+				<td><lablel for="isbn">ISBN</label></td>
+				<td><input type="text" class="form-control" id="isbn" name="isbn" value="<?php echo $isbn; ?>" required></td>
+			</tr>
+			<tr> 
+				<td>Judul</td>
+				<td><input type="text" class="form-control" id="judul" name="judul" required></td>
+			</tr>
+			<tr> 
+				<td>Tahun</td>
+				<td><input type="text" class="form-control" id="tahun" name="tahun" required></td>
+			</tr>
+			<tr> 
+				<td><lablel for="id_penerbit">Penerbit</label></td>
+				<td>
+					<select class="form-control" id="penerbit" name="id_penerbit" required>
+						<?php 
+						    while($penerbit_data = mysqli_fetch_array($penerbit)) {         
+						    	echo "<option ".($penerbit_data['id_penerbit'] == $id_penerbit ? 'selected' : '')." value='".$penerbit_data['id_penerbit']."'>".$penerbit_data['nama_penerbit']."</option>";
+						    }
+						?>
+					</select>
+				</td>
+			</tr>
+			<tr> 
+				<td><lablel for="id_pengarang">Pengarang</label></td>
+				<td>
+					<select class="form-control" id="pengarang" name="id_pengarang" required>
+						<?php 
+						    while($pengarang_data = mysqli_fetch_array($pengarang)) {         
+						    	echo "<option ".($pengarang_data['id_pengarang'] == $id_pengarang ? 'selected' : '')." value='".$pengarang_data['id_pengarang']."'>".$pengarang_data['nama_pengarang']."</option>";
+						    }
+						?>
+					</select>
+				</td>
+			</tr>
+			<tr> 
+				<td><lablel for="id_katalog">Katalog</label></td>
+				<td>
+					<select class="form-control" id="katalog" name="id_katalog" required>
+						<?php 
+						    while($katalog_data = mysqli_fetch_array($katalog)) {         
+						    	echo "<option ".($katalog_data['id_katalog'] == $id_katalog ? 'selected' : '')." value='".$katalog_data['id_katalog']."'>".$katalog_data['nama']."</option>";
+						    }
+						?>
+					</select>
+				</td>
+			</tr>
+			<tr> 
+				<td><lablel for="qty_stok">Qty Stok</label></td>
+				<td><input type="text" class="form-control" id="qty_stok" name="qty_stok" required></td>
+			</tr>
+			<tr> 
+				<td><lablel for="harga_pinjam">Harga Pinjam</label></td>
+				<td><input type="text" class="form-control" id="harga_pinjam" name="harga_pinjam" required></td>
+			</tr>
+			<tr> 
+				<td></td>
+				<td><input type="submit" name="update" class="btn btn-primary" value="Update"></td>
+			</tr>
+		</table>
+	</form>
+	
+	<?php
+	 
+		// Check If form submitted, insert form data into users table.
+		if(isset($_POST['update'])) {
+
+			$isbn = $_GET['isbn'];
+			$judul = $_POST['judul'];
+			$tahun = $_POST['tahun'];
+			$id_penerbit = $_POST['id_penerbit'];
+			$id_pengarang = $_POST['id_pengarang'];
+			$id_katalog = $_POST['id_katalog'];
+			$qty_stok = $_POST['qty_stok'];
+			$harga_pinjam = $_POST['harga_pinjam'];
+			
+			include_once("connect.php");
+
+			$result = mysqli_query($mysqli, "UPDATE buku SET judul = '$judul', tahun = '$tahun', id_penerbit = '$id_penerbit', id_pengarang = '$id_pengarang', id_katalog = '$id_katalog', qty_stok = '$qty_stok', harga_pinjam = '$harga_pinjam' WHERE isbn = '$isbn';");
+			
+			header("Location:index_buku.php");
+		}
+	?>
+</body>
+</html>
