@@ -42,10 +42,20 @@
                                     <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
                                         <input type="submit" value="Login" class="btn btn-primary">
                                     </div>
+                                    <div class="d-flex align-items-center justify-content-center mt-4 mb-0">
+                                        
+                                    </div>
                                 </form>
                             </div>
-                            <div class="card-footer text-center py-3">
-                                <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+                            <div class="card-footer py-3">
+                                <div class="d-flex align-items-center justify-content-around">
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                            {{ __('Forgot Your Password?') }}
+                                        </a>
+                                    @endif
+                                    <a href="{{ route('register') }}">Need an account? Sign up!</a>
+                                </div>
                             </div>
                         </div>
                     </div>
