@@ -1,0 +1,42 @@
+.btn-color {
+    background-color: #0e1c36;
+    color: #fff;
+}
+
+.profile-image {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+}
+
+.cardbody-color {
+    background-color: #ebf2fa;
+}
+
+.fa-eye-slash::before {
+    content: "\f070";
+}
+
+.sidebar-dark .nav-item.active .nav-linked {
+    color: rgb(121, 203, 15);
+}
+
+#show_pass {
+    position: relative;
+}
+
+#show_pass span {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
+
+#show_hide_password {
+    position: relative;
+}
+
+#show_hide_password span {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+}
