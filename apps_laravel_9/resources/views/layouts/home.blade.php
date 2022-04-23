@@ -1,6 +1,6 @@
-@extends('layouts.admin')
-@section('header', 'Home')
-@section('content')
+@extends('admin')
+@section('header', 'Home Admin')
+@section('konten')
     <div class="container">
         <div class="row justify-content-right">
             <div class="col-md-9">

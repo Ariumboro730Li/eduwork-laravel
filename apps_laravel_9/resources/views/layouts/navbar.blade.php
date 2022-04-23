@@ -397,7 +397,7 @@
 
                             </div>
                             <div class="col-lg-5 cards">
-                                <h6 class="card-category">@include('home')</h6>
+                                <h6 class="card-category">Home</h6>
                             </div>
                         </div>
                         <div class="row">
