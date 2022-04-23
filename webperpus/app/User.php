@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,9 +41,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
     public function __construct()
     {
-        $this->middleware([
-            'auth',
-            'verified'
-        ]);
+        if (Auth::check() && Auth::user()->isAdmin());
     }
 }
