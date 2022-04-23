@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        @yield('header')
+        @yield('title')
     </title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -406,135 +406,6 @@
                 </div>
             </nav>
             <!-- End Navbar -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12">
-                            @yield('content')
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-lg-6 cards">
-                                    @yield('content')
-
-                                </div>
-                                <div class="col-lg-5 cards">
-                                    <h6 class="card-category">Home</h6>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card card-testimonial">
-                                        <div class="icon">
-                                            <i class="material-icons">format_quote</i>
-                                        </div>
-                                        <div class="card-body">
-                                            <h5 class="card-description">
-                                            </h5>
-                                        </div>
-                                        <div class="card-footer">
-                                            <h4 class="card-title">
-                                                @yield('konten')
-                                            </h4>
-                                            <h6 class="card-category">@alecthompson</h6>
-                                            <div class="card-avatar">
-                                                <a href="#pablo">
-                                                    <img class="img"
-                                                        src="./../assets/img/faces/card-profile1-square.jpg" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <ul class="timeline timeline-simple">
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge danger">
-                                        <i class="material-icons">card_travel</i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <span class="badge badge-pill badge-danger">Some title</span>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Wifey made the best Father's Day meal ever. So thankful so happy so
-                                                blessed. Thank you for making my family We just had fun with the
-                                                “future” theme !!! It was a fun night all together ... The always rude
-                                                Kanye Show at 2am Sold Out Famous viewing @ Figueroa and 12th in
-                                                downtown.</p>
-                                        </div>
-                                        <h6>
-                                            <i class="ti-time"></i> 11 hours ago via Twitter
-                                        </h6>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge success">
-                                        <i class="material-icons">extension</i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <span class="badge badge-pill badge-success">Another One</span>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Thank God for the support of my wife and real friends. I also wanted to
-                                                point out that it’s the first album to go number 1 off of streaming!!! I
-                                                love you Ellen and also my number one design rule of anything I do from
-                                                shoes to music to homes is that Kim has to like it....</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge info">
-                                        <i class="material-icons">fingerprint</i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <span class="badge badge-pill badge-info">Another Title</span>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Called I Miss the Old Kanye That’s all it was Kanye And I love you like
-                                                Kanye loves Kanye Famous viewing @ Figueroa and 12th in downtown LA
-                                                11:10PM</p>
-                                            <p>What if Kanye made a song about Kanye Royère doesn't make a Polar bear
-                                                bed but the Polar bear couch is my favorite piece of furniture we own It
-                                                wasn’t any Kanyes Set on his goals Kanye</p>
-                                            <hr>
-                                            <div class="dropdown pull-left">
-                                                <button type="button" class="btn btn-round btn-info dropdown-toggle"
-                                                    data-toggle="dropdown">
-                                                    <i class="material-icons">build</i>
-                                                    <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <li>
-                                                        <a href="#action">Action</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#action">Another action</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#here">Something else here</a>
-                                                    </li>
-                                                    <li class="divider"></li>
-                                                    <li>
-                                                        <a href="#link">Separated link</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <footer class="footer">
                 <div class="container-fluid">
                     <nav class="float-left">

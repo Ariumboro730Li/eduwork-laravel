@@ -1,6 +1,6 @@
-@extends('admin')
-@section('header', 'Home Admin')
-@section('konten')
+@extends('layouts.admin')
+@section('title', 'Home Admin')
+@section('content')
     <div class="container">
         <div class="row justify-content-right">
             <div class="col-md-9">
@@ -16,4 +16,3 @@
                 </div>
             </div>
         </div>
-    @endsection
