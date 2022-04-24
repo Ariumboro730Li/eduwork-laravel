@@ -1,4 +1,4 @@
 @extends('layouts.admin')
 @section('content')
-    <p>Ini Halaman Catalog</p>
+    Ini Halaman Catalog
 @endsection
