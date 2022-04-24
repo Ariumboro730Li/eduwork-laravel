@@ -7,7 +7,7 @@
 	include_once("connect.php");
 	$id_pengarang = $_GET['id_pengarang'];
 
-    $pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang");
+    $pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang WHERE id_pengarang = '$id_pengarang'");
 
     while($pengarang_data = mysqli_fetch_array($pengarang))
     {

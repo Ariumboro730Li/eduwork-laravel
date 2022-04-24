@@ -7,7 +7,7 @@
 	include_once("connect.php");
 	$id_penerbit = $_GET['id_penerbit'];
 
-    $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
+    $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit WHERE id_penerbit = '$id_penerbit'");
 
     while($penerbit_data = mysqli_fetch_array($penerbit))
     {

@@ -7,7 +7,7 @@
 	include_once("connect.php");
 	$id_katalog = $_GET['id_katalog'];
 
-    $katalog = mysqli_query($mysqli, "SELECT * FROM katalog");
+    $katalog = mysqli_query($mysqli, "SELECT * FROM katalog WHERE id_katalog = '$id_katalog'");
 
     while($katalog_data = mysqli_fetch_array($katalog))
     {
