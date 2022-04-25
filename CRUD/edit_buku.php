@@ -1,6 +1,8 @@
 <html>
 <head>
 	<title>Edit Buku</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </head>
 
 <?php
@@ -32,21 +34,21 @@
 	<form action="edit_buku.php?isbn=<?php echo $isbn; ?>" method="post">
 		<table width="25%" border="0">
 			<tr> 
-				<td>ISBN</td>
-				<td style="font-size: 11pt;"><?php echo $isbn; ?> </td>
+				<td><label class="form-label">ISBN</label></td>
+				<td><label class="form-label"><?php echo $isbn; ?></label></td>
 			</tr>
 			<tr> 
-				<td>Judul</td>
-				<td><input type="text" name="judul" value="<?php echo $judul; ?>"></td>
+				<td><label class="form-label">Judul</label></td>
+				<td><input type="text" class="form-control" name="judul" value="<?php echo $judul; ?>"></td>
 			</tr>
 			<tr> 
-				<td>Tahun</td>
-				<td><input type="text" name="tahun" value="<?php echo $tahun; ?>"></td>
+				<td><label class="form-label">Tahun</label></td>
+				<td><input type="text" class="form-control" name="tahun" value="<?php echo $tahun; ?>"></td>
 			</tr>
 			<tr> 
-				<td>Penerbit</td>
+				<td><label class="form-label">Penerbit</label></td>
 				<td>
-					<select name="id_penerbit">
+					<select class="btn btn-secondary dropdown-toggle" name="id_penerbit">
 						<?php 
 						    while($penerbit_data = mysqli_fetch_array($penerbit)) {         
 						    	echo "<option ".($penerbit_data['id_penerbit'] == $id_penerbit ? 'selected' : '')." value='".$penerbit_data['id_penerbit']."'>".$penerbit_data['nama_penerbit']."</option>";
@@ -56,9 +58,9 @@
 				</td>
 			</tr>
 			<tr> 
-				<td>Pengarang</td>
+				<td><label class="form-label">Pengarang</label></td>
 				<td>
-					<select name="id_pengarang">
+					<select class="btn btn-secondary dropdown-toggle" name="id_pengarang">
 						<?php 
 						    while($pengarang_data = mysqli_fetch_array($pengarang)) {         
 						    	echo "<option ".($pengarang_data['id_pengarang'] == $id_pengarang ? 'selected' : '')." value='".$pengarang_data['id_pengarang']."'>".$pengarang_data['nama_pengarang']."</option>";
@@ -68,9 +70,9 @@
 				</td>
 			</tr>
 			<tr> 
-				<td>Katalog</td>
+				<td><label class="form-label">Katalog</label></td>
 				<td>
-					<select name="id_katalog">
+					<select class="btn btn-secondary dropdown-toggle" name="id_katalog">
 						<?php 
 						    while($katalog_data = mysqli_fetch_array($katalog)) {         
 						    	echo "<option ".($katalog_data['id_katalog'] == $id_katalog ? 'selected' : '')." value='".$katalog_data['id_katalog']."'>".$katalog_data['nama']."</option>";
@@ -80,16 +82,16 @@
 				</td>
 			</tr>
 			<tr> 
-				<td>Qty Stok</td>
-				<td><input type="text" name="qty_stok" value="<?php echo $qty_stok; ?>"></td>
+				<td><label class="form-label">Qty Stok</label></td>
+				<td><input type="text" class="form-control" name="qty_stok" value="<?php echo $qty_stok; ?>"></td>
 			</tr>
 			<tr> 
-				<td>Harga Pinjam</td>
-				<td><input type="text" name="harga_pinjam" value="<?php echo $harga_pinjam; ?>"></td>
+				<td><label class="form-label">Harga Pinjam</label></td>
+				<td><input type="text" class="form-control" name="harga_pinjam" value="<?php echo $harga_pinjam; ?>"></td>
 			</tr>
 			<tr> 
 				<td></td>
-				<td><input type="submit" name="update" value="Update"></td>
+				<td><input type="submit" class="btn btn-primary" name="update" value="Update"></td>
 			</tr>
 		</table>
 	</form>
