@@ -39,7 +39,7 @@
 	<a class="btn btn-primary" href="index.php">Go Home</a>
 	<br/><br/>
  
-	<form action="edit.php?isbn=<?php echo $isbn; ?>" method="post">
+	<form action="edit_buku.php?isbn=<?php echo $isbn; ?>" method="post">
 		<table width="90%" border="0">
 			<tr>
 				<td><lablel for="isbn">ISBN</label></td>
@@ -122,7 +122,7 @@
 
 			$result = mysqli_query($mysqli, "UPDATE buku SET judul = '$judul', tahun = '$tahun', id_penerbit = '$id_penerbit', id_pengarang = '$id_pengarang', id_katalog = '$id_katalog', qty_stok = '$qty_stok', harga_pinjam = '$harga_pinjam' WHERE isbn = '$isbn';");
 			
-			header("Location:index_buku.php");
+			header("Location:index.php");
 		}
 	?>
 </body>
