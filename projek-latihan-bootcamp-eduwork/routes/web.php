@@ -20,3 +20,8 @@ Route::get('/home', 'App\Http\Controllers\DashboardController@index');
 Route::get('/catalog', 'App\Http\Controllers\DashboardController@catalog');
 Route::get('/writer', 'App\Http\Controllers\DashboardController@writer');
 Route::get('/member', 'App\Http\Controllers\DashboardController@member');
+Route::get('/memberall', 'App\Http\Controllers\ModelERDController@showAllMembers');
+Route::get('/bookall', 'App\Http\Controllers\ModelERDController@showBooks');
+Route::get('/publisher', 'App\Http\Controllers\ModelERDController@showPublishers');
+Route::get('/authorall', 'App\Http\Controllers\ModelERDController@author');
+Route::get('/catalog', 'App\Http\Controllers\ModelERDController@catalogAll');
