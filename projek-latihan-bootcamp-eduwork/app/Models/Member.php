@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +9,6 @@ class Member extends Model
     //
     public function user()
     {
-        return $this->hasOne('App\User', 'member_id');
+        return $this->hasOne('App\Models\User', 'member_id');
     }
 }

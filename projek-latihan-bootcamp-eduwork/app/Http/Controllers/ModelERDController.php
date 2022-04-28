@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Member;
-use App\Book;
-use App\Publisher;
-use App\Author;
-use App\Catalog;
+use App\Models\Member;
+use App\Models\Book;
+use App\Models\Publisher;
+use App\Models\Author;
+use App\Models\Catalog;
 use Illuminate\Http\Request;
 
 class ModelERDController extends Controller

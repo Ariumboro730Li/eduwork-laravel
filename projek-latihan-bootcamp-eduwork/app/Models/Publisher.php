@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +9,6 @@ class Publisher extends Model
     //
     public function books()
     {
-        return $this->hasMany('App\Book', 'publisher_id');
+        return $this->hasMany('App\Models\Book', 'publisher_id');
     }
 }
