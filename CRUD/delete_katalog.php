@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include_once("connect.php");
  
 $id_katalog = $_GET['id_katalog'];

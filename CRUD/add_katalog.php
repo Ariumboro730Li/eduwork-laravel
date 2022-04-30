@@ -18,11 +18,11 @@
 		<table width="25%" border="0">
 			<tr> 
 				<td><label class="form-label">ID Katalog</label></td>
-				<td><input type="text" class="form-control" name="id_katalog"></td>
+				<td><input type="text" class="form-control" name="id_katalog" required maxlength="4" pattern="[A-Z]{2}+[0-9]{2}" title="ID Katalog tidak boleh kosong"></td>
 			</tr>
 			<tr> 
 				<td><label class="form-label">Nama Katalog</label></td>
-				<td><input type="text" class="form-control" name="nama"></td>
+				<td><input type="text" class="form-control" name="nama" required title="Nama Katalog tidak boleh kosong"></td>
 			</tr>
 			<tr> 
 				<td></td>

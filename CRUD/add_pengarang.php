@@ -18,15 +18,15 @@
 		<table width="25%" border="0">
 			<tr> 
 				<td><label class="form-label">ID Pengarang</label></td>
-				<td><input type="text" class="form-control" name="id_pengarang"></td>
+				<td><input type="text" class="form-control" name="id_pengarang" required maxlength="4" pattern="[A-Z]{2}+[0-9]{2}" title="ID Pengarang tidak boleh kosong"></td>
 			</tr>
 			<tr> 
 				<td><label class="form-label">Nama Pengarang</label></td>
-				<td><input type="text" class="form-control" name="nama_pengarang"></td>
+				<td><input type="text" class="form-control" name="nama_pengarang" required></td>
 			</tr>
 			<tr> 
 				<td><label class="form-label">Email</label></td>
-				<td><input type="text" class="form-control" name="email"></td>
+				<td><input type="text" class="form-control" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Email harus diisi dengan contoh sebagai berikut: email@gmail.com"></td>
 			</tr>
 			<tr> 
 				<td><label class="form-label">Nomor Telepon</label></td>
@@ -34,7 +34,7 @@
 			</tr>
 			<tr> 
 				<td><label class="form-label">Alamat</label></td>
-				<td><input type="text" class="form-control" name="alamat"></td>
+				<td><input type="text" class="form-control" name="alamat" required title="Alamat tidak boleh kosong"></td>
 			</tr>
 			<tr> 
 				<td></td>

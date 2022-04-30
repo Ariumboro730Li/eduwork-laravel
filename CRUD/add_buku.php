@@ -20,15 +20,15 @@
 		<table width="25%" border="0">
 			<tr> 
 				<td><label class="form-label">ISBN</label></td>
-				<td><input type="text" class="form-control" name="isbn"></td>
+				<td><input type="text" class="form-control" name="isbn" required maxlength="7" title="ISBN tidak boleh kosong"></td>
 			</tr>
 			<tr> 
 				<td><label class="form-label">Judul</label></td>
-				<td><input type="text" class="form-control" name="judul"></td>
+				<td><input type="text" class="form-control" name="judul" required title="Judul tidak boleh kosong"></td>
 			</tr>
 			<tr> 
 				<td><label class="form-label">Tahun</label></td>
-				<td><input type="text" class="form-control" name="tahun"></td>
+				<td><input type="text" class="form-control" name="tahun" required minlength="4" maxlength="4" pattern="[0-9]{4,4}" title="Tahun harus berisi 4 digit angka"></td>
 			</tr>
 			<tr> 
 				<td><label class="form-label">Penerbit</label></td>
@@ -68,11 +68,11 @@
 			</tr>
 			<tr> 
 				<td><label class="form-label">Qty Stok</label></td>
-				<td><input type="text" class="form-control" name="qty_stok"></td>
+				<td><input type="text" class="form-control" name="qty_stok" required minlength="1" maxlength="3" pattern="[0-9]{1,3}" title="Quantity Stok harus berupa angka, maksimal 3 digit"></td>
 			</tr>
 			<tr> 
 				<td><label class="form-label">Harga Pinjam</label></td>
-				<td><input type="text" class="form-control" name="harga_pinjam"></td>
+				<td><input type="text" class="form-control" name="harga_pinjam" required minlength="1" maxlength="5" pattern="[0-9]{1,5}" title="Harga Pinjam harus berupa angka, maksimal 5 digit"></td>
 			</tr>
 			<tr> 
 				<td></td>

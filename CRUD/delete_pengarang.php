@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include_once("connect.php");
  
 $id_pengarang = $_GET['id_pengarang'];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2022 at 06:01 PM
+-- Generation Time: Apr 29, 2022 at 03:19 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -217,8 +217,7 @@ INSERT INTO `penerbit` (`id_penerbit`, `nama_penerbit`, `email`, `telp`, `alamat
 ('PN02', 'Penerbit 02', 'penerbit2@gmail.com', '08765158111', 'Bandung'),
 ('PN03', 'Penerbit 03', 'penerbit3@gmail.com', NULL, 'Jakarta Barat'),
 ('PN04', 'Penerbit 04', 'penerbit4@gmail.com', '08972017209', 'Jakarta Selatan'),
-('PN05', 'Penerbit 05', 'penerbit5@gmail.com', '08972187209', 'Jakarta Selatan'),
-('PN06', 'Penerbit 06', 'penerbit6@gmail.com', '081269895671', 'Magelang');
+('PN05', 'Penerbit 05', 'penerbit5@gmail.com', '08972187209', 'Jakarta Selatan');
 
 -- --------------------------------------------------------
 
@@ -244,8 +243,7 @@ INSERT INTO `pengarang` (`id_pengarang`, `nama_pengarang`, `email`, `telp`, `ala
 ('PG03', 'Pengarang 03', 'pengarang3@perpus.co.id', '092921199', 'Banten'),
 ('PG04', 'Pengarang 04', 'pengarang4@perpus.co.id', '93938199', 'Jakarta'),
 ('PG05', 'Pengarang 05', 'pengarang5@perpus.co.id', '93938199', 'Cimahi'),
-('PG06', 'Pengarang 06', 'pengarang6@perpus.co.id', '0818176111', 'Cimahi'),
-('PG07', 'Pengarang 07', 'pengarang7@perpus.co.id', '08181762291', 'Semarang');
+('PG06', 'Pengarang 06', 'pengarang6@perpus.co.id', '0818176111', 'Cimahi');
 
 --
 -- Indexes for dumped tables
