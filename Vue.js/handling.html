@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event Handling Vue.js</title>
+</head>
+<body>
+  <!-- Listening to Events -->
+  <div id="example-1">
+    <button v-on:click="counter += 1">Add 1</button>
+    <p>The button above has been clicked {{ counter }} times.</p>
+  </div>
+
+  <!-- Method Event Handlers -->
+  <div id="example-2">
+    <button v-on:click="greet">Greet</button>
+  </div>
+  <br>
+
+  <!-- Methods in Inline Handlers -->
+  <div id="example-3">
+    <button v-on:click="say('hi')">Say hi</button>
+    <button v-on:click="say('what')">Say what</button>
+  </div>
+  <br>
+  <div id="example-4">
+    <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+      Submit
+    </button>
+  </div>
+  <br>
+
+  <!-- Event Modifiers -->
+  <div id="example-5">
+    <button v-on:click.once="counter += 1">Click Once</button>
+    <p>The button above has been clicked {{ counter }} times.</p>
+  </div>
+
+  <div id="example-6">
+    <a v-on:click.prevent="prevent('Stay here!', $event)" href="https://v2.vuejs.org/">Go to Vue.js</a>
+  </div>
+  <br>
+
+  <!-- Key Modifiers -->
+  <div id="example-7">
+    <input type="text" @keyup.enter='pesan' placeholder="Coba tekan Enter.">
+  </div>
+  <br>
+
+  <!-- System Modifier Keys -->
+  <div id="example-8">
+    <input type="text" v-on:keyup.alt.67='pesan' placeholder="Coba tekan Alt + C.">
+  </div>
+  <br>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script type="text/javascript">
+  var example1 = new Vue({
+    el: '#example-1',
+    data: {
+      counter: 0
+    }
+  })
+
+  var example2 = new Vue({
+    el: '#example-2',
+    data: {
+      name: 'Vue.js'
+    },
+    // define methods under the `methods` object
+    methods: {
+      greet: function (event) {
+        // `this` inside methods points to the Vue instance
+        alert('Hello ' + this.name + '!')
+        // `event` is the native DOM event
+        if (event) {
+          alert(event.target.tagName)
+        }
+      }
+    }
+  })
+
+  new Vue({
+    el: '#example-3',
+    methods: {
+      say: function (message) {
+        alert(message)
+      }
+    }
+  })
+
+  new Vue({
+    el: '#example-4',
+    methods: {
+      warn: function (message, event) {
+        // now we have access to the native event
+        if (event) {
+          event.preventDefault()
+        }
+        alert(message)
+      }
+    }
+  })
+
+  var example5 = new Vue({
+    el: '#example-5',
+    data: {
+      counter: 0
+    }
+  })
+
+  new Vue({
+    el: '#example-6',
+    methods: {
+      prevent: function (message, event) {
+        // now we have access to the native event
+        if (event) {
+          event.preventDefault()
+        }
+        alert(message)
+      }
+    }
+  })
+
+  var app = new Vue({
+    el: '#example-7',
+    methods: {
+      pesan: function () {
+        alert('Anda menekan tombol Enter')
+      }
+    }
+  });
+
+  var app = new Vue({
+    el: '#example-8',
+    methods: {
+      pesan: function () {
+        alert('Anda menekan tombol Alt')
+      }
+    }
+  });
+</script>
