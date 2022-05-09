@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', 'App\Http\Controllers\DashboardController@index');
-Route::get('/catalog', 'App\Http\Controllers\DashboardController@catalog');
+Route::get('/catalogs_page', 'App\Http\Controllers\DashboardController@catalog');
 Route::get('/writer', 'App\Http\Controllers\DashboardController@writer');
 Route::get('/member', 'App\Http\Controllers\DashboardController@member');
 Route::get('/memberall', 'App\Http\Controllers\ModelERDController@showAllMembers');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Catalog;
 
 class DashboardController extends Controller
 {
@@ -13,7 +14,9 @@ class DashboardController extends Controller
     }
     public function catalog()
     {
-        return view('catalog');
+        $catalogs = Catalog::all();
+        // return $catalog;
+        return view('catalog', compact('catalogs'));
     }
     public function writer()
     {

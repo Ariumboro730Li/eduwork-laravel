@@ -14,7 +14,7 @@ class ModelERDController extends Controller
     //
     public function showAllMembers()
     {
-        $member = Member::with('user')->get();
+        $member = Member::with('anggota')->get();
         return $member;
     }
     public function showBooks()
