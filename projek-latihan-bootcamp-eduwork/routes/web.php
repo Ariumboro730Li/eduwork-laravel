@@ -26,3 +26,5 @@ Route::get('/publisher', 'App\Http\Controllers\ModelERDController@showPublishers
 Route::get('/authorall', 'App\Http\Controllers\ModelERDController@author');
 Route::get('/catalog', 'App\Http\Controllers\ModelERDController@catalogAll');
 Route::get('/querybuilder', 'App\Http\Controllers\QueryBuilderController@index');
+Route::get('catalogs/create', 'App\Http\Controllers\CatalogController@create');
+Route::post('catalogs/save', 'App\Http\Controllers\CatalogController@store');
