@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Catalog;
+use Validator;
+use Illuminate\Validation;
 
 class CatalogController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -37,10 +40,22 @@ class CatalogController extends Controller
     public function store(Request $request)
     {
         //
+        $rules = [
+            'name' => 'required',
+        ];
+
+        $customMessages = [
+            'required' => 'Membutuhkan field is required.'
+        ];
+
+        $this->validate($request, $rules, $customMessages);
+        // $request->validate([
+        //     'name.required' => 'Isi ini'
+        // ]);
         $catalog = new Catalog;
         $catalog->name = $request->name;
-        $catalog->save;
-        dd($catalog);
+        $catalog->save();
+        // dd($catalog);
         // return $request;
         return redirect('catalogs_page');
     }
@@ -62,9 +77,14 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Catalog $katalog)
     {
         //
+        // dd($catalog);
+        // dd(['Request' => $id]);
+        // return $katalog;
+        // dd($id);
+        return view('admin.catalogs.edit', compact('katalog'));
     }
 
     /**
@@ -74,9 +94,17 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $katalog)
     {
         //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $catalog = Catalog::find($katalog);
+        $catalog->name = $request->name;
+        $catalog->update();
+        // dd($katalog);
+        return redirect('catalogs_page');
     }
 
     /**
@@ -85,8 +113,10 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Catalog $katalog)
     {
         //
+        $katalog->delete();
+        return redirect('catalogs_page');
     }
 }

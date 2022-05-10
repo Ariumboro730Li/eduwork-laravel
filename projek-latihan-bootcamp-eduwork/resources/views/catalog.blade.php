@@ -16,6 +16,9 @@
                     <th>
                         Created At
                     </th>
+                    <th>
+                        Action
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +32,16 @@
                         </td>
                         <td>
                             {{ date('H:i:s - d m Y', strtotime($katalog->created_at)) }}
+                        </td>
+                        <td>
+                            <a href="{{ url('/catalogs/' . $katalog->id . '/edit') }}"
+                                class="btn btn-warning btn-sm">Edit</a>
+                            <form action="{{ url('catalogs', ['id' => $katalog->id]) }}" method="post">
+                                <input class="btn btn-danger btn-sm" type="submit" value="Delete"
+                                    onclick="return confirm('Are you sure?')">
+                                @method('delete')
+                                @csrf
+                            </form>
                         </td>
                     </tr>
                 @endforeach

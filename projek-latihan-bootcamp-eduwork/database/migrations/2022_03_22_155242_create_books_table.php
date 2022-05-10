@@ -24,9 +24,9 @@ class CreateBooksTable extends Migration
             $table->integer('qty');
             $table->integer('price');
             $table->timestamps();
-            $table->foreign('publisher_id')->references('id')->on('publishers');
-            $table->foreign('author_id')->references('id')->on('authors');
-            $table->foreign('catalog_id')->references('id')->on('catalogs');
+            $table->foreign('publisher_id')->references('id')->on('publishers')->onDelete('cascade');
+            $table->foreign('author_id')->references('id')->on('authors')->onDelete('cascade');
+            $table->foreign('catalog_id')->references('id')->on('catalogs')->onDelete('cascade');
         });
     }
 
