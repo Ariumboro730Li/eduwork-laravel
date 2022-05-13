@@ -404,6 +404,12 @@
                             <span class="menu-title">Catalog</span>
                         </a>
                     </li>
+                    <li class="nav-item {{ request()->is('publisher_page') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('publisher_page') }}">
+                            <i class="mdi mdi-account-badge menu-icon"></i>
+                            <span class="menu-title">Penerbit</span>
+                        </a>
+                    </li>
                     <li class="nav-item {{ request()->is('writer') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('writer') }}">
                             <i class="mdi mdi-typewriter menu-icon"></i>
@@ -437,26 +443,12 @@
                                             <div class="col-lg-8 d-flex flex-column">
                                                 <div class="row flex-grow">
                                                     <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
-                                                        <div class="card card-rounded bg-primary">
-                                                            <div class="card-body">
-                                                                <div
-                                                                    class="d-sm-flex justify-content-between align-items-start">
-                                                                    <div>
-                                                                        <h1
-                                                                            class="card-title card-title-dash text-white mb-4">
-                                                                            @yield('content')
-                                                                        </h1>
-                                                                        <h5 class="card-subtitle card-subtitle-dash">
-                                                                            Lorem Ipsum is simply dummy text of the
-                                                                            printing</h5>
-                                                                    </div>
-                                                                    <div id="performance-line-legend"></div>
-                                                                </div>
-                                                                <div class="chartjs-wrapper mt-5">
-                                                                    <canvas id="performaneLine"></canvas>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        @yield('content')
+                                                        @yield('tablecatalog')
+                                                        @yield('formcreate')
+                                                        @yield('formedit')
+                                                        @yield('tablepublisher')
+
                                                     </div>
                                                 </div>
                                             </div>

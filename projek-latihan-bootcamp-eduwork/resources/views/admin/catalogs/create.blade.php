@@ -1,5 +1,5 @@
-@extends('admin.catalogs.admin')
-@section('content')
+@extends('layouts.admin')
+@section('formcreate')
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">

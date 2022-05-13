@@ -18,6 +18,10 @@ class DashboardController extends Controller
         // return $catalog;
         return view('catalog', compact('catalogs'));
     }
+    public function publisher()
+    {
+        return view('publisher');
+    }
     public function writer()
     {
         return view('writer');

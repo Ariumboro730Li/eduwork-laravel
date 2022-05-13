@@ -1,8 +1,8 @@
 @extends('layouts.admin')
-@section('tablecatalog')
+@section('tablepublisher')
     <div class="table-responsive pt-3">
         <div class="header">
-            <a href="{{ url('catalogs/create') }}" class="btn btn-sm btn-primary pull-right">Create Catalog</a>
+            <a href="{{ url('publisher/create') }}" class="btn btn-sm btn-primary pull-right">Create Publisher</a>
         </div>
         <table class="table table-bordered">
             <thead>
@@ -14,29 +14,41 @@
                         Name
                     </th>
                     <th>
-                        Created At
+                        Email
                     </th>
                     <th>
-                        Action
+                        No Telepon
+                    </th>
+                    <th>
+                        Alamat
+                    </th>
+                    <th>
+                        Aksi
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($catalogs as $key => $katalog)
+                @foreach ($publishers as $key => $penerbit)
                     <tr>
                         <td>
                             {{ $key + 1 }}
                         </td>
                         <td>
-                            {{ $katalog->name }}
+                            {{ $penerbit->name }}
                         </td>
                         <td>
-                            {{ date('H:i:s - d m Y', strtotime($katalog->created_at)) }}
+                            {{ $penerbit->email }}
                         </td>
                         <td>
-                            <a href="{{ url('/catalogs/' . $katalog->id . '/edit') }}"
+                            {{ $penerbit->phone_number }}
+                        </td>
+                        <td>
+                            {{ $penerbit->address }}
+                        </td>
+                        <td>
+                            <a href="{{ url('/publisher/' . $penerbit->id . '/edit') }}"
                                 class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ url('catalogs', ['id' => $katalog->id]) }}" method="post">
+                            <form action="{{ url('catalogs', ['id' => $penerbit->id]) }}" method="post">
                                 <input class="btn btn-danger btn-sm" type="submit" value="Delete"
                                     onclick="return confirm('Are you sure?')">
                                 @method('delete')

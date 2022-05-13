@@ -7,13 +7,13 @@
                 <p class="card-description">
                     Form Mengedit catalog
                 </p>
-                <form class="forms-sample" action={{ url('catalogs/' . $katalog->id) }} method="POST">
+                <form class="forms-sample" action={{ url('publisher/' . $publisher->id) }} method="POST">
                     @csrf
                     {{ method_field('PUT') }}
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" name="name" class="form-control" placeholder="Enter Name" required="Enter Name"
-                            value="{{ $katalog->name }}">
+                            value="{{ $publisher->name }}">
                     </div>
                     <button type="submit" class="btn btn-primary me-2">Submit</button>
                 </form>
