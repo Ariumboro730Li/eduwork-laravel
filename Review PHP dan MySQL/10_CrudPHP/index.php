@@ -1,10 +1,14 @@
 <?php
+    
+    session_start();
+    include_once("function.php");
+
     include_once("connect.php");
-    $buku = mysqli_query($mysqli, "SELECT buku.*, nama_pengarang, nama_penerbit, katalog.nama as nama_katalog FROM buku 
+$buku = mysqli_query($mysqli, "SELECT buku.*, nama_pengarang, nama_penerbit, katalog.nama as nama_katalog FROM buku 
                                         LEFT JOIN  pengarang ON pengarang.id_pengarang = buku.id_pengarang
                                         LEFT JOIN  penerbit ON penerbit.id_penerbit = buku.id_penerbit
                                         LEFT JOIN  katalog ON katalog.id_katalog = buku.id_katalog
-                                        ORDER BY isbn ASC");
+                                        ORDER BY judul ASC");
 ?>
  
 <html>
@@ -17,9 +21,16 @@
     <a class='btn btn-dark' href="index.php">Buku</a> |
     <a class='btn btn-dark' href="index_penerbit.php">Penerbit</a> |
     <a class='btn btn-dark' href="index_pengarang.php">Pengarang</a> |
-    <a class='btn btn-dark' href="index_katalog.php">Katalog</a>
+    <a class='btn btn-dark' href="index_katalog.php">Katalog</a> |
+    <a class='btn btn-dark' href="index_pinjam.php">Pinjam</a>
     <hr>
 </center>
+
+            <?php if (flashdata_exist('success')) : ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?= get_flashdata('success'); ?>
+                </div>
+            <?php endif; ?>
 
 <a class="btn btn-success ml-1 mt-1" href="add_buku.php">Add New Buku</a><br/><br/>
  
@@ -52,5 +63,12 @@
     ?>
     </table>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function) {
+            $(".bg-loader").hide();
+        }
+    </script>
+
 </body>
 </html>

@@ -10,6 +10,7 @@
     <a class='btn btn-dark' href="index_penerbit.php">Penerbit</a> |
     <a class='btn btn-dark' href="index_pengarang.php">Pengarang</a> |
     <a class='btn btn-dark' href="index_katalog.php">Katalog</a>
+    <a class='btn btn-dark' href="index_pinjam.php">Pinjam</a>
     <hr>
 </center>
 
@@ -47,11 +48,11 @@
 			</tr>
 			<tr> 
 				<td>Judul</td>
-				<td><input type="text" class="form-control" id="judul" name="judul" required></td>
+				<td><input type="text" class="form-control" id="judul" name="judul" value="<?php echo $judul; ?>" required></td>
 			</tr>
 			<tr> 
 				<td>Tahun</td>
-				<td><input type="text" class="form-control" id="tahun" name="tahun" required></td>
+				<td><input type="text" class="form-control" id="tahun" name="tahun" value="<?php echo $tahun; ?>" required></td>
 			</tr>
 			<tr> 
 				<td><lablel for="id_penerbit">Penerbit</label></td>
@@ -91,11 +92,11 @@
 			</tr>
 			<tr> 
 				<td><lablel for="qty_stok">Qty Stok</label></td>
-				<td><input type="text" class="form-control" id="qty_stok" name="qty_stok" required></td>
+				<td><input type="text" class="form-control" id="qty_stok" name="qty_stok" value="<?php echo $qty_stok; ?>" required></td>
 			</tr>
 			<tr> 
 				<td><lablel for="harga_pinjam">Harga Pinjam</label></td>
-				<td><input type="text" class="form-control" id="harga_pinjam" name="harga_pinjam" required></td>
+				<td><input type="text" class="form-control" id="harga_pinjam" name="harga_pinjam" value="<?php echo $harga_pinjam; ?>" required></td>
 			</tr>
 			<tr> 
 				<td></td>

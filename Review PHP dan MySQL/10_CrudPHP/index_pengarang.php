@@ -15,7 +15,8 @@
 <a href="index.php">Buku</a> |
 <a href="index_penerbit.php">Penerbit</a> |
 <a href="index_pengarang.php">Pengarang</a> |
-<a href="index_katalog.php">Katalog</a>
+<a href="index_katalog.php">Katalog</a> |
+<a href="index_pinjam.php">Pinjam</a>
 <hr>
 </center>
 

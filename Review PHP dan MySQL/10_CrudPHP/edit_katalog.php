@@ -3,24 +3,15 @@
 	<title>Edit Katalog</title>
 </head>
 
-<center>
-    <a href="index.php">Buku</a> |
-    <a href="index_penerbit.php">Penerbit</a> |
-    <a href="index_pengarang.php">Pengarang</a> |
-    <a href="index_katalog.php">Katalog</a>
-    <hr>
-</center>
-
 <?php
 	include_once("connect.php");
 	$id_katalog = $_GET['id_katalog'];
-
 	$katalog = mysqli_query($mysqli, "SELECT * FROM katalog WHERE id_katalog = '$id_katalog'");
+
 	
-    while($katalog = mysqli_fetch_array($katalog))
+    while($katalog_data = mysqli_fetch_array($katalog))
     {
-    	$id_katalog = $katalog_data['id_katalog'];
-    	$nama_katalog = $katalog_data['nama_katalog'];
+    	$nama = $katalog_data['nama'];
 
     }
 ?>
@@ -37,7 +28,7 @@
 			</tr>
 			<tr> 
 				<td><lablel for="nama_katalog">Nama Katalog</label></td>
-				<td><input type="text" class="form-control" id="nama_katalog" name="nama_katalog" required></td>
+				<td><input type="text" class="form-control" id="nama_katalog" name="nama_katalog" value="<?php echo $nama_katalog; ?>" required></td>
 			</tr>
 			<tr> 
 				<td></td>

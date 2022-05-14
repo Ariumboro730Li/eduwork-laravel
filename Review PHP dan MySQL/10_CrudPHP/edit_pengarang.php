@@ -3,14 +3,6 @@
 	<title>Edit Pengarang</title>
 </head>
 
-<center>
-    <a href="index.php">Buku</a> |
-    <a href="index_penerbit.php">Penerbit</a> |
-    <a href="index_pengarang.php">Pengarang</a> |
-    <a href="index_katalog.php">Katalog</a>
-    <hr>
-</center>
-
 <?php
 	include_once("connect.php");
 	$id_pengarang = $_GET['id_pengarang'];
@@ -39,19 +31,19 @@
 			</tr>
 			<tr> 
 				<td><lablel for="nama_pengarang">Nama Pengarang</label></td>
-				<td><input type="text" class="form-control" id="nama_pengarang" name="nama_pengarang" required></td>
+				<td><input type="text" class="form-control" id="nama_pengarang" name="nama_pengarang" value="<?php echo $nama_pengarang; ?>" required></td>
 			</tr>
 			<tr> 
 				<td><lablel for="email">Email</label></td>
-				<td><input type="text" class="form-control" id="email" name="email" required></td>
+				<td><input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required></td>
 			</tr>
 			<tr> 
 				<td><lablel for="telp">Telepon</label></td>
-				<td><input type="text" class="form-control" id="telp" name="telp" required></td>
+				<td><input type="text" class="form-control" id="telp" name="telp" value="<?php echo $telp; ?>" required></td>
 			</tr>
 			<tr> 
 				<td><lablel for="alamat">Alamat</label></td>
-				<td><input type="text" class="form-control" id="alamat" name="alamat" required></td>
+				<td><input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $alamat; ?>" required></td>
 			</tr>
 			<tr> 
 				<td></td>

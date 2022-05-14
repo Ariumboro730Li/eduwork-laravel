@@ -10,6 +10,7 @@
     <a class='btn btn-dark' href="index_penerbit.php">Penerbit</a> |
     <a class='btn btn-dark' href="index_pengarang.php">Pengarang</a> |
     <a class='btn btn-dark' href="index_katalog.php">Katalog</a>
+    <a class='btn btn-dark' href="index_pinjam.php">Pinjam</a>  
     <hr>
 </center>
 
@@ -42,19 +43,19 @@
 			</tr>
 			<tr class="form-group"> 
 				<td><lablel for="id_penerbit">Nama Penerbit</label></td>
-				<td><input type="text" class="form-control" id="nama_penerbit" name="nama_penerbit" required></td>
+				<td><input type="text" class="form-control" id="nama_penerbit" name="nama_penerbit" value="<?php echo $nama_penerbit; ?>"required></td>
 			</tr>
 			<tr class="form-group"> 
 				<td><lablel for="email">Email</label></td>
-				<td><input type="text" class="form-control" id="email" name="email" required></td>
+				<td><input type="text" class="form-control" id="email" name="email" value="<?php echo $email; ?>" required></td>
 			</tr>
 			<tr class="form-group"> 
 				<td><lablel for="telp">Telepon</label></td>
-				<td><input type="text" class="form-control" id="telp" name="telp" required></td>
+				<td><input type="text" class="form-control" id="telp" name="telp" value="<?php echo $telp; ?>" required></td>
 			</tr>
 			<tr class="form-group"> 
 				<td><lablel for="alamat">Alamat</label></td>
-				<td><input type="text" class="form-control" id="alamat" name="alamat" required></td>
+				<td><input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $alamat; ?>" required></td>
 			</tr>
 			<tr> 
 				<td></td>

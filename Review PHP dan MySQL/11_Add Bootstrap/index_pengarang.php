@@ -13,11 +13,12 @@
 <body>
 
 <center class='bg-dark'>
-<a class='btn btn-dark' href="index.php">Buku</a> |
-<a class='btn btn-dark' href="index_penerbit.php">Penerbit</a> |
-<a class='btn btn-dark' href="index_pengarang.php">Pengarang</a> |
-<a class='btn btn-dark' href="index_katalog.php">Katalog</a>
-<hr>
+    <a class='btn btn-dark' href="index.php">Buku</a> |
+    <a class='btn btn-dark' href="index_penerbit.php">Penerbit</a> |
+    <a class='btn btn-dark' href="index_pengarang.php">Pengarang</a> |
+    <a class='btn btn-dark' href="index_katalog.php">Katalog</a> |
+    <a class='btn btn-dark' href="index_pinjam.php">Pinjam</a>
+    <hr>
 </center>
 
 <a class="btn btn-success ml-1 mt-1" href="add_pengarang.php">Add New Pengarang</a><br/><br/>

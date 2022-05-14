@@ -10,6 +10,7 @@
     <a class='btn btn-dark' href="index_penerbit.php">Penerbit</a> |
     <a class='btn btn-dark' href="index_pengarang.php">Pengarang</a> |
     <a class='btn btn-dark' href="index_katalog.php">Katalog</a>
+    <a class='btn btn-dark' href="index_pinjam.php">Pinjam</a>
     <hr>
 </center>
 
@@ -39,7 +40,7 @@
 			</tr>
 			<tr> 
 				<td><lablel for="nama_katalog">Nama Katalog</label></td>
-				<td><input type="text" class="form-control" id="nama_katalog" name="nama_katalog" required></td>
+				<td><input type="text" class="form-control" id="nama_katalog" name="nama_katalog" value="<?php echo $nama_katalog; ?>" required></td>
 			</tr>
 			<tr> 
 				<td></td>
