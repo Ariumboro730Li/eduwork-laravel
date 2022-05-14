@@ -1,0 +1,22 @@
+
+
+SELECT id, nama_produk, jumlah from stok_eduapotek WHERE jumlah <=20;
+
+SELECT id, nama_produk, jumlah FROM stok_eduapotek WHERE id_staffinput = 2;
+
+SELECT id, nama_produk, jenis, harga, jumlah FROM stok_eduapotek WHERE harga >= 50000 && jumlah >= 20;
+
+SELECT id, id_staffinput, nama_produk, jumlah FROM stok_eduapotek WHERE id_staffinput = 1 || id_staffinput = 3;
+
+SELECT * FROM stok_eduapotek WHERE produsen = 'prod1' || produsen = 'prod4';
+
+
+SELECT nama, email, shift FROM staff_eduapotek WHERE tahun_kerja >2014;
+
+SELECT id, nama, tanggal_lahir FROM staff_eduapotek WHERE shift = 'malam';
+
+SELECT id, nama, email FROM staff_eduapotek WHERE tahun_kerja < 2017 && shift = 'pagi';
+
+SELECT * FROM staff_eduapotek WHERE jenis_kelamin = 'wanita' || shift = 'malam';
+
+SELECT * FROM staff_eduapotek WHERE tahun_kerja = 2014 && jenis_kelamin = 'wanita';
