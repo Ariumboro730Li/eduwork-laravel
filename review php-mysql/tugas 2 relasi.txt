@@ -1,0 +1,1 @@
+relasi diantara tabel stok obat dan staff adalah relasi one to many dimana 1 staff berhubungan dengan banyak data stok sebagai pengimput data stok. 
