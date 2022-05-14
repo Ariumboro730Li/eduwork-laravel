@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('tablepublisher')
-    <div class="table-responsive pt-3">
+    <div class="table-responsive-xl">
         <div class="header">
             <a href="{{ url('publisher/create') }}" class="btn btn-sm btn-primary pull-right">Create Publisher</a>
         </div>
@@ -48,7 +48,7 @@
                         <td>
                             <a href="{{ url('/publisher/' . $penerbit->id . '/edit') }}"
                                 class="btn btn-warning btn-sm">Edit</a>
-                            <form action="{{ url('catalogs', ['id' => $penerbit->id]) }}" method="post">
+                            <form action="{{ url('publisher', ['id' => $penerbit->id]) }}" method="post">
                                 <input class="btn btn-danger btn-sm" type="submit" value="Delete"
                                     onclick="return confirm('Are you sure?')">
                                 @method('delete')
@@ -59,5 +59,5 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
-@endsection
+        {{-- </div> --}}
+    @endsection

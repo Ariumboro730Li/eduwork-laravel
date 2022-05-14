@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', 'App\Http\Controllers\DashboardController@index');
-Route::get('/catalogs_page', 'App\Http\Controllers\DashboardController@catalog');
+Route::get('/catalogs_page', 'App\Http\Controllers\CatalogController@index');
 Route::get('/publisher_page', 'App\Http\Controllers\PublisherController@index');
 
 Route::get('/writer', 'App\Http\Controllers\DashboardController@writer');
@@ -31,12 +31,13 @@ Route::get('/querybuilder', 'App\Http\Controllers\QueryBuilderController@index')
 
 Route::get('catalogs/create', 'App\Http\Controllers\CatalogController@create');
 Route::post('catalogs/save', 'App\Http\Controllers\CatalogController@store');
-Route::get('/catalogs/{katalog}/edit', 'App\Http\Controllers\CatalogController@edit');
+//Ini Edit
+Route::get('/catalogs_edit/{katalog}/edit', 'App\Http\Controllers\CatalogController@edit');
 Route::put('/catalogs/{katalog}', 'App\Http\Controllers\CatalogController@update');
 Route::delete('/catalogs/{katalog}', 'App\Http\Controllers\CatalogController@destroy');
 
 Route::get('/publisher/create', 'App\Http\Controllers\PublisherController@create');
 Route::post('publisher/save', 'App\Http\Controllers\PublisherController@store');
 Route::get('/publisher/{penerbit}/edit', 'App\Http\Controllers\PublisherController@edit');
-Route::put('/catalogs/{katalog}', 'App\Http\Controllers\CatalogController@update');
+Route::put('/publisher/{penerbit}', 'App\Http\Controllers\PublisherController@update');
 Route::delete('/catalogs/{katalog}', 'App\Http\Controllers\CatalogController@destroy');

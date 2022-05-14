@@ -81,10 +81,13 @@ class PublisherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Publisher $publisher)
+    public function edit(Publisher $penerbit)
     {
         //
-        return view('admin.publisher.edit', compact('publisher'));
+        $pbls = Publisher::all();
+        // dd($pbls);
+        // return $pbls;
+        return view('admin.publisher.edit', compact('penerbit'));
     }
 
     /**
@@ -94,9 +97,16 @@ class PublisherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $penerbit)
     {
         //
+        $publisher = Publisher::find($penerbit);
+        $publisher->name = $request->name;
+        $publisher->email = $request->email;
+        $publisher->phone_number = $request->phone_number;
+        $publisher->address = $request->address;
+        $publisher->update();
+        return redirect('publisher_page');
     }
 
     /**
