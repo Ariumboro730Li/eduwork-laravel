@@ -1,0 +1,12 @@
+5 query update dan delete
+
+
+UPDATE stok_eduapotek SET produsen = 'prod2' WHERE id = 8;
+
+UPDATE stok_eduapotek SET id_staffinput = 9 WHERE id = 6;
+
+UPDATE stok_eduapotek SET harga = 6500 WHERE harga < 7000;
+
+DELETE FROM stok_eduapotek WHERE id = 10;
+
+DELETE FROM stok_eduapotek WHERE jumlah < 7500;
