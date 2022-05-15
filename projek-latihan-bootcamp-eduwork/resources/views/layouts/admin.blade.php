@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    @yield('css')
 </head>
 
 <body>
@@ -410,8 +411,8 @@
                             <span class="menu-title">Penerbit</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ request()->is('writer') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('writer') }}">
+                    <li class="nav-item {{ request()->is('author') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('author') }}">
                             <i class="mdi mdi-typewriter menu-icon"></i>
                             <span class="menu-title">Penulis</span>
                         </a>
@@ -448,6 +449,7 @@
                                                         @yield('formcreate')
                                                         @yield('formedit')
                                                         @yield('tablepublisher')
+                                                        @yield('author')
 
                                                     </div>
                                                 </div>
@@ -501,6 +503,9 @@
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
     <!-- End custom js for this page-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    @yield('js')
 </body>
 
 </html>
