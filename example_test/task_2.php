@@ -10,7 +10,10 @@
 function stringReverse($word) {
     $lengthWord = strlen($word);
     for ($i=($lengthWord-1) ; $i >= 0 ; $i--){
-        echo $word[$i];
+        $a[] =  $word[$i];
     }
+
+    return implode("", $a).PHP_EOL;
 }
-stringReverse("word").PHP_EOL;
+echo stringReverse("abcde");
+echo stringReverse("word");

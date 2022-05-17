@@ -11,4 +11,7 @@ function factorial(int $value): int {
         return $value * factorial($value - 1);
     }
 }
-echo factorial(8). PHP_EOL;
+
+for ($i=4; $i <=8 ; $i++) { 
+    echo factorial($i). PHP_EOL;
+}

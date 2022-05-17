@@ -27,3 +27,4 @@ function printDigitValue($string){
     }
 }
 printDigitValue("123456789");
+printDigitValue("1234567891112");
