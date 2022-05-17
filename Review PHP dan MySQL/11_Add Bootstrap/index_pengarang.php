@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+    include_once "function.php";
+    
     include_once("connect.php");
     $pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang");
 ?>
@@ -20,6 +24,12 @@
     <a class='btn btn-dark' href="index_pinjam.php">Pinjam</a>
     <hr>
 </center>
+
+<?php if (flashdata_exist('success')) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= get_flashdata('success'); ?>
+            </div>
+<?php endif; ?>
 
 <a class="btn btn-success ml-1 mt-1" href="add_pengarang.php">Add New Pengarang</a><br/><br/>
  

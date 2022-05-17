@@ -1,5 +1,9 @@
 <?php
-    include_once("connect.php");
+   session_start();
+
+   include_once "function.php";
+
+   include_once("connect.php");
     $buku = mysqli_query($mysqli, "SELECT buku.*, nama_pengarang, nama_penerbit, katalog.nama as nama_katalog FROM buku 
                                         LEFT JOIN  pengarang ON pengarang.id_pengarang = buku.id_pengarang
                                         LEFT JOIN  penerbit ON penerbit.id_penerbit = buku.id_penerbit
@@ -24,6 +28,12 @@
     <a class='btn btn-dark' href="index_pinjam.php">Pinjam</a>
     <hr>
 </center>
+
+<?php if (flashdata_exist('success')) : ?>
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					<?= get_flashdata('success'); ?>
+				</div>
+<?php endif; ?>
 
 <a class="btn btn-success ml-1 mt-1" href="add_buku.php">Add New Buku</a><br/><br/>
  

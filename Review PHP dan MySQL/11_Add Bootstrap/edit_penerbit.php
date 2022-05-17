@@ -1,8 +1,68 @@
-<html>
+<?php
+session_start();
+
+include_once "function.php";
+
+include_once("connect.php");
+$id_penerbit = $_GET['id_penerbit'];
+
+$penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit WHERE id_penerbit = '$id_penerbit'");
+$errors = array();
+// Check If form submitted, insert form data into users table.
+if (isset($_POST['update'])) {
+	// validate email
+	// if post email is not valid email
+	if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+		// set error to array $errors with key
+		$errors['email'] = "Email must be Include @gmail.com";
+	}
+
+	// validate if post telp is not numeric
+	if (!is_numeric($_POST['telp'])) {
+		// set error to array $errors with key
+		$errors['telp'] = "Telephone Must be Number";
+	}
+
+	// if no error
+	if (count($errors) == 0) {
+
+		$id_penerbit = $_GET['id_penerbit'];
+		$nama_penerbit = $_POST['nama_penerbit'];
+		$email = $_POST['email'];
+		$telp = $_POST['telp'];
+		$alamat = $_POST['alamat'];
+
+
+		$result = mysqli_query($mysqli, "UPDATE penerbit SET nama_penerbit = '$nama_penerbit', email = '$email', telp = '$telp', alamat = '$alamat' WHERE id_penerbit = '$id_penerbit';");
+		if ($result) {
+			// set success message to index page
+			set_flashdata('success', 'penerbit updated successfully.');
+			header("Location:index_penerbit.php");
+		} else {
+			$errors['db'] = "insert failed something wrong :(";
+		}
+	}
+}
+while ($penerbit_data = mysqli_fetch_array($penerbit)) {
+	$nama_penerbit = $penerbit_data['nama_penerbit'];
+	$email = $penerbit_data['email'];
+	$telp = $penerbit_data['telp'];
+	$alamat = $penerbit_data['alamat'];
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<title>Edit Penerbit</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Edit penerbit</title>
+	<!-- include boostrap 4 -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
 </head>
 
 <center class='bg-dark'>
@@ -14,26 +74,21 @@
     <hr>
 </center>
 
-<?php
-	include_once("connect.php");
-	$id_penerbit = $_GET['id_penerbit'];
 
-	$penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit WHERE id_penerbit = '$id_penerbit'");
-	
-    while($penerbit_data = mysqli_fetch_array($penerbit))
-    {
-    	$nama_penerbit = $penerbit_data['nama_penerbit'];
-    	$email = $penerbit_data['email'];
-    	$telp = $penerbit_data['telp'];
-    	$alamat = $penerbit_data['alamat'];
-
-    }
-?>
- 
 <body>
-<tr class="container">
-<a class="btn btn-primary" href="index_penerbit.php">Go Home</a>
-	<br/><br/>
+	<tr class="container p-5">
+		<tr>
+			<?php
+			if (count($errors) > 0) : ?>
+				<?php foreach ($errors as $error) : ?>
+					<div class="alert alert-danger">
+						<?= $error ?>
+					</div>
+				<?php endforeach ?>
+			<?php endif ?>
+		</tr>
+		<a class="btn btn-primary" href="index.php">Home</a>
+		<br /><br />
  
 	<form action="edit_penerbit.php?id_penerbit=<?php echo $id_penerbit; ?>" method="post" name="form1" >
 		<table width="90%" border="0">
@@ -64,24 +119,7 @@
 		</table>
 	</form>
 	
-	<?php
-	 
-		// Check If form submitted, insert form data into users table.
-		if(isset($_POST['update'])) {
-
-			$id_penerbit = $_GET['id_penerbit'];
-			$nama_penerbit = $_POST['nama_penerbit'];
-			$email = $_POST['email'];
-			$telp = $_POST['telp'];
-			$alamat = $_POST['alamat'];
-
-			
-			include_once("connect.php");
-
-			$result = mysqli_query($mysqli, "UPDATE penerbit SET nama_penerbit = '$nama_penerbit', email = '$email', telp = '$telp', alamat = '$alamat' WHERE id_penerbit = '$id_penerbit';");
-			
-			header("Location:index_penerbit.php");
-		}
-	?>
+	</tr>
 </body>
+
 </html>

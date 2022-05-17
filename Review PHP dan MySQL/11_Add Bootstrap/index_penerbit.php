@@ -1,4 +1,8 @@
 <?php
+session_start();
+
+include_once "function.php";
+
 include_once("connect.php");
 $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
 ?>
@@ -21,6 +25,11 @@ $penerbit = mysqli_query($mysqli, "SELECT * FROM penerbit");
     <hr>
 </center>
 
+<?php if (flashdata_exist('success')) : ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?= get_flashdata('success'); ?>
+        </div>
+<?php endif; ?>
 
     <a class="btn btn-success ml-1 mt-1" href="add_penerbit.php">Add New Penerbit</a><br /><br />
 
