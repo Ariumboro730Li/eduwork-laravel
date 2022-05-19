@@ -1,6 +1,7 @@
 @extends('layouts.admin')
-@section('header', 'Home')
+@section('header', 'Catalog')
+
 
 @section('content')
-Ini adalah halaman home
+Ini adalah halaman catalog
 @endsection

@@ -159,10 +159,82 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="{{ url ('home') }}" class="nav-link {{ request()->is('home') ? 'active' : ''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Home
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url ('catalog') }}" class="nav-link {{ request()->is('catalog') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Catalog
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url ('publisher') }}" class="nav-link {{ request()->is('publisher') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-edit"></i>
+              <p>
+                Publisher
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url ('author') }}" class="nav-link {{ request()->is('author') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-theater-masks"></i>
+              <p>
+                Author
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url ('book') }}" class="nav-link {{ request()->is('book') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                Book
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url ('member') }}" class="nav-link {{ request()->is('member') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-user-circle"></i>
+              <p>
+                Member
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url ('transaction') }}" class="nav-link {{ request()->is('transaction') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>
+                Transaction
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url ('transactiondetail') }}" class="nav-link {{ request()->is('transactiondetail') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-poll"></i>
+              <p>
+                Transaction Detail
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="{{ url ('user') }}" class="nav-link {{ request()->is('user') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                User
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -181,7 +253,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">@yield('header')</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
