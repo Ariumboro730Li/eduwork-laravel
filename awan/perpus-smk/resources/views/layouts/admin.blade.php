@@ -14,7 +14,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">Perpus SMK</a>
+            <a class="navbar-brand ps-3" href="{{ url('home') }}">Perpus SMK</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -51,9 +51,29 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{{ url('home') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
+                            </a>
+                            <a class="nav-link" href="{{ url('catalog') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Catalog
+                            </a>
+                            <a class="nav-link" href="{{ url('publisher') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Publisher
+                            </a>
+                            <a class="nav-link" href="{{ url('author') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Author
+                            </a>
+                            <a class="nav-link" href="{{ url('book') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Book
+                            </a>
+                            <a class="nav-link" href="{{ url('member') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Member
                             </a>
                             {{-- <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -117,10 +137,16 @@
             </div>
             <div id="layoutSidenav_content">
 
-
-                <main>
-                    @yield('content')
-                </main>
+                <div class="container-fluid">
+                    <div class="row mb-2 ms-2">
+                        <div class="col-sm-6">
+                            <h1 class="mt-4">@yield('header')</h1>
+                        </div>
+                    </div>
+                    <main> 
+                        @yield('content')
+                    </main>
+                </div>
 
 
                 <footer class="py-4 bg-light mt-auto">
@@ -133,11 +159,11 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="assets/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="assets/assets/demo/chart-area-demo.js"></script>
+        <script src="assets/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="assets/js/datatables-simple-demo.js"></script>
     </body>
 </html>
