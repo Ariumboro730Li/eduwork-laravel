@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+//Script Equi
 
 use App\Models\Book;
 use App\Models\Member;
@@ -32,7 +33,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $members = Member::with('user')->get();
+//Script Equip 
+        //$members = Member::with('user')->get();
         //$books = Book::with('publisher')->get();
         //$publishers = Publisher::with('books')->get();
         //$authors = Author::with('books')->get();
@@ -43,7 +45,35 @@ class HomeController extends Controller
         //$transactiondetails = TransactionDetail::with('books')->get();
         
 
-        return $members;
+//Script Query Builder
+
+        // no.1
+        $data = Member::select('*')
+                    ->join('users','users.member_id','=','members.id')
+                    ->get();
+        
+        // no.2            
+        $data2 = Member::select('*')
+                    ->leftJoin('users','users.member_id','=','members.id')
+                    ->where('users.id', NULL)
+                    ->get();
+        
+        // no.3
+        $data3 = Member::select('*')
+                    ->leftJoin('users','users.member_id','=','members.id')
+                    ->where('users.id', NULL)
+                    ->get();           
+
+        // no.4
+        $data4 = Member::select('members.id', 'members.name', 'members.phone_number')
+                    ->join('transactions', 'transactions.member_id', '=', 'members.id')
+                    ->orderBy('members.id', 'asc')
+                    ->get();
+        
+        // no.5
+        //$data5 = Transaction::select('transactions.member_id') AS total  
+        
+        //return $data4;
         return view('home');
     }
 }
