@@ -21,10 +21,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// route blog
-Route::get('/blog', 'BlogController@home');
-Route::get('/blog/tentang', 'BlogController@login.blade');
-Route::get('/blog/kontak', 'BlogController@recover-password.blade');
-Route::get('/blog/tentang', 'BlogController@password.request');
-Route::post('email', 'AuthController@password.request');
+Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('home');
 
+Route::get('/publishers', [App\Http\Controllers\PublisherController::class, 'index']);
+
+Route::get('/authors', [App\Http\Controllers\AuthorController::class, 'index']);
+
+Route::get('/books', [App\Http\Controllers\BookController::class, 'index']);
+
+Route::get('/members', [App\Http\Controllers\MemberController::class, 'index']);
+Route::get('/transactions', [App\Http\Controllers\TransactionController::class, 'index']);
+Route::get('/transactiondetails', [App\Http\Controllers\TransactionDetailController::class, 'index']);
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
