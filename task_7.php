@@ -6,18 +6,19 @@
 // int high = 15,
 // maka akan menghasilkan ouput = 4
 
-function findLowHigh($array, $low, $high){
-    $vals = [];
-    foreach ($array as $key => $value) {
-        if ($value >= $low) {
-            if ($value <= $high) {   
-                $vals[] = $value;
-            }
-        }
-    }
+// function findLowHigh($array, $low, $high){
+//     $vals = [];
+//     foreach ($array as $key => $value) {
+//         if ($value >= $low) {
+//             if ($value <= $high) {   
+//                 $vals[] = $value;
+//             }
+//         }
+//     }
 
-    return $vals;
-}
+//     return $vals;
+// }
 
-$func = findLowHigh( [1,4,7,9,12,18], 2, 15);
-echo count($func);
+include "task_6.php";
+$func = findLowHigh( [1,4,7,9,12,18], 1, 12);
+echo "TOTAL = ".count($func).PHP_EOL;

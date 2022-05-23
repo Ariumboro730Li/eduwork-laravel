@@ -7,7 +7,7 @@
 // input : 2024
 // output : 2024 adalah tahun kabisat
 
-function tahunKabisat($year){
+function tahunKabisat(int $year){
     if ($year % 4 == 0) {
        echo "$year adalah Tahun KABISAT".PHP_EOL;
     } else {

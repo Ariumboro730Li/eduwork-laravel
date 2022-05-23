@@ -6,7 +6,7 @@
 // int high = 15,
 // maka akan menghasilkan ouput [4,7,9,12]
 
-function findLowHigh($array, $low, $high){
+function findLowHigh(array $array, int $low, int $high){
     $vals = [];
     foreach ($array as $key => $value) {
         if ($value >= $low) {
@@ -19,5 +19,5 @@ function findLowHigh($array, $low, $high){
     return $vals;
 }
 
-$func = findLowHigh( [1,4,7,9,12,18], 2, 15);
+$func = findLowHigh( [1,4,7,9,12,18], 7, 10);
 var_dump($func);

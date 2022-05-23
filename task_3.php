@@ -12,9 +12,8 @@
 // 20
 // 1
 
-function printDigitValue($string){
-    $string_to_integer = strval(preg_replace('/[^0-9]+/', '', $string));
-    var_dump($string_to_integer);
+function printDigitValue(string $string){
+    $string_to_integer = strval(preg_replace('/[^0-9]+/', '', $string));    
     $length_integer = strlen($string_to_integer);
     echo $string_to_integer.PHP_EOL;
     for ($i=0; $i < $length_integer; $i++) {
@@ -27,4 +26,5 @@ function printDigitValue($string){
         echo $wz.PHP_EOL;
     }
 }
+
 printDigitValue("9.86-A5.321");

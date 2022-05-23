@@ -19,7 +19,7 @@
 
 // keterangan : string edu untuk kelipatan 3, string work untuk kelipatan 5, string eduwork untuk kelipatan 3 dan 5
 
-function parseInteger($integer){
+function parseInteger(int $integer){
     for ($i=1; $i <= $integer ; $i++) { 
         if ($i % 3 == 0 && $i % 5 == 0) {
             echo "$i - EduWork".PHP_EOL;
@@ -32,4 +32,5 @@ function parseInteger($integer){
         }
     }
 }
-parseInteger(15);
+
+parseInteger(20);
