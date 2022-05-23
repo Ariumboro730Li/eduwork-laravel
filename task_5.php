@@ -15,4 +15,4 @@ function spellInteger($integer){
     }
 }
 
-echo spellInteger(210);
+echo spellInteger(210); 

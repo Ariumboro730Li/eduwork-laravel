@@ -5,6 +5,7 @@
 // Apabila terdapat int = 8, maka outputnya 40320 (prosesnya : 8*7*6*5*4*3*2*1) 
 
 function factorial(int $value): int {
+    echo $value. PHP_EOL;
     if ($value == 1) {
         return 1;
     } else {
@@ -12,6 +13,8 @@ function factorial(int $value): int {
     }
 }
 
+factorial(4). PHP_EOL;
+exit();
 for ($i=4; $i <=8 ; $i++) { 
     echo factorial($i). PHP_EOL;
 }
