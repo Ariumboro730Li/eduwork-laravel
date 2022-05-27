@@ -33,7 +33,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-//Script Equip 
+//Script Eloquent 
         //$members = Member::with('user')->get();
         //$books = Book::with('publisher')->get();
         //$publishers = Publisher::with('books')->get();
