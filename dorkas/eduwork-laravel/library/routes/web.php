@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('home');
+Route::get('/catalogs', [App\Http\Controllers\CatalogController::class, 'index'])->name('home');
 
 Route::get('/publishers', [App\Http\Controllers\PublisherController::class, 'index']);
 

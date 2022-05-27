@@ -168,7 +168,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="{{ url ('catalog') }}" class="nav-link {{ request()->is('catalog') ? 'active' : ''}}">
+            <a href="{{ url ('catalogs') }}" class="nav-link {{ request()->is('catalogs') ? 'active' : ''}}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Catalog
