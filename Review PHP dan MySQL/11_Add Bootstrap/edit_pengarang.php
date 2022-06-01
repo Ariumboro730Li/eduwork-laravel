@@ -5,6 +5,7 @@ include_once "function.php";
 
 include_once("connect.php");
 $id_pengarang = $_GET['id_pengarang'];
+
 $pengarang = mysqli_query($mysqli, "SELECT * FROM pengarang WHERE id_pengarang = '$id_pengarang'");
 $errors = array();
 // Check If form submitted, insert form data into users table.
@@ -35,8 +36,8 @@ if (isset($_POST['update'])) {
 		// if data inserted successfully return to index page if set error
 		if ($result) {
 			// set success message to index page
-			set_flashdata('success', 'pengarang updated successfully.');
-			header("Location:dashboard.php");
+			set_flashdata('success', 'pengarang berhasil update.');
+			header("Location:index_pengarang.php");
 		} else {
 			$errors['db'] = "insert failed something wrong :(";
 		}
@@ -89,7 +90,7 @@ while ($pengarang_data = mysqli_fetch_array($pengarang)) {
 		<a class="btn btn-primary" href="index.php">Home</a>
 		<br /><br />
  
-	<form action="edit_pengarang.php?id_pengarang=<?php echo $id_pengarang; ?>" method="post">
+	<form action="edit_pengarang.php?id_pengarang=<?php echo $id_pengarang; ?>" method="post" name="form1" >
 		<table width="90%" border="0">
 			<tr> 
 				<td><lablel for="id_pengarang">ID Pengarang</label></td>
