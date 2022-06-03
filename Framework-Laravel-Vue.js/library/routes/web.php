@@ -19,8 +19,24 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/publisher', [App\Http\Controllers\PublisherController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/author', [App\Http\Controllers\AuthorController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/book', [App\Http\Controllers\BookController::class, 'index']);
+
+Auth::routes();
+
+Route::get('/member', [App\Http\Controllers\MemberController::class, 'index']);

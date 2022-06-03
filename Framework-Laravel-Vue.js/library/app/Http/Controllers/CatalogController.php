@@ -14,8 +14,9 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.catalog.index');
     }
+    
 
     /**
      * Show the form for creating a new resource.
