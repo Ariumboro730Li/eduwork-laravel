@@ -96,14 +96,11 @@
             $qty_stok = $_POST['qty_stok'];
             $harga_pinjam = $_POST['harga_pinjam'];
 
-            include_once("connect.php");
+            include_once("../connect.php");
 
             //echo "INSERT INTO 'buku' ('isbn', 'judul', 'tahun', 'id_penerbit', 'id_pengarang', 'id_katalog', 'qty_stok', 'harga_pinjam') VALUES ('$isbn', '$judul','$tahun', '$id_penerbit', '$id_pengarang', '$id_katalog', '$qty_stok', '$harga_pinjam')";
 
             $result = mysqli_query($mysql, "INSERT INTO buku (isbn, judul, tahun, id_penerbit, id_pengarang, id_katalog, qty_stok, harga_pinjam) VALUES ('$isbn', '$judul','$tahun', '$id_penerbit', '$id_pengarang', '$id_katalog', '$qty_stok', '$harga_pinjam')");
-        
-            //$result = mysqli_query($mysql, "INSERT INTO buku judul = '$judul', tahun = '$tahun', id_penerbit = '$id_penerbit', id_pengarang = '$id_pengarang', id_katalog = '$id_katalog', qty_stok = '$qty_stok', harga_pinjam = '$harga_pinjam' WHERE isbn = '$isbn';");
-
             header("Location:index.php");
         }    
     ?>

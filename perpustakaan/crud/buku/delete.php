@@ -9,6 +9,6 @@ $result = mysqli_query($mysql, "DELETE FROM buku WHERE isbn='$isbn'");
 if ($result) {
     header("Location:index.php");
 } else {
-    echo ("Gagal menghapus data");
+    echo ("Gagal menghapus data. buku sedang dipinjam");
 }
 ?>
