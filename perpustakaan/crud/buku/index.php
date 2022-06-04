@@ -1,5 +1,5 @@
 <?php
-    include_once("connect.php");
+    include_once("../connect.php");
     
     $buku = mysqli_query($mysql, "SELECT buku.*, nama_pengarang, nama_penerbit, katalog.nama as nama_katalog FROM buku
                                         LEFT JOIN pengarang ON pengarang.id_pengarang = buku.id_pengarang
@@ -20,10 +20,10 @@
 <body>
 
 <center>
-    <a href="index,php">Buku</a> |
-    <a href="index.php">Penerbit</a> |
-    <a href="#">Pengarang</a> |
-    <a href="index.php">Katalog</a>
+    <a href="../buku/index.php">Buku</a> |
+    <a href="../penerbit/index.php">Penerbit</a> |
+    <a href="../pengarang/index.php">Pengarang</a> |
+    <a href="../katalog/index.php">Katalog</a>
     <hr>
 </center>
 

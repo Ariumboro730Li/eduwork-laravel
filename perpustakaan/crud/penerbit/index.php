@@ -1,5 +1,5 @@
 <?php
-    include_once("connect.php");
+    include_once("../connect.php");
     
     $penerbit = mysqli_query($mysql, "SELECT * FROM penerbit ORDER BY id_penerbit ASC");
 
@@ -16,10 +16,10 @@
 <body>
 
 <center>
-    <a href="index,php">Buku</a> |
-    <a href="index.php">Penerbit</a> |
-    <a href="#">Pengarang</a> |
-    <a href="index.php">Katalog</a>
+    <a href="../buku/index.php">Buku</a> |
+    <a href="../penerbit/index.php">Penerbit</a> |
+    <a href="../pengarang/index.php">Pengarang</a> |
+    <a href="../katalog/index.php">Katalog</a>
     <hr>
 </center>
 

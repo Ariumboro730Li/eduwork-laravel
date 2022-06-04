@@ -6,7 +6,7 @@
 </head>
 
 <?php
-    include_once("connect.php");
+    include_once("../connect.php");;
     $id_pengarang = $_GET['id_pengarang'];
     
      $buku = mysqli_query($mysql, "SELECT * FROM buku");

@@ -1,5 +1,5 @@
 <?php
-    include_once("connect.php");
+    include_once("../connect.php");
     
     $katalog = mysqli_query($mysql, "SELECT * FROM `katalog` ORDER BY id_katalog ASC");
 
@@ -16,10 +16,10 @@
 <body>
 
 <center>
-    <a href="index.php">Buku</a> |
-    <a href="index.php">Penerbit</a> |
-    <a href="index.php">Pengarang</a> |
-    <a href="index.php">Katalog</a>
+    <a href="../buku/index.php">Buku</a> |
+    <a href="../penerbit/index.php">Penerbit</a> |
+    <a href="../pengarang/index.php">Pengarang</a> |
+    <a href="../katalog/index.php">Katalog</a>
     <hr>
 </center>
 
