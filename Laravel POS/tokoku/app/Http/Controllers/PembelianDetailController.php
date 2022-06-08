@@ -14,7 +14,7 @@ class PembelianDetailController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pembeliandetail.index');
     }
 
     /**

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Supplier;
+use App\Models\TransaksiLama;
 use Illuminate\Http\Request;
 
-class SupplierController extends Controller
+class TransaksiLamaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        return view('admin.supplier.index');
+        return view('admin.transaksilama.index');
     }
 
     /**
@@ -41,21 +41,21 @@ class SupplierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\TransaksiLama  $transaksiLama
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier)
+    public function show(TransaksiLama $transaksiLama)
     {
-        //
+        return view('admin.transaksilama.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\TransaksiLama  $transaksiLama
      * @return \Illuminate\Http\Response
      */
-    public function edit(Supplier $supplier)
+    public function edit(TransaksiLama $transaksiLama)
     {
         //
     }
@@ -64,10 +64,10 @@ class SupplierController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\TransaksiLama  $transaksiLama
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request, TransaksiLama $transaksiLama)
     {
         //
     }
@@ -75,10 +75,10 @@ class SupplierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Supplier  $supplier
+     * @param  \App\Models\TransaksiLama  $transaksiLama
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Supplier $supplier)
+    public function destroy(TransaksiLama $transaksiLama)
     {
         //
     }
