@@ -19,4 +19,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/kategori', [App\Http\Controllers\KategoriController::class, 'index']);
+Route::get('/laporan', [App\Http\Controllers\LaporanController::class, 'index']);
+Route::get('/member', [App\Http\Controllers\MemberController::class, 'index']);
+Route::get('/pembelian', [App\Http\Controllers\PembelianController::class, 'index']);
+Route::get('/pembeliandetail', [App\Http\Controllers\PembelianDetailController::class, 'index']);
+Route::get('/pengeluaran', [App\Http\Controllers\PengeluaranController::class, 'index']);
+Route::get('/penjualan', [App\Http\Controllers\PenjualanController::class, 'index']);
+Route::get('/penjualandetail', [App\Http\Controllers\PenjualanDetailController::class, 'index']);
+Route::get('/produk', [App\Http\Controllers\ProdukController::class, 'index']);
+Route::get('/setting', [App\Http\Controllers\SettingController::class, 'index']);
+Route::get('/supplier', [App\Http\Controllers\SupplierController::class, 'index']);
+Route::get('/transaksilama', [App\Http\Controllers\TransaksiLamaController::class, 'index']);
+Route::get('/transaksibaru', [App\Http\Controllers\TransaksiBaruController::class, 'index']);
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index']);

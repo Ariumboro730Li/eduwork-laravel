@@ -42,10 +42,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="home" class="nav-link">Home</a>
+        <a href="home" class="nav-link {{ request()->is('home') ? 'active' : '' }}">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="#" class="nav-link {{ request()->is('#') ? 'active' : '' }}">Contact</a>
       </li>
     </ul>
 
@@ -105,7 +105,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-          <a href="#" class="nav-link active">
+          <a href="{{ url('home') }}" class="nav-link {{ request()->is('home') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -116,7 +116,7 @@
 
           <li class="header">MASTER</li>
           <li class="nav-item menu-open">
-          <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('kategori') }}" class="nav-link {{ request()->is('kategori') ? 'active' : '' }}">
               <i class="nav-icon fas fa-cube"></i>
               <p>
                 Kategori
@@ -126,7 +126,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('produk') }}" class="nav-link {{ request()->is('produk') ? 'active' : '' }}">
               <i class="nav-icon fas fa-cubes"></i>
               <p>
                 Produk
@@ -136,7 +136,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('member') }}" class="nav-link {{ request()->is('member') ? 'active' : '' }}">
               <i class="nav-icon fas fa-id-card"></i>
               <p>
                 Member
@@ -146,7 +146,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('supplier') }}" class="nav-link {{ request()->is('supplier') ? 'active' : '' }}">
               <i class="nav-icon fas fa-truck"></i>
               <p>
                 Supplier
@@ -157,7 +157,7 @@
 
           <li class="header">TRANSAKSI</li>
           <li class="nav-item menu-open">
-          <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('pengeluaran') }}" class="nav-link {{ request()->is('pengeluaran') ? 'active' : '' }}">
               <i class="nav-icon fas fa-dollar-sign"></i>
               <p>
                 Pengeluaran
@@ -167,7 +167,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('pembelian') }}" class="nav-link {{ request()->is('pembelian') ? 'active' : '' }}">
               <i class="nav-icon fas fa-download"></i>
               <p>
                 Pembelian
@@ -177,7 +177,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('penjualan') }}" class="nav-link {{ request()->is('penjualan') ? 'active' : '' }}">
               <i class="nav-icon fas fa-upload"></i>
               <p>
                 Penjualan
@@ -187,7 +187,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('transaksilama') }}" class="nav-link {{ request()->is('transaksilama') ? 'active' : '' }}">
               <i class="nav-icon fas fa-cart-arrow-down"></i>
               <p>
                 Transaksi Lama
@@ -197,7 +197,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('transaksibaru') }}" class="nav-link {{ request()->is('transaksibaru') ? 'active' : '' }}">
               <i class="nav-icon fas fa-cart-arrow-down"></i>
               <p>
                 Transaksi Baru
@@ -208,7 +208,7 @@
 
           <li class="header">REPORT</li>
           <li class="nav-item menu-open">
-          <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('laporan') }}" class="nav-link {{ request()->is('laporan') ? 'active' : '' }}">
               <i class="nav-icon fas fa-file-pdf"></i>
               <p>
                 Laporan
@@ -219,14 +219,14 @@
 
           <li class="header">SYSTEM</li>
           <li class="nav-item menu-open">
-          <a href="#" class="nav-link ? 'active' : ">
+          <a href="{{ url('user') }}" class="nav-link {{ request()->is('user') ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 User
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <a href="#" class="nav-link ? 'active' : ">
+            <a href="{{ url('setting') }}" class="nav-link {{ request()->is('setting') ? 'active' : '' }}">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
                 Pengaturan
@@ -256,7 +256,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               @section('breadcrumb')
-              <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>              
+              <li class="breadcrumb-item"><a href="{{ url('home') }}">Home</a></li>              
               @show
             </ol>
           </div><!-- /.col -->
