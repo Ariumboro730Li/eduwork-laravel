@@ -34,11 +34,11 @@ class HomeController extends Controller
         //$books = Book::with('publisher')->get();
         //$publishers = Publisher::with('books')->get();
         //$authors = Author::with('books')->get();
-        //$catalogs = Catalog::with('books')->get();
-       // $transactions = Transaction::with('member')->get();
-        $transactionDetails = Transaction::with('transactionDetail')->get();
+        $catalogs = Catalog::with('books')->get();
+        //$transactions = Transaction::with('member')->get();
+        //$transactionDetails = Transaction::with('transactionDetail')->get();
         
-        return $transactionDetails;
+        //return $catalogs;
         return view('home');
     }
 }
