@@ -18,22 +18,22 @@
         <table class="table" width="25%" border="0">
             <tr>
                 <td>id Pengarang</td>
-                <td><input type="text" name="id_pengarang"></td>
+                <td><input type="text" name="id_pengarang" required></td>
             </tr>
                 <td>Nama Pengarang</td>
-                <td><input type="text" name="nama_pengarang"></td>
+                <td><input type="text" name="nama_pengarang" required></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="text" name="email"></td>
+                <td><input type="email" name="email" required></td>
             </tr>
             <tr>
                 <td>Telp</td>
-                <td><input type="text" name="telp"></td>
+                <td><input type="number" name="telp" required></td>
             </tr>
             <tr>
                 <td>Alamat</td>
-                <td><input type="text" name="alamat"></td>
+                <td><input type="text" name="alamat" required></td>
             </tr>
             <tr>
                 <td></td>
@@ -52,13 +52,23 @@
             $telp = $_POST['telp'];
             $alamat = $_POST['alamat'];
 
-            include_once("connect.php");
+            include_once("../connect.php");
 
+            function throw_ex($er){  
+                throw new Exception($er);  
+            }
+            
+            try {
 
             $result = mysqli_query($mysql, "INSERT INTO pengarang (id_pengarang, nama_pengarang, email, telp, alamat) VALUES ('$id_pengarang', '$nama_pengarang','$email', '$telp', '$alamat')");
         
 
             header("Location:index.php");
+            }  catch(exception $e) {
+            //echo "<script>"; 
+                echo "<script>alert('Id Penerbit Sudah ada');</script>";
+          
+             }
         }    
     ?>
 </body>

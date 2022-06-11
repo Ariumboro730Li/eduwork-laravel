@@ -8,6 +8,6 @@ $result = mysqli_query($mysql, "DELETE FROM pengarang WHERE id_pengarang='$id_pe
 if ($result) {
     header("Location:index.php");
 } else {
-    echo ("Gagal menghapus data");
+    echo "<script>alert('Gagal menghapus data. buku sedang dipinjam');</script>";
 }
 ?>

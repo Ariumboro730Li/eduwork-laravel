@@ -35,7 +35,7 @@
         </tr>
         <tr>
              <td>Nama</td>
-             <td><input type ="text" name="Nama" value="<?php echo $Nama; ?>"></td>
+             <td><input type ="text" name="Nama" required value="<?php echo $Nama; ?>"></td>
         </tr>
 
         <tr>
@@ -66,7 +66,8 @@
                 // set_flashdata('success', 'buku updated successfully.');
                 header("Location:index.php");
             } else {
-                $errors['db'] = "insert failed something wrong :(";
+                //$errors['db'] = "insert failed something wrong :(";
+                echo "<script>alert('insert failed');</script>";
             }
         }
 

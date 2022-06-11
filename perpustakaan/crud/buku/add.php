@@ -22,20 +22,20 @@
         <table class="table" width="25%" border="0">
             <tr>
                 <td>ISBN</td>
-                <td><input type="text" name="isbn"></td>
+                <td><input type="text" name="isbn" required></td>
             </tr>
             <tr>
                 <td>Judul</td>
-                <td><input type="text" name="judul"></td>
+                <td><input type="text" name="judul" required></td>
             </tr>
             <tr>
                 <td>Tahun</td>
-                <td><input type="text" name="tahun"></td>
+                <td><input type="text" name="tahun" required></td>
             </tr>
             <tr>
                 <td>Penerbit</td>
                 <td>
-                    <select name="id_penerbit">
+                    <select name="id_penerbit" required>
                         <?php
                             foreach($penerbit as $penerbit_data) {
                                 echo "<option value='".$penerbit_data['id_penerbit']."'>".$penerbit_data['nama_penerbit']."</option>";
@@ -47,7 +47,7 @@
             <tr>
                 <td>Pengarang</td>
                 <td>
-                    <select name="id_pengarang">
+                    <select name="id_pengarang" required>
                         <?php
                             foreach($pengarang as $pengarang_data) {
                                 echo "<option value='".$pengarang_data['id_pengarang']."'>".$pengarang_data['nama_pengarang']."</option>";
@@ -59,7 +59,7 @@
             <tr>
                 <td>Katalog</td>
                 <td>
-                    <select name="id_katalog">
+                    <select name="id_katalog" required>
                         <?php
                             foreach($katalog as $katalog_data) {
                                 echo "<option value='".$katalog_data['id_katalog']."'>".$katalog_data['nama']."</option>";
@@ -70,11 +70,11 @@
             </tr>
             <tr>
                 <td>Qty Stok</td>
-                <td><input type="text" name="qty_stok"></td>
+                <td><input type="text" name="qty_stok" required></td>
             </tr>
             <tr>
                 <td>Harga Pinjam</td>
-                <td><input type="text" name="harga_pinjam"></td>
+                <td><input type="text" name="harga_pinjam" required></td>
             </tr>
             <tr>
                 <td></td>
@@ -98,11 +98,21 @@
 
             include_once("../connect.php");
 
+            function throw_ex($er){  
+                throw new Exception($er);
+            }
+
             //echo "INSERT INTO 'buku' ('isbn', 'judul', 'tahun', 'id_penerbit', 'id_pengarang', 'id_katalog', 'qty_stok', 'harga_pinjam') VALUES ('$isbn', '$judul','$tahun', '$id_penerbit', '$id_pengarang', '$id_katalog', '$qty_stok', '$harga_pinjam')";
+            try {
 
             $result = mysqli_query($mysql, "INSERT INTO buku (isbn, judul, tahun, id_penerbit, id_pengarang, id_katalog, qty_stok, harga_pinjam) VALUES ('$isbn', '$judul','$tahun', '$id_penerbit', '$id_pengarang', '$id_katalog', '$qty_stok', '$harga_pinjam')");
+            
             header("Location:index.php");
-        }    
+            }  catch(exception $e) {
+                //echo "<script>"; 
+                echo "<script>alert('ISBN Sudah ada');</script>";
+            }
+        }  
     ?>
 </body>
 </html>

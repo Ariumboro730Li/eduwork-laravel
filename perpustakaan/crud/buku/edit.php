@@ -37,21 +37,21 @@
 
         <tr>
              <td>ISBN</td>
-             <td style="font-size: 11px;" name="<?php echo $isbn; ?>"><?php echo $isbn; ?> </td>
+             <td style="font-size: 11px;" name=" <?php echo $isbn; ?>"><?php echo $isbn; ?> </td>
         </tr>
         <!-- <?php //echo $judul; ?> -->
         <tr>
              <td>Judul</td>
-             <td><input type ="text" name="judul" value="<?php echo $judul; ?>"></td>
+             <td><input type ="text" name="judul" required value="<?php echo $judul; ?>"></td>
         </tr>
         <tr>
              <td>Tahun</td>
-             <td><input type ="text" name="tahun" value="<?php echo $tahun; ?>"></td>
+             <td><input type ="text" name="tahun" required value="<?php echo $tahun; ?>"></td>
         </tr>
         <tr>
              <td>Penerbit</td>
              <td>
-                 <select name="id_penerbit">
+                 <select name="id_penerbit" required>
                      <?php
                         foreach($penerbit as $penerbit_data) {
                             echo "<option ". ((strcmp($penerbit_data['id_penerbit'], $id_penerbit) == 0) ? 'selected' : '')." value='".
@@ -64,7 +64,7 @@
         <tr>
              <td>Pengarang</td>
              <td>
-                <select name="id_pengarang">
+                <select name="id_pengarang" required>
                     <?php
                         foreach($pengarang as $pengarang_data) {
                             echo "<option". (strcmp($pengarang_data['id_pengarang'], $id_pengarang) == 0 ? 'selected' : '')." value='".
@@ -79,7 +79,7 @@
              <td>Katalog</td>
           
              <td>
-                <select name="id_katalog">
+                <select name="id_katalog" required>
                     <?php
                         foreach($katalog as $katalog_data) {
                             echo "<option". (strcmp($katalog_data['id_katalog'], $id_katalog) == 0 ? ' selected' : '')." value='".
@@ -92,11 +92,11 @@
         </tr>
         <tr>
              <td>Stok</td>
-             <td><input type ="text" name="qty_stok" value="<?php echo $qty_stok; ?>"></td>
+             <td><input type ="text" name="qty_stok" required value="<?php echo $qty_stok; ?>"></td>
         </tr>
         <tr>
              <td>Harga Pinjam</td>
-             <td><input type ="text" name="harga_pinjam" value="<?php echo $harga_pinjam; ?>"></td>
+             <td><input type ="text" name="harga_pinjam" required value="<?php echo $harga_pinjam; ?>"></td>
         </tr>
 
         <tr>
@@ -123,7 +123,7 @@
 
             //echo "UPDATE buku SET judul = '$judul', tahun = '$tahun', id_penerbit = '$id_penerbit', id_pengarang = '$id_pengarang', id_katalog = '$id_katalog', qty_stok = '$qty_stok', harga_pinjam = '$harga_pinjam' WHERE isbn = '$isbn_get';";
 
-            include_once("connect.php");
+            include_once("../connect.php");;
             
             $result = mysqli_query($mysql, "UPDATE buku SET judul = '$judul', tahun = '$tahun', id_penerbit = '$id_penerbit', id_pengarang = '$id_pengarang', id_katalog = '$id_katalog', qty_stok = '$qty_stok', harga_pinjam = '$harga_pinjam' WHERE isbn = '$isbn'");
 
@@ -133,7 +133,7 @@
                 // set_flashdata('success', 'buku updated successfully.');
                 header("Location:index.php");
             } else {
-                $errors['db'] = "insert failed something wrong :(";
+                echo "<script>alert('insert failed');</script>";
             }
         }
 

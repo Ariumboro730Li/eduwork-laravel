@@ -37,19 +37,19 @@
         </tr>
         <tr>
              <td>Nama Penerbit</td>
-             <td><input type ="text" name="nama_penerbit" value="<?php echo $nama_penerbit; ?>"></td>
+             <td><input type ="text" name="nama_penerbit" required value="<?php echo $nama_penerbit; ?>"></td>
         </tr>
         <tr>
              <td>Email</td>
-             <td><input type ="text" name="email" value="<?php echo $email; ?>"></td>
+             <td><input type ="text" name="email" required value="<?php echo $email; ?>"></td>
         </tr>
         <tr>
              <td>Telp</td>
-             <td><input type ="text" name="telp" value="<?php echo $telp; ?>"></td>
+             <td><input type ="text" name="telp" required value="<?php echo $telp; ?>"></td>
         </tr>
         <tr>
              <td>Alamat</td>
-             <td><input type ="text" name="alamat" value="<?php echo $alamat; ?>"></td>
+             <td><input type ="text" name="alamat" required value="<?php echo $alamat; ?>"></td>
         </tr>
 
         <tr>
@@ -72,7 +72,7 @@
             $alamat = $_POST['alamat'];
 
 
-            include_once("connect.php");
+            include_once("../connect.php");
             
             $result = mysqli_query($mysql, "UPDATE penerbit SET nama_penerbit = '$nama_penerbit', email = '$email', telp = '$telp', alamat = '$alamat' WHERE id_penerbit = '$id_penerbit'");
 
@@ -82,7 +82,8 @@
                 // set_flashdata('success', 'buku updated successfully.');
                 header("Location:index.php");
             } else {
-                $errors['db'] = "insert failed something wrong :(";
+                //$errors['db'] = "insert failed something wrong :(";
+                echo "<script>alert('insert failed');</script>";
             }
         }
 

@@ -18,22 +18,22 @@
         <table class="table" width="25%" border="0">
             <tr>
                 <td>id Penerbit</td>
-                <td><input type="text" name="id_penerbit"></td>
+                <td><input type="text" name="id_penerbit" required></td>
             </tr>
                 <td>Nama Penerbit</td>
-                <td><input type="text" name="nama_penerbit"></td>
+                <td><input type="text" name="nama_penerbit" required></td>
             </tr>
             <tr>
                 <td>Email</td>
-                <td><input type="text" name="email"></td>
+                <td><input type="email" name="email" required></td>
             </tr>
             <tr>
                 <td>Telp</td>
-                <td><input type="text" name="telp"></td>
+                <td><input type="number" name="telp" required></td>
             </tr>
             <tr>
                 <td>Alamat</td>
-                <td><input type="text" name="alamat"></td>
+                <td><input type="text" name="alamat" required></td>
             </tr>
             <tr>
                 <td></td>
@@ -52,11 +52,27 @@
             $telp = $_POST['telp'];
             $alamat = $_POST['alamat'];
 
-            include_once("connect.php");
+            include_once("../connect.php");
 
-            $result = mysqli_query($mysql, "INSERT INTO penerbit (id_penerbit, nama_penerbit, email, telp, alamat) VALUES ('$id_penerbit', '$nama_penerbit','$email', '$telp', '$alamat')");
+            //$result = mysqli_query($mysql, "INSERT INTO penerbit (id_penerbit, nama_penerbit, email, telp, alamat) VALUES ('$id_penerbit', '$nama_penerbit','$email', '$telp', '$alamat')");
         
-            header("Location:index.php");
+            function throw_ex($er){  
+                throw new Exception($er);  
+            } 
+
+            //echo($result);
+                
+            try {
+                $result = mysqli_query($mysql, "INSERT INTO penerbit (id_penerbit, nama_penerbit, email, telp, alamat) VALUES ('$id_penerbit', '$nama_penerbit','$email', '$telp', '$alamat')") or throw_ex(mysql_error()); 
+                
+                header("Location:index.php");
+            }  catch(exception $e) {
+              //echo "<script>"; 
+              echo "<script>alert('Id Penerbit Sudah ada');</script>";
+            
+            }
+
+            
         }    
     ?>
 </body>

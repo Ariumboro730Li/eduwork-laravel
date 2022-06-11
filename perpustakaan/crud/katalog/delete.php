@@ -9,6 +9,6 @@ $result = mysqli_query($mysql, "DELETE FROM katalog WHERE id_katalog='$id_katalo
 if ($result) {
     header("Location:index.php");
 } else {
-    echo ("Gagal menghapus data");
+    echo "<script>alert('Gagal menghapus data. buku sedang dipinjam');</script>";
 }
 ?>
