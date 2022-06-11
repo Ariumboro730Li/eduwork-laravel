@@ -21,7 +21,7 @@ class AuthorController extends Controller
         $authors = Author::with('books')->get();
 
         //return $authors;
-        return view ('admin.author', compact('authors'));
+        return view('admin.author.index', compact('authors'));
     }
 
     /**
@@ -53,7 +53,7 @@ class AuthorController extends Controller
         //$author->name = $request->name;
         //$author->save();
 
-        Author::store($request->all());
+        Author::create($request->all());
 
         return redirect('authors');
     }
