@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="card-body p-0">
-                            <table id="example2" class="table table-striped">
+                            <table id="datatable" class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th style="width: 30px">No.</th>
@@ -128,9 +128,7 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script type="text/javascript">
   $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    $("#datatable").DataTable({
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
