@@ -71,9 +71,12 @@ class HomeController extends Controller
                     ->get();
         
         // no.5
-        //$data5 = Transaction::select('transactions.member_id') AS total  
+         $data5 = Member::select('members.id', 'members.name', 'members.phone_number')
+             ->join('transactions', 'transactions.member_id', '=', 'members.id')
+             ->groupBy('transactions.id', '=', 'members.id')
+             ->get();
         
-        //return $data4;
+        //return $data5;
         return view('home');
     }
 }
