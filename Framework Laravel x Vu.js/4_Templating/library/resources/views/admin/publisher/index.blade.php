@@ -38,7 +38,7 @@
                                     </tr>
                                 </thead>
 
-                                <tbody>
+<!-- ditahan                                <tbody>
                                     @foreach($publishers as $key => $publisher)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
@@ -55,7 +55,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>
+                                </tbody>    -->
                             </table>
                         </div>
                     </div>
@@ -126,6 +126,35 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script type ="text/javascript">
+    var actionUrl = '{{ url('publishers') }}';
+    var apiUrl = '{{ url('api/publishers') }}';
+
+    var columns = [
+        {data: 'DT_RowIndex', class: 'text-center', orderable: true},
+        {data: 'name', class: 'text-center', orderable: true},
+        {data: 'email', class: 'text-center', orderable: true},
+        {data: 'phone_number', class: 'text-center', orderable: true},
+        {data: 'address', class: 'text-center', orderable: true},
+        {render: function (index, row, data, meta) {
+            return 
+                <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">
+                Edit
+                </a>
+                <a class="btn btn-danger btn-sm" onclick="controller.deleteData(event, ${data.id})">
+                Delete
+                </a>;
+        }, orderable: false, width: '200px', class: 'text-center'},
+
+    ];
+
+
+</script>
+<script src="{{ asset('js/data.js') }}"></script>
+
+
+
+<!-- ditahan
 <script type="text/javascript">
   $(function () {
     $("#datatable").DataTable({
@@ -133,7 +162,7 @@
   });
 </script>
 
-<!-- Crud Vue js -->
+//Crud Vue js
 <script type="text/javascript">
     var controller = new Vue({
         el: '#controller',
@@ -173,4 +202,4 @@
         }
     });
 </script>
-@endsection
+@endsection -->
