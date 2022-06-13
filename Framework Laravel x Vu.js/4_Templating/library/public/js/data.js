@@ -31,10 +31,7 @@ var controller = new Vue({
             $('#modal-default').modal();
         },
         editData(event, row) {
-            this.data = this.datas[row];
-        // editData(id) {
-            console.log(this.data)
-            this.data = data;                
+            this.data = this.datas[row];   
             this.editStatus = true;
             $('#modal-default').modal();
         },
@@ -49,7 +46,7 @@ var controller = new Vue({
             event.preventDefault();
             const _this = this;
             var actionUrl = ! this.editStatus ? this.actionUrl : this.actionUrl+'/'+id;
-            axios.post(actionUrl, newFormData($(event.target)[0])).then(response => {
+            axios.post(actionUrl, new FormData($(event.target)[0])).then(response => {
                 $('#modal-default').modal('hide');
                 _this.table.ajax.reload();
             });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class AuthorController extends Controller
 {
@@ -18,16 +19,18 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $authors = Author::with('books')->get();
+        //$authors = Author::with('books')->get();
 
         //return $authors;
-        return view('admin.author.index', compact('authors'));
+        //return view('admin.author.index', compact('authors'));
+        return view('admin.author.index');
     }
 
     public function api()
     {
         $authors = Author::all();
-        $datatables = datatables()->of($authors)->addIndexColumn();
+        //$datatables = datatables()->of($authors)->addIndexColumn();
+        $datatables = DataTables::of($authors)->addIndexColumn();
 
         return $datatables->make(true);
     }

@@ -22,8 +22,8 @@
                             class="btn btn-sm btn-primary pull-right">Create New Author</a>
                         </div>
 
-                        <div class="card-body p-0">
-                            <table id="datatable" class="table table-striped">
+                        <div class="card-body p-100">
+                            <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 30px">No.</th>
@@ -31,15 +31,12 @@
                                         <th class="text-center">Email</th>
                                         <th class="text-center">Phone Number</th>
                                         <th class="text-center">Address</th>
-                                        <th class="text-center">Created At</th>
-                                        <th class="text-center">Updated At</th>
-                                        <th class="text-center">Total Books</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
 
-<!-- ditahan                                 <tbody>
-                                   @foreach($authors as $key => $author)
+{{-- ganti api                                <tbody>
+                                    @foreach($authors as $key => $author)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
                                             <td class="text-center">{{ $author->name }}</td>
@@ -55,7 +52,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody> -->
+                                </tbody>    --}}
                             </table>
                         </div>
                     </div>
@@ -63,7 +60,7 @@
                 <div class="modal fade" id="modal-default">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            {{-- <form method="post" action="{{route('authors.store')}}" autocomplete="off"> --}}
+                            {{-- <form method="post" action="{{ route('authors.store') }}" autocomplete="off"> --}}
                                 <form method="post" :action="actionUrl" autocomplete="off" @submit="submitForm($event, data.id)">
                                 <div class="modal-header">
                                     <h4 class="modal-title">Author</h4>
@@ -131,24 +128,21 @@
     var apiUrl = '{{ url('api/authors') }}';
 
     var columns = [
-        {data: 'DT_RowIndex', class: 'text-center', orderable: true},
-        {data: 'name', class: 'text-center', orderable: true},
-        {data: 'email', class: 'text-center', orderable: true},
-        {data: 'phone_number', class: 'text-center', orderable: true},
-        {data: 'address', class: 'text-center', orderable: true},
+        {data: 'DT_RowIndex',  class: 'text-center', orderable: true},
+        {data: 'name', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'email', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'phone_number', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'address', width: '1000px', class: 'text-center', orderable: true},
         {render: function (index, row, data, meta) {
-            return 
+            return `
                 <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">
                 Edit
                 </a>
                 <a class="btn btn-danger btn-sm" onclick="controller.deleteData(event, ${data.id})">
                 Delete
-                </a>;
-        }, orderable: false, width: '200px', class: 'text-center'},
-
+                </a>`;
+        }, orderable: false, width: '1000px', class: 'text-center'},
     ];
-
-
 </script>
 <script src="{{ asset('js/data.js') }}"></script>
 
