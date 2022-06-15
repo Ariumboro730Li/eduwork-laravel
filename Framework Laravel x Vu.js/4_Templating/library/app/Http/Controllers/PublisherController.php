@@ -19,21 +19,29 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        //$publishers = Publisher::with('books')->get();
+        $publishers = publisher::with('books')->get();
 
         //return $publishers;
-        //return view('admin.publisher.index', compact('publishers'));
-        return view('admin.publisher.index');
+        return view ('admin.publisher.index', compact('publishers'));
     }
-    
+
     public function api()
     {
-        $publishers = Publisher::all();
+        $publishers = publisher::all();
+
+        //foreach ($publishers as $key => $publisher) {
+        //    $publisher->date = convert_date($publisher->created_at);
+        //}
+
         //$datatables = datatables()->of($publishers)->addIndexColumn();
-        $datatables = DataTables::of($publishers)->addIndexColumn();
+        $datatables = DataTables::of($publishers)
+                                ->addColumn('date', function($publishers) {
+                                    return $publishers->created_at->format("H:i:s d F Y");                      
+                                 })->addIndexColumn();
 
         return $datatables->make(true);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,7 +49,7 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        return view('admin.publisher');
+        return view('admin.publisher.create');
     }
 
     /**

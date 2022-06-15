@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Catalog;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class CatalogController extends Controller
 {
@@ -22,6 +23,23 @@ class CatalogController extends Controller
 
         //return $catalogs;
         return view ('admin.catalog.index', compact('catalogs'));
+    }
+
+    public function api()
+    {
+        $catalogs = catalog::all();
+
+        //foreach ($catalogs as $key => $catalog) {
+        //    $catalog->date = convert_date($catalog->created_at);
+        //}
+
+        //$datatables = datatables()->of($catalogs)->addIndexColumn();
+        $datatables = DataTables::of($catalogs)
+                                ->addColumn('date', function($catalogs) {
+                                    return $catalogs->created_at->format("H:i:s d F Y");                      
+                                 })->addIndexColumn();
+
+        return $datatables->make(true);
     }
 
     
