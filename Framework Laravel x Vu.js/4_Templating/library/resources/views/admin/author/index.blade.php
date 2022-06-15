@@ -31,11 +31,12 @@
                                         <th class="text-center">Email</th>
                                         <th class="text-center">Phone Number</th>
                                         <th class="text-center">Address</th>
+                                        <th class="text-center">Created At</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
 
-{{-- ganti api                                <tbody>
+{{-- ganti api                  <tbody>
                                     @foreach($authors as $key => $author)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
@@ -43,7 +44,7 @@
                                             <td class="text-center">{{ $author->email }}</td>
                                             <td class="text-center">{{ $author->phone_number }}</td>
                                             <td class="text-center">{{ $author->address }}</td>
-                                            <td class="text-center">{{ date('H:i:s - d M Y', strtotime ($author->created_at)) }}</td>
+                                            <td class="text-center">{{ convert_date($author->created_at) }}</td>
                                             <td class="text-center">{{ date('H:i:s - d M Y', strtotime ($author->updated_at)) }}</td>
                                             <td class="text-center">{{ count ($author->books) }}</td>
                                             <td class="text-center">
@@ -133,6 +134,7 @@
         {data: 'email', width: '1000px', class: 'text-center', orderable: true},
         {data: 'phone_number', width: '1000px', class: 'text-center', orderable: true},
         {data: 'address', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'date', width: '1000px', class: 'text-center', orderable: true},
         {render: function (index, row, data, meta) {
             return `
                 <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">

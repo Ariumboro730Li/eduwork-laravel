@@ -68,3 +68,4 @@ Route::resource('/books', App\Http\Controllers\BookController::class);
 Route::get('/api/authors', [App\Http\Controllers\AuthorController::class, 'api']);
 Route::get('/api/publishers', [App\Http\Controllers\PublisherController::class, 'api']);
 Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api']);
+Route::get('/api/catalogs', [App\Http\Controllers\CatalogController::class, 'api']);
