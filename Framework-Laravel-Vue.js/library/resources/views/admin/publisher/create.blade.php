@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group">
                             <label>Phone_number</label>
-                            <input type="number" name="phone_number" class="form-control" placeholder="Enter number" required="">
+                            <input type="number" name="phone_number" class="form-control" placeholder="Enter Phone_number" required="">
                         </div>
                         <div class="form-group">
                             <label>Address</label>

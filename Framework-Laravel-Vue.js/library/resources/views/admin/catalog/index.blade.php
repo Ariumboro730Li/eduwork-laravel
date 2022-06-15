@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ url('catalogs/create') }}" class="bbtn btn-primary btn-sm ">Create New Publisher</a>                    
+                    <a href="{{ url('catalogs/create') }}" class="btn btn-primary btn-sm ">Create New Catalog</a>                    
                 </div>
  
                 <div class="card-body">
