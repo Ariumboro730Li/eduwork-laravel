@@ -8,8 +8,8 @@ class Catalog extends Model
 {
     protected $table = 'catalogs';
     //
-    public function catalog()
-    {
-        return $this->hasOne('App\model\Book', 'id');
-    }
+    // public function catalog()
+    // {
+    //     return $this->hasOne('App\model\Book', 'id');
+    // }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Catalog;
 use Validator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation;
 
 class CatalogController extends Controller
@@ -83,9 +84,13 @@ class CatalogController extends Controller
     public function edit(Catalog $katalog)
     {
         //
-        // dd($catalog);
+        // dd($katalog);
+        // $users = DB::table('catalogs')->get();
+        $katalog->get();
+        dd($katalog);
         // dd(['Request' => $id]);
         // return $katalog;
+        // $katalog->name;
         // dd($id);
         return view('admin.catalogs.edit', compact('katalog'));
     }

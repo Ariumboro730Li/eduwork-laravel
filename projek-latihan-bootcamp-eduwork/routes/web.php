@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', 'App\Http\Controllers\DashboardController@index');
-Route::get('/catalogs_page', 'App\Http\Controllers\CatalogController@index');
+// Route::get('/catalogs_page', 'App\Http\Controllers\CatalogController@index');
 Route::get('/publisher_page', 'App\Http\Controllers\PublisherController@index');
 Route::resource('/author', 'App\Http\Controllers\AuthorController');
 
@@ -31,6 +31,6 @@ Route::get('/catalog', 'App\Http\Controllers\ModelERDController@catalogAll');
 Route::get('/querybuilder', 'App\Http\Controllers\QueryBuilderController@index');
 
 
-Route::resource('/catalogs', 'App\Http\Controllers\CatalogController');
-
+Route::resource('/catalogs', App\Http\Controllers\CatalogController::class);
+Route::resource('author/', App\Http\Controllers\AuthorController::class);
 Route::resource('/publisher', 'App\Http\Controllers\PublisherController');

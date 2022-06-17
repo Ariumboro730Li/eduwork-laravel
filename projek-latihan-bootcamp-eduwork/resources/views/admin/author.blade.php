@@ -5,7 +5,7 @@
     <div id="controller">
         <div class="table-responsive pt-3">
             <div class="header">
-                <a href="#" @click="addData()" id="modalForm" class="btn btn-sm btn-primary pull-right">Create
+                <a href="#" @click="addData()" id="exampleModal" class="btn btn-sm btn-primary pull-right">Create
                     Author</a>
             </div>
             <table class="table table-bordered">
@@ -49,9 +49,8 @@
                                 {{ $penulis->address }}
                             </td>
                             <td>
-                                <a href="{{ url('/catalogs/' . $penulis->id . '/edit') }}"
-                                    class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ url('catalogs', ['id' => $penulis->id]) }}" method="post">
+                                <a href="#" @click="editData({{ $penulis }})" class="btn btn-warning btn-sm">Edit</a>
+                                <form :action="actionUrl" method="post">
                                     <input class="btn btn-danger btn-sm" type="submit" value="Delete"
                                         onclick="return confirm('Are you sure?')">
                                     @method('delete')
@@ -63,34 +62,36 @@
                 </tbody>
             </table>
         </div>
-
-        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Modal -->
+        <div class="modal fade" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Form Vue</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" action="{{ url('author') }}" autocomplete="off" id="form-author">
+                        <form method="post" :action="actionUrl" autocomplete="off" id="form-author">
                             @csrf
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Nama:</label>
-                                <input type="text" class="form-control" name="name" required="">
+                                <input type="text" class="form-control" name="name" :value="data.name" required="">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Email:</label>
-                                <input type="text" class="form-control" name="email" required="">
+                                <input type="text" class="form-control" name="email" :value="data.email" required="">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">No Telepon:</label>
-                                <input type="text" class="form-control" name="phone_number" required="">
+                                <input type="text" class="form-control" name="phone_number" :value="data.phone_number"
+                                    required="">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Alamat:</label>
-                                <input type="text" class="form-control" name="address" required="">
+                                <input type="text" class="form-control" name="address" :value="data.address" required="">
                             </div>
                         </form>
                     </div>
@@ -101,34 +102,41 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
-@section('js')
-    <script type="text/javascript">
-        var controller = new Vue({
-            el: '#controller',
-            data: {
-                data: {},
-                actionUrl: "{{ url('author') }}"
-
-            },
-            mounted: function() {
-
-            },
-            methods: {
-                addData() {
-                    $('#modalForm').trigger("modal")
+    @endsection
+    @section('js')
+        <script type="text/javascript">
+            new Vue({
+                el: '#controller',
+                data: {
+                    data: {},
+                    actionUrl: "{{ url('author') }}"
 
                 },
-                editData() {
+                mounted: function() {
 
                 },
-                deleteData() {
+                methods: {
+                    addData() {
+                        this.data = {};
+                        this.actionUrl = '{{ url('authors') }}';
+                        $('#modalForm').modal("show")
+                        // console.log("modal show");
+                        // $('#modalForm').modal("show")
+                    },
+                    editData(data) {
+                        // console.log(data);
+
+                        this.data = data;
+                        this.actionUrl = '{{ url('author') }}' + '/' +
+                            data.id;
+                        $('#modalForm').modal("show")
+                    },
+                    deleteData() {
+
+                    }
 
                 }
 
-            }
-
-        });
-    </script>
-@endsection
+            });
+        </script>
+    @endsection

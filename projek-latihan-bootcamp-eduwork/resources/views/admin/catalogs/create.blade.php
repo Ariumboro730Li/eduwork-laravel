@@ -7,7 +7,7 @@
                 <p class="card-description">
                     Form input catalog
                 </p>
-                <form class="forms-sample" action={{ url('catalogs/save') }} method="POST">
+                <form class="forms-sample" action="{{ url('catalogs') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label>Name</label>
