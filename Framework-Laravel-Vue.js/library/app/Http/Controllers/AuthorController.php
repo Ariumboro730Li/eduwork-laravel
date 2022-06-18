@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class AuthorController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -19,16 +20,17 @@ class AuthorController extends Controller
     public function index()
     {
         $authors = Author::all();
-
-        return view('admin.author.index');
+        return view('admin.author.index')->with("authors", $authors);
     }
-        public function api() 
+
+        public function api()
         {
             $authors = Author::all();
+            // $datatables = DataTables::of($authors)->addIndexColumn();
             $datatables = datatables()->of($authors)->addIndexColumn();
 
             return $datatables->make(true);
-            
+
         }
     /**
      * Show the form for creating a new resource.
@@ -54,12 +56,12 @@ class AuthorController extends Controller
             'phone_number'  =>['required'],
             'address'       =>['required'],
         ]);
-        
+
 
         Author::create($request->all());
-        
+
         return redirect('authors');
-        
+
         //return $request;
     }
 
@@ -100,10 +102,10 @@ class AuthorController extends Controller
             'phone_number'  =>['required'],
             'address'       =>['required'],
         ]);
-        
+
 
         $author->update($request->all());
-        
+
         return redirect('authors');
     }
 

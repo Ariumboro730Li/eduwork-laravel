@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-header">
                     <a href="#" @click="addData()" class="btn btn-sm btn-primary ">Create New Author</a>
-                </div>    
+                </div>
                 <div class="card-body">
                     <table id="datatable" class="table table-bordered table-striped">
                         <thead>
@@ -28,7 +28,7 @@
                                 <th class= "text-center">Aksi</th>
                             </tr>
                         </thead>
-                        <!-- <tbody>
+                        {{-- <tbody>
                             @foreach($authors as $key => $author)
                                 <tr>
                                     <td>{{ $key+1}}</td>
@@ -42,7 +42,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody> -->
+                        </tbody> --}}
                     </table>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                     <div class="modal-header">
 
                         <h4 class="modal-title">Author</h4>
-                        
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -67,7 +67,7 @@
                         <input type="hidden" name="_method" value="PUT" v-if="editStatus">
 
                             <div class="form-group">
-                                <label>Name</label>    
+                                <label>Name</label>
                                 <input type="text" name="name" class="form-control" :value="data.name" required="">
                             </div>
                             <div class="form-group">
@@ -96,18 +96,18 @@
 
 @section('js')
 <!-- datatables & plugins -->
-<script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/jszip/jszip.min.js') }}"></script>
-<script src="{{ asset('assets/pdfmake/pdfmake.min.js') }}"></script>
-<script src="{{ asset('assets/pdfmake/vfs_fonts.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script type="text/javascript">
     var actionUrl = '{{ url('authors') }}';
     var apiUrl = '{{ url('api/authors') }}';
@@ -130,7 +130,7 @@
     ];
 
     var controller = new Vue ({
-        el:'#controller'
+        el:'#controller',
         data: {
             datas:[],
             data: {},
