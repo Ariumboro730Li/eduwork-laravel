@@ -38,6 +38,9 @@ Route::resource('/authors', App\Http\Controllers\AuthorController::class);
 Route::resource('/publishers', App\Http\Controllers\PublisherController::class);
 
 
+Route::get('/api/authors', [App\Http\Controllers\AuthorController::class,'api']);
+
+
 
 // Route::get('/publishers', [App\Http\Controllers\PublisherController::class, 'index']);
 // Route::get('/publishers/create', [App\Http\Controllers\PublisherController::class, 'create']);
