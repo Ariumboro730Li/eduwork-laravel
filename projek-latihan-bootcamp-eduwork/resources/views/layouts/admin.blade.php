@@ -148,8 +148,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link count-indicator" id="countDropdown" href="#" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <a class="nav-link count-indicator" id="countDropdown" href="#"
+                            data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="icon-bell"></i>
                             <span class="count"></span>
                         </a>
@@ -231,12 +231,12 @@
                 <i class="settings-close ti-close"></i>
                 <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab"
-                            aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                        <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section"
+                            role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
-                            aria-controls="chats-section">CHATS</a>
+                        <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section"
+                            role="tab" aria-controls="chats-section">CHATS</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="setting-content">
@@ -245,7 +245,8 @@
                         <div class="add-items d-flex px-3 mb-0">
                             <form class="form w-100">
                                 <div class="form-group d-flex">
-                                    <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                                    <input type="text" class="form-control todo-list-input"
+                                        placeholder="Add To-do">
                                     <button type="submit" class="add btn btn-primary todo-list-add-btn"
                                         id="add-task">Add</button>
                                 </div>
@@ -445,11 +446,11 @@
                                                 <div class="row flex-grow">
                                                     <div class="col-12 col-lg-4 col-lg-12 grid-margin stretch-card">
                                                         @yield('content')
-                                                        @yield('tablecatalog')
+                                                        {{-- @yield('tablecatalog')
                                                         @yield('formcreate')
                                                         @yield('formedit')
                                                         @yield('tablepublisher')
-                                                        @yield('author')
+                                                        @yield('author') --}}
 
                                                     </div>
                                                 </div>
@@ -467,7 +468,8 @@
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Premium <a
-                                href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from
+                                href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a>
+                            from
                             BootstrapDash.</span>
                         <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Copyright © 2021. All
                             rights reserved.</span>

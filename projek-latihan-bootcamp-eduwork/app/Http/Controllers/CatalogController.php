@@ -81,18 +81,18 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Catalog $katalog)
+    public function edit(Catalog $catalog)
     {
         //
         // dd($katalog);
         // $users = DB::table('catalogs')->get();
-        $katalog->get();
-        dd($katalog);
+        // $katalog->get();
+        // dd($katalog);
         // dd(['Request' => $id]);
         // return $katalog;
         // $katalog->name;
         // dd($id);
-        return view('admin.catalogs.edit', compact('katalog'));
+        return view('admin.catalogs.edit')->with("katalog", $catalog);
     }
 
     /**

@@ -49,13 +49,11 @@
                                 {{ $penulis->address }}
                             </td>
                             <td>
-                                <a href="#" @click="editData({{ $penulis }})" class="btn btn-warning btn-sm">Edit</a>
-                                <form :action="actionUrl" method="post">
-                                    <input class="btn btn-danger btn-sm" type="submit" value="Delete"
-                                        onclick="return confirm('Are you sure?')">
-                                    @method('delete')
-                                    @csrf
-                                </form>
+                                <a href="#" @click="editData({{$penulis}})"
+                                    class="btn btn-warning btn-sm">Edit</a>
+                                <a href="#" @click="deleteData({{ $penulis->id }})"
+                                    class="btn btn-danger btn-sm">Delete</a>
+                                @csrf
                             </td>
                         </tr>
                     @endforeach
@@ -76,13 +74,16 @@
                     <div class="modal-body">
                         <form method="post" :action="actionUrl" autocomplete="off" id="form-author">
                             @csrf
+                            <input type="hidden" name="_method" value="PUT" v-if="editStatus">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Nama:</label>
-                                <input type="text" class="form-control" name="name" :value="data.name" required="">
+                                <input type="text" class="form-control" name="name" :value="data.name"
+                                    required="">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Email:</label>
-                                <input type="text" class="form-control" name="email" :value="data.email" required="">
+                                <input type="text" class="form-control" name="email" :value="data.email"
+                                    required="">
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">No Telepon:</label>
@@ -91,7 +92,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Alamat:</label>
-                                <input type="text" class="form-control" name="address" :value="data.address" required="">
+                                <input type="text" class="form-control" name="address" :value="data.address"
+                                    required="">
                             </div>
                         </form>
                     </div>
@@ -102,41 +104,52 @@
                 </div>
             </div>
         </div>
-    @endsection
-    @section('js')
-        <script type="text/javascript">
-            new Vue({
-                el: '#controller',
-                data: {
-                    data: {},
-                    actionUrl: "{{ url('author') }}"
+    </div>
+@endsection
+@section('js')
+    <script type="text/javascript">
+        new Vue({
+            el: '#controller',
+            data: {
+                data: {},
+                actionUrl: "{{ url('author') }}",
+                editStatus: false
 
+            },
+            mounted: function() {
+
+            },
+            methods: {
+                addData() {
+                    this.data = {};
+                    this.actionUrl = '{{ url('author') }}';
+                    this.editStatus = false;
+                    $('#modalForm').modal("show")
+                    // console.log("modal show");
+                    // $('#modalForm').modal("show")
                 },
-                mounted: function() {
+                editData(data) {
+                    // console.log(data);
 
+                    this.data = data;
+                    this.actionUrl = '{{ url('author') }}' + '/' +
+                        data.id;
+                    this.editStatus = true;
+                    $('#modalForm').modal("show")
                 },
-                methods: {
-                    addData() {
-                        this.data = {};
-                        this.actionUrl = '{{ url('authors') }}';
-                        $('#modalForm').modal("show")
-                        // console.log("modal show");
-                        // $('#modalForm').modal("show")
-                    },
-                    editData(data) {
-                        // console.log(data);
-
-                        this.data = data;
-                        this.actionUrl = '{{ url('author') }}' + '/' +
-                            data.id;
-                        $('#modalForm').modal("show")
-                    },
-                    deleteData() {
-
+                deleteData(id) {
+                    this.actionUrl = '{{ url('author') }}' + '/' + id;
+                    if (confirm('Are you sure')) {
+                        axios.post(this.actionUrl, {
+                            _method: "DELETE"
+                        }).then(response => {
+                            location.reload();
+                        });
                     }
-
                 }
 
-            });
-        </script>
-    @endsection
+            }
+
+        });
+    </script>
+@endsection

@@ -22,7 +22,7 @@ class AuthorController extends Controller
         //
         $author = Author::all();
         // return $catalog;
-        return view('author', compact('author'));
+        return view('admin.author', compact('author'));
     }
 
     /**
@@ -83,9 +83,17 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Author $author)
     {
         //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'phone_number' => 'required',
+            'address' => 'required',
+        ]);
+        $author->update($request->all());
+        return redirect('author');
     }
 
     /**
@@ -94,8 +102,9 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Author $author)
     {
         //
+        $author->delete();
     }
 }
