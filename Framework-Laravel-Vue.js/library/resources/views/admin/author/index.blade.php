@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-header">
                     <a href="#" @click="addData()" class="btn btn-sm btn-primary ">Create New Author</a>
-                </div>    
+                </div>
                 <div class="card-body">
                     <table id="datatable" class="table table-bordered table-striped">
                         <thead>
@@ -52,11 +52,11 @@
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form method="post" :action="actionUrl" autocomplete="off">
+                <form method="post" :action="actionUrl" autocomplete="off" @submit="submitform($event, data.id)">
                     <div class="modal-header">
 
                         <h4 class="modal-title">Author</h4>
-                        
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -67,7 +67,7 @@
                         <input type="hidden" name="_method" value="PUT" v-if="editStatus">
 
                             <div class="form-group">
-                                <label>Name</label>    
+                                <label>Name</label>
                                 <input type="text" name="name" class="form-control" :value="data.name" required="">
                             </div>
                             <div class="form-group">
@@ -96,22 +96,21 @@
 
 @section('js')
 <!-- datatables & plugins -->
-<script src="{{ asset('assets/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('assets/jszip/jszip.min.js') }}"></script>
-<script src="{{ asset('assets/pdfmake/pdfmake.min.js') }}"></script>
-<script src="{{ asset('assets/pdfmake/vfs_fonts.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/buttons.print.min.js') }}"></script>
-<script src="{{ asset('assets/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script type="text/javascript">
     var actionUrl = '{{ url('authors') }}';
     var apiUrl = '{{ url('api/authors') }}';
-
     var columns = [
         {data:'DT_RowIndex', class: 'text-center', orderable: true},
         {data:'name', class: 'text-center', orderable: true},
@@ -128,36 +127,8 @@
                 </a>`;
         }, orderable: false, width: '200px', class: 'text-center'},
     ];
-
-    var controller = new Vue ({
-        el:'#controller'
-        data: {
-            datas:[],
-            data: {},
-            actionUrl,
-            apiUrl,
-            editStatus: false,
-        },
-        mounted: function () {
-            this.datatable();
-        },
-        methods: {
-            datatable() {
-                const _this = this;
-                _this.table = $('#datatable').DataTable({
-                    ajax: {
-                        url: _this.apiUrl,
-                        type: 'GET',
-                    },
-                    columns: columns
-                }).on('xhr', function() {
-                    _this.datas = _this.table.ajax.json().data;
-                });
-            },
-        }
-
-    });
 </script>
+<script src="{{ asset('js/data.js') }}"></script>
 
 <!-- <script type="text/javascript">
     $(function () {
@@ -174,7 +145,6 @@
                 editStatus : false
             },
             mounted: function () {
-
             },
             methods: {
                 addData() {
