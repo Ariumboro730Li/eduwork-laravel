@@ -28,7 +28,7 @@
                                 <th class= "text-center">Aksi</th>
                             </tr>
                         </thead>
-                        <!-- <tbody>
+                        {{-- <tbody>
                             @foreach($authors as $key => $author)
                                 <tr>
                                     <td>{{ $key+1}}</td>
@@ -42,7 +42,7 @@
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody> -->
+                        </tbody> --}}
                     </table>
                 </div>
             </div>

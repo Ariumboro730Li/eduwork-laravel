@@ -8,10 +8,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class AuthorController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -20,13 +20,14 @@ class AuthorController extends Controller
     public function index()
     {
         $authors = Author::all();
-
         return view('admin.author.index')->with("authors", $authors);
         //return view('admin.author.index');
     }
-        public function api() 
+
+        public function api()
         {
             $authors = Author::all();
+            // $datatables = DataTables::of($authors)->addIndexColumn();
             $datatables = datatables()->of($authors)->addIndexColumn();
 
             return $datatables->make(true);            
@@ -56,12 +57,12 @@ class AuthorController extends Controller
             'phone_number'  =>['required'],
             'address'       =>['required'],
         ]);
-        
+
 
         Author::create($request->all());
-        
+
         return redirect('authors');
-        
+
         //return $request;
     }
 
@@ -102,10 +103,10 @@ class AuthorController extends Controller
             'phone_number'  =>['required'],
             'address'       =>['required'],
         ]);
-        
+
 
         $author->update($request->all());
-        
+
         return redirect('authors');
     }
 
