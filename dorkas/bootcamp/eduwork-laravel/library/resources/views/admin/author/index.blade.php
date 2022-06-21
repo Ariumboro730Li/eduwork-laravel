@@ -36,7 +36,8 @@
                                     </tr>
                                 </thead>
 
-{{-- ganti api                  <tbody>
+                                {{-- ganti api
+                                <tbody>
                                     @foreach($authors as $key => $author)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
@@ -53,7 +54,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody>    --}}
+                                </tbody> --}}
                             </table>
                         </div>
                     </div>

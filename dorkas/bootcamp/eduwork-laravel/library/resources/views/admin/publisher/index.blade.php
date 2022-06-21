@@ -36,7 +36,8 @@
                                     </tr>
                                 </thead>
 
-{{-- ganti api                  <tbody>
+                                {{-- ganti api
+                                <tbody>
                                     @foreach($publishers as $key => $publisher)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
