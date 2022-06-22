@@ -17,6 +17,12 @@ class BookController extends Controller
         return view('admin.book.index');
     }
 
+    public function api() 
+    {
+        $books = Book::all();
+
+        return json_encode($books);            
+    }
     /**
      * Show the form for creating a new resource.
      *
