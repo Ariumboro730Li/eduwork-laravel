@@ -49,8 +49,7 @@
                                 {{ $penulis->address }}
                             </td>
                             <td>
-                                <a href="#" @click="editData({{$penulis}})"
-                                    class="btn btn-warning btn-sm">Edit</a>
+                                <a href="#" @click="editData({{$penulis}})" class="btn btn-warning btn-sm">Edit</a>
                                 <a href="#" @click="deleteData({{ $penulis->id }})"
                                     class="btn btn-danger btn-sm">Delete</a>
                                 @csrf

@@ -52,12 +52,8 @@
                             <td>
                                 <a href="#" @click="editData({{$penerbit}})"
                                     class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ url('publisher', ['id' => $penerbit->id]) }}" method="post">
-                                    <input class="btn btn-danger btn-sm" type="submit" value="Delete"
-                                        onclick="return confirm('Are you sure?')">
-                                    @method('delete')
-                                    @csrf
-                                </form>
+                                <a href="#" @click="deleteData({{$penerbit->id}})"
+                                    class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     @endforeach
@@ -78,24 +74,30 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="post" :action="actionUrl" autocomplete="off" id="form-publisher">
+                            @csrf
+                            <input type="hidden" name="_method" value="PUT" v-if="editStatus">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Nama:</label>
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="name" :value="data.name">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Email:</label>
+                                <input type="text" class="form-control" name="email" :value="data.email">
                             </div>
                             <div class="form-group">
-                                <label for="message-text" class="col-form-label">Message:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                                <label for="recipient-name" class="col-form-label">Nomor Telepon Penerbit:</label>
+                                <input type="text" class="form-control" name="phonenumber" :value="data.phone_number">
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Alamat Penerbit:</label>
+                                <textarea class="form-control" name="address" id="message-text" :value="data.address"></textarea>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Send message</button>
+                        <button type="submit" form="form-publisher" class="btn btn-primary">Simpan Data</button>
                     </div>
                 </div>
             </div>
@@ -108,18 +110,35 @@
         new Vue({
             el: '#controller',
             data: {
-                data: {}
+                data: {},
+                actionUrl: "{{url('publisher')}}",
+                editStatus: false
             },
             mounted: function() {
 
             },
             methods: {
                 addData() {
+                    this.data = {};
+                    this.actionUrl = '{{url('publisher')}}';
+                    this.editStatus = false;
                     $('#modalForm').modal("show")
                 },
                 editData(data) {
                     console.log(data)
-                    // $('#modalForm').modal("show")
+                    this.data = data;
+                    this.actionUrl = '{{url('publisher')}}' + '/' + data.id;
+                    this.editStatus = true;
+                    $('#modalForm').modal("show")
+                },
+                deleteData(id){
+                    this.actionUrl = '{{url('publisher')}}' + '/' +id;
+                    if(confirm('Are you sure you want to delete this')){
+                        axios.post(this.actionUrl, {_method: 'DELETE'}).then(response => {
+                            location.reload();
+
+                        });
+                    }
                 }
             }
         });

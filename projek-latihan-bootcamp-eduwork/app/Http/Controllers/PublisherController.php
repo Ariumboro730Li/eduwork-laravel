@@ -50,18 +50,18 @@ class PublisherController extends Controller
         ];
 
         $this->validate($request, $rules, $customMessages);
-        // $request->validate([
-        //     'name.required' => 'Isi ini'
-        // ]);
-        $publish = new Publisher;
-        $publish->name = $request->name;
-        $publish->email = $request->email;
-        $publish->phone_number = $request->no_telepon;
-        $publish->address = $request->alamat;
-        $publish->save();
-        // dd($catalog);
+        $request->validate([
+            'name.required' => 'Isi ini',
+            'email.required' => 'Harap isi'
+        ]);
+        $publisher = new Publisher();
+        $publisher->name = $request['name'];
+        $publisher->email = $request['email'];
+        $publisher->phone_number = $request['phonenumber'];
+        $publisher->address = $request['address'];
+        $publisher->save();
         // return $request;
-        return redirect('publisher_page');
+        return redirect('publisher');
     }
 
     /**
@@ -97,16 +97,25 @@ class PublisherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $penerbit)
+    public function update(Request $request, $id)
     {
         //
-        $publisher = Publisher::find($penerbit);
-        $publisher->name = $request->name;
-        $publisher->email = $request->email;
-        $publisher->phone_number = $request->phone_number;
-        $publisher->address = $request->address;
-        $publisher->update();
-        return redirect('publisher_page');
+
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required',
+            'phonenumber' => 'required',
+            'address' => 'required',
+        ]);
+
+        $penerbit = Publisher::find($id);
+        $penerbit->name = $request->name;
+        $penerbit->email = $request->email;
+        $penerbit->phone_number = $request->phonenumber;
+        $penerbit->address = $request->address;
+        $penerbit->save();
+        // $penerbit->update($request->all());
+        return redirect('publisher');
     }
 
     /**
@@ -115,8 +124,9 @@ class PublisherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Publisher $publisher)
     {
         //
+        $publisher->delete();
     }
 }
