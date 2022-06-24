@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
+// use DataTables;
+// use \Yajra\Datatables\Datatables;
+// use Yajra\Datatables\Facades\Datatables;
+// use Yajra\Datatables\Datatables;
+use Yajra\DataTables\CollectionDataTable;
+
 
 class AuthorController extends Controller
 {
@@ -23,6 +29,15 @@ class AuthorController extends Controller
         $author = Author::all();
         // return $catalog;
         return view('admin.author', compact('author'));
+    }
+
+    public function api()
+    {
+        $author = Author::all();
+        // dd($author);
+        $datatables = datatables()->of->addIndexColumn();
+        return $datatables->make(true);
+        // return (new CollectionDataTable($author))->toJson();
     }
 
     /**

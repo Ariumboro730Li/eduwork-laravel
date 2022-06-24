@@ -34,3 +34,5 @@ Route::get('/querybuilder', 'App\Http\Controllers\QueryBuilderController@index')
 Route::resource('/catalogs', App\Http\Controllers\CatalogController::class);
 Route::resource('author/', App\Http\Controllers\AuthorController::class);
 Route::resource('/publisher', 'App\Http\Controllers\PublisherController');
+
+Route::get('/author/api', [App\Http\Controllers\AuthorController::class, 'api']);
