@@ -23,6 +23,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <!-- Custom styles for this page -->
+    <link href="{{asset('assets/vendors/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    {{-- Via CDN Data Tables --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
     @yield('css')
 </head>
 
@@ -509,6 +513,13 @@
     <!-- End custom js for this page-->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="{{ asset('assets/vendors/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/vendors/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    {{-- Jquery Data Tables --}}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+
     @yield('js')
 </body>
 

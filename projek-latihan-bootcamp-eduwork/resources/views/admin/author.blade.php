@@ -8,7 +8,7 @@
                 <a href="#" @click="addData()" id="exampleModal" class="btn btn-sm btn-primary pull-right">Create
                     Author</a>
             </div>
-            <table class="table table-bordered">
+            <table id="dataTable" class="table table-bordered">
                 <thead>
                     <tr>
                         <th>

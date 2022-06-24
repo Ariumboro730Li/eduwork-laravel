@@ -8,7 +8,7 @@
                 <a href="#" @click="addData()" id="exampleModal" class="btn btn-sm btn-primary pull-right">Create
                     Publisher</a>
             </div>
-            <table class="table table-bordered">
+            <table id="table_id" class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>
@@ -104,6 +104,14 @@
         </div>
 
     </div>
+@endsection
+@section('js')
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#table_id').DataTable({
+    });
+} );
+</script>
 @endsection
 @section('js')
     <script type="text/javascript">
