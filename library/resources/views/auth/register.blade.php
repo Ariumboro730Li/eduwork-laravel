@@ -8,10 +8,10 @@
     </div>
     <div class="card-body">
       <p class="login-box-msg">Register a new membership</p>
-
       <form method="POST" action="{{ route('register') }}">
+        @csrf
         <div class="input-group mb-3">
-          <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
+          <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Username" required autofocus>
             @if ($errors->has('username'))
                 <span class="invalid-feedback">
                     <strong>{{ $errors->first('username') }}</strong>
@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+          <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Email" required>
             @if ($errors->has('email'))
                 <span class="invalid-feedback">
                     <strong>{{ $errors->first('email') }}</strong>
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+          <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
             @if ($errors->has('password'))
                 <span class="invalid-feedback">
                     <strong>{{ $errors->first('password') }}</strong>
@@ -50,7 +50,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Re-type Your Password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -59,15 +59,13 @@
         </div>
         <div class="row">
           <div class="col-4">
-            <button type="submit" class="btn btn-primary">
-              {{ __('Register') }}
-            </button>
+            <button type="submit" class="btn btn-primary">Register</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
       <br>
-      <a href="login.html" class="text-center">I already have a membership</a>
+      <a href="{{ url('login') }}" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

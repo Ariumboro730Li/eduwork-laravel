@@ -1,0 +1,1 @@
+$(".dark-side-body .chart-circle").length&&$(".dark-side-body .chart-circle").each((function(){var r=$(this);r.circleProgress({fill:{color:r.attr("data-color")},size:r.height(),startAngle:-Math.PI/4*2,emptyFill:"#25273e",lineCap:"round"})}));
