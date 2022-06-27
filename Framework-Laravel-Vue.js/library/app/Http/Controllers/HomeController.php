@@ -34,11 +34,34 @@ class HomeController extends Controller
         //$books = Book::with('publisher')->get();
         //$publishers = Publisher::with('books')->get();
         //$authors = Author::with('books')->get();
-        $catalogs = Catalog::with('books')->get();
+        //$catalogs = Catalog::with('books')->get();
         //$transactions = Transaction::with('member')->get();
         //$transactionDetails = Transaction::with('transactionDetail')->get();
         
-        //return $catalogs;
+        // no 1
+        $data1 = Member::select('*')
+                    ->join('users', 'users.member_id', '=', 'members.id')
+                    ->get();
+
+        // no 2
+        $data2 = Member::select('*')
+                    ->leftJoin('users','users.member_id','=','members.id')
+                    ->where('users.id', NULL)
+                    ->get();
+
+        // no 3
+        $data3 = Transaction::select('members.id', 'members.name')
+                    ->rightJoin('members', 'members.id', '=', 'transactions.member_id')
+                    ->where('transactions.member_id', NULL)
+                    ->get();
+
+        // no 4
+        $data4 = Member::select('members.id', 'members.name', 'members.phone_number')
+                    ->join('transactions', 'transactions.member_id', '=', 'members.id')
+                    ->orderBy('members.id', 'asc')
+                    ->get();
+
+        //return $data4;
         return view('home');
     }
 }
