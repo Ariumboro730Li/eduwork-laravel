@@ -11,10 +11,10 @@
       <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="input-group mb-3">
-          <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" placeholder="Username" required autofocus>
-            @if ($errors->has('username'))
+          <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Name" required autofocus>
+            @if ($errors->has('name'))
                 <span class="invalid-feedback">
-                    <strong>{{ $errors->first('username') }}</strong>
+                    <strong>{{ $errors->first('name') }}</strong>
                 </span>
             @endif
           <div class="input-group-append">
