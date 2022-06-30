@@ -11,64 +11,87 @@
 
 @section('content')
 <section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <a href="{{ url('catalogs/create') }}" class="btn btn-sm btn-primary pull-right">Create New Catalog</a>
+    <div id="controller">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-15">
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="#"
+                            @click="addData()"
+                            {{-- data-target="#modal-default" data-toggle="modal"  --}}
+                            class="btn btn-sm btn-primary pull-right">Create New catalog</a>
+                        </div>
+
+                        <div class="card-body p-100">
+                            <table id="datatable" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30px">No.</th>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Created At</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+
+{{-- ganti api                  <tbody>
+                                    @foreach($catalogs as $key => $catalog)
+                                        <tr>
+                                            <td>{{ $key+1 }}</td>
+                                            <td class="text-center">{{ $catalog->name }}</td>
+                                            <td class="text-center">{{ convert_date($catalog->created_at) }}</td>
+                                            <td class="text-center">{{ date('H:i:s - d M Y', strtotime ($catalog->updated_at)) }}</td>
+                                            <td class="text-center">{{ count ($catalog->books) }}</td>
+                                            <td class="text-center">
+                                                <a href="javascript:void(0)" @click='editData({{ $catalog }})' class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="javascript:void(0)" @click='deleteData({{ $catalog["id"] }})' class="btn btn-danger btn-sm">Delete</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>    --}}
+                            </table>
+                        </div>
                     </div>
+                </div>
+                <div class="modal fade" id="modal-default">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            {{-- <form method="post" action="{{ route('catalogs.store') }}" autocomplete="off"> --}}
+                                <form method="post" :action="actionUrl" autocomplete="off" @submit="submitForm($event, data.id)">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">catalog</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                            </div>
+                                                <div class="modal-body">
+                                                        @csrf
 
-<div class="card-body">
-   <table class="table width='10%' table-bordered">
-    <thead>
-        <tr>
-            <th style="width: 10px">No</th>
-            <th class="text-center">Name</th>
-            <th class="text-center">Created At</th>
-            <th class="text-center">Updated At</th>
-            <th class="text-center">Total Books</th>
-            <th class="text-center" width='25%'>Action</th>
+                                                    <input type="hidden" name="_method" value="PUT" v-if="editStatus">
+
+                                                    <div class="card-body">
+                                                        <div class="form-group">
+                                                        <label>Name</label>
+                                                        <input type="text" name="name" class="form-control" placeholder="Enter name" :value="data.name" required="">
+                                                    </div>
 
 
-</tr>
-    </thead>
-        <tbody>
-            @foreach($catalogs as $key => $catalog)
-        <tr>
-            <td>{{ $key+1 }}</td>
-            <td class="text-center">{{ $catalog->name }}</td>
-            <td class="text-center">{{ date('H:i:s  d M Y', strtotime ($catalog->created_at)) }}</td>
-            <td class="text-center">{{ date('H:i:s  d M Y', strtotime ($catalog->updated_at)) }}</td>
-            <td class="text-center">{{ count ($catalog->books) }}</td>
-            <td class="text-center">
-            <a href="{{ url('catalogs/'.$catalog->id.'/edit') }}" class="btn btn-warning btn-sm">Edit</a>
-
-            <form action="{{ url('catalogs', ['id' => $catalog->id]) }}" method="post">
-            <input class="btn btn-danger btn-sm"type="submit" value="Delete" onclick="return confirm('Are you sure?')">
-
-            @method('delete')
-        @csrf
-        </form>
-    </td>
-</tr>
-    @endforeach
-
-</tbody>
-</table>
-</div>
-
-    {{-- <div class="card-footer clearfix">
-        <ul class="pagination pagination-sm m-0 float-right">
-            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-        </ul>
-    </div> --}}
-</div>
+                                            </div>
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
+
 @section('js')
 <!-- Data Table & Plugin -->
 <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -83,20 +106,70 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script type ="text/javascript">
+    var actionUrl = '{{ url('catalogs') }}';
+    var apiUrl = '{{ url('api/catalogs') }}';
+    var columns = [
+        {data: 'DT_RowIndex',  class: 'text-center', orderable: true},
+        {data: 'name', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'date', width: '1000px', class: 'text-center', orderable: true},
+        {render: function (index, row, data, meta) {
+            return `
+                <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">
+                Edit
+                </a>
+                <a class="btn btn-danger btn-sm" onclick="controller.deleteData(event, ${data.id})">
+                Delete
+                </a>`;
+        }, orderable: false, width: '1000px', class: 'text-center'},
+    ];
+</script>
+<script src="{{ asset('js/data.js') }}"></script>
+
+
+
+<!-- ditahan
 <script type="text/javascript">
   $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    $("#datatable").DataTable({
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    //$('#example2').DataTable({
-    //  "paging": true,
-    //  "lengthChange": false,
-    //  "searching": false,
-    //  "ordering": true,
-    //  "info": true,
-    //  "autoWidth": false,
-    //  "responsive": true,
-    //});
   });
-  @endsection
+</script>
+//Crud Vue js
+<script type="text/javascript">
+    var controller = new Vue({
+        el: '#controller',
+        data: {
+            data : {},
+            actionUrl : '{{ url('catalogs') }}',
+            editStatus : false
+        },
+        mounted: function () {
+        },
+        methods: {
+            addData() {
+                this.data = {};
+                this.actionUrl = '{{ url('catalogs') }}';
+                this.editStatus = false;
+                $('#modal-default').modal();
+            },
+            editData(data) {
+            // editData(id) {
+                console.log(data);
+                this.data = data;
+                this.actionUrl = '{{ url('catalogs') }}'+'/'+data.id;
+                this.editStatus = true
+                $('#modal-default').modal();
+            },
+            deleteData(id) {
+                this.actionUrl = '{{ url('catalogs') }}'+'/'+id;
+                if (confirm("are you sure ?")) {
+                    axios.post(this.actionUrl, {_method: 'DELETE'}).then(response => {
+                        location.reload();
+                    });
+                }
+            }
+        }
+    });
+</script>
+@endsection

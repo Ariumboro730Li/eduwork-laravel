@@ -36,8 +36,7 @@
                                     </tr>
                                 </thead>
 
-                                {{-- ganti api
-                                <tbody>
+{{-- ganti api                  <tbody>
                                     @foreach($publishers as $key => $publisher)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
@@ -128,7 +127,6 @@
 <script type ="text/javascript">
     var actionUrl = '{{ url('publishers') }}';
     var apiUrl = '{{ url('api/publishers') }}';
-
     var columns = [
         {data: 'DT_RowIndex',  class: 'text-center', orderable: true},
         {data: 'name', width: '1000px', class: 'text-center', orderable: true},
@@ -158,7 +156,6 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
-
 //Crud Vue js
 <script type="text/javascript">
     var controller = new Vue({
@@ -167,10 +164,8 @@
             data : {},
             actionUrl : '{{ url('publishers') }}',
             editStatus : false
-
         },
         mounted: function () {
-
         },
         methods: {
             addData() {
@@ -195,7 +190,6 @@
                     });
                 }
             }
-
         }
     });
 </script>

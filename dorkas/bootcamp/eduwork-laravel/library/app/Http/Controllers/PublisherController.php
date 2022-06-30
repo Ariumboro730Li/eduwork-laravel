@@ -22,7 +22,7 @@ class PublisherController extends Controller
         $publishers = publisher::with('books')->get();
 
         //return $publishers;
-        return view('admin.publisher.index', compact('publishers'));
+        return view ('admin.publisher.index', compact('publishers'));
     }
 
     public function api()
@@ -35,9 +35,9 @@ class PublisherController extends Controller
 
         //$datatables = datatables()->of($publishers)->addIndexColumn();
         $datatables = DataTables::of($publishers)
-                                ->addColumn('date', function ($publishers) {
+                                ->addColumn('date', function($publishers) {
                                     return $publishers->created_at->format("H:i:s d F Y");
-                                })->addIndexColumn();
+                                 })->addIndexColumn();
 
         return $datatables->make(true);
     }
@@ -60,7 +60,7 @@ class PublisherController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $this->validate($request,[
             'name'      => ['required'],
             'phone_number'      => ['required'],
             'email'      => ['required'],
@@ -107,7 +107,7 @@ class PublisherController extends Controller
      */
     public function update(Request $request, Publisher $publisher)
     {
-        $this->validate($request, [
+        $this->validate($request,[
             'name'      => ['required'],
             'phone_number'      => ['required'],
             'email'      => ['required'],

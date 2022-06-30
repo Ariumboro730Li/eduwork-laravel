@@ -54,7 +54,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                </tbody> --}}
+                                </tbody>    --}}
                             </table>
                         </div>
                     </div>
@@ -128,7 +128,6 @@
 <script type ="text/javascript">
     var actionUrl = '{{ url('authors') }}';
     var apiUrl = '{{ url('api/authors') }}';
-
     var columns = [
         {data: 'DT_RowIndex',  class: 'text-center', orderable: true},
         {data: 'name', width: '1000px', class: 'text-center', orderable: true},
@@ -158,7 +157,6 @@
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
 </script>
-
 //Crud Vue js
 <script type="text/javascript">
     var controller = new Vue({
@@ -167,10 +165,8 @@
             data : {},
             actionUrl : '{{ url('authors') }}',
             editStatus : false
-
         },
         mounted: function () {
-
         },
         methods: {
             addData() {
@@ -195,7 +191,6 @@
                     });
                 }
             }
-
         }
     });
 </script>
