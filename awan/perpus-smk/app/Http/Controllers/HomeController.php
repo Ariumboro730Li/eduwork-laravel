@@ -10,6 +10,7 @@ use App\Models\Publisher;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\TransactionDetail;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -143,11 +144,11 @@ class HomeController extends Controller
         //     ->get();
 
         // // no 13
-        // // $data13 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn', 'transaction_details.qty', 'books.title', 'books.price', 'books.price * transaction_details.qty')
-        // //     ->join('transactions', 'transaction_details.transaction_id', '=', 'transactions.id')
-        // //     ->join('members', 'transactions.member_id', '=', 'members.id')
-        // //     ->join('books', 'transaction_details.book_id', '=', 'books.id')
-        // //     ->get();
+        // $data13 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn', 'transaction_details.qty', 'books.title', 'books.price', DB::raw('books.price * transaction_details.qty as Total'))
+        //     ->join('transactions', 'transaction_details.transaction_id', '=', 'transactions.id')
+        //     ->join('members', 'transactions.member_id', '=', 'members.id')
+        //     ->join('books', 'transaction_details.book_id', '=', 'books.id')
+        //     ->get();
 
         // // no 14
         // $data14 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn', 'transaction_details.qty', 'books.title', 'publishers.name as publisher', 'authors.name as author', 'catalogs.name as catalog')
