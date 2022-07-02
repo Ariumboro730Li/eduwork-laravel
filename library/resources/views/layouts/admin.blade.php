@@ -104,7 +104,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('book') }}" class="nav-link {{ request()->is('book') ? 'active' : '' }}">
-              <i class="nav-icon fas fa-edit"></i>
+            <i class="nav-icon fas fa-edit"></i>
               <p>
                 Book
               </p>
