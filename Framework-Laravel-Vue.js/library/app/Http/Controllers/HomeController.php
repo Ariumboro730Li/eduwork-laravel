@@ -61,6 +61,8 @@ class HomeController extends Controller
                     ->orderBy('members.id', 'asc')
                     ->get();
 
+        
+
         //return $data4;
         return view('home');
     }
