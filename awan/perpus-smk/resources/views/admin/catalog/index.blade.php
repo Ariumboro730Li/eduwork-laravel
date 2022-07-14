@@ -24,6 +24,12 @@
                 <td>{{ $catalog->created_at }}</td>
                 <td>
                     <a href="{{ url('catalogs/'.$catalog->id.'/edit') }}" class="btn btn-sm btn-warning">Edit</a>
+
+                    <form action="{{ url('catalogs', ['id' => $catalog->id]) }}" method="post">
+                        <input class="btn btn-sm btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure?')">
+                        @method('delete')
+                        @csrf
+                    </form>
                 </td>
             </tr>
             @endforeach
