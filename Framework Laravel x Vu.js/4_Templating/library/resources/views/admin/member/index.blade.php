@@ -19,7 +19,15 @@
                             <a href="#"
                             @click="addData()"
                             {{-- data-target="#modal-default" data-toggle="modal"  --}}
-                            class="btn btn-sm btn-primary pull-right">Create New member</a>
+                            class="btn btn-sm btn-primary pull-right">Add New Member</a>
+                            <div class="col-md-2">
+
+                                <select class="form-control pull-right" name="gender">
+                                    <option value="0">Jenis Kelamin</option>
+                                    <option value="F">Perempuan</option>
+                                    <option value="M">Laki Laki</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="card-body p-100">
@@ -156,6 +164,17 @@
     ];
 </script>
 <script src="{{ asset('js/data.js') }}"></script>
+<script type="text/javascript">
+    $('select[name=gender]').on('change', function() {        
+        gender = $('select[name=gender]').val();
+
+        if (gender == 0) {
+            controller.table.ajax.url(actionUrl).load();        
+        } else {
+            controller.table.ajax.url(actionUrl+'?gender='+gender).load();
+        }
+    )};
+</script>
 
 
 

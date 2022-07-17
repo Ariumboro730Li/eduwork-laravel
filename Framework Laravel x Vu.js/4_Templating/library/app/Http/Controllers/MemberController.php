@@ -19,6 +19,14 @@ class MemberController extends Controller
      */
     public function index()
     {
+//        if ($request->gender) {
+//            $data = member::where('gender', $request->gender)->get();
+//        } else {
+//            $data = member::all();
+//        }
+//        $datatables = datatables()->of($data)->addIndexColumn();
+//        return $datatables->make(true);
+
         $members = member::with('users')->get();
 
         //return $members;

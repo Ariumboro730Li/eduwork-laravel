@@ -19,6 +19,34 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+/**
+Route::get('/home', 'AdminController@dashboard')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'AdminController@dashboard')->name('home');
+
+Route::get('dashboard', 'AdminController@dashboard');
+Route::get('catalog', 'AdminController@catalog');
+Route::get('publisher', 'AdminController@publisher');
+Route::get('author', 'AdminController@author');
+Route::get('member', 'AdminController@member');
+Route::get('book', 'AdminController@book');
+Route::get('transaction', 'AdminController@transaction');
+Route::get('test_spatie', 'AdminController@test_spatie');
+
+Route::group(['prefix' => 'data'], function () {
+    Route::resource('catalog', 'CatalogController');
+    Route::resource('publisher', 'PublisherController');
+    Route::resource('author', 'AuthorController');
+    Route::resource('publisher', 'PublisherController');
+    Route::resource('member', 'MemberController');
+    Route::resource('book', 'BookController');
+    Route::resource('transaction', 'TransactionController');
+});
+*/
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
@@ -43,6 +71,7 @@ Route::get('/users', [App\Http\Controllers\UserController::class, 'index']);
 //Route::get('/catalogs/{catalog}/edit', [App\Http\Controllers\CatalogController::class, 'edit']);
 //Route::put('/catalogs/{catalog}', [App\Http\Controllers\CatalogController::class, 'update']);
 //Route::delete('/catalogs/{catalog}', [App\Http\Controllers\CatalogController::class, 'destroy']);
+
 
 Route::resource('/catalogs', App\Http\Controllers\CatalogController::class);
 

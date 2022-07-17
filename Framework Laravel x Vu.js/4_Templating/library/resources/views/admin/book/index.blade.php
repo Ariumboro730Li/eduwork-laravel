@@ -50,17 +50,17 @@
 
                                                     <div class="form-group">
                                                         <label>ISBN</label>
-                                                        <input type="number" name="number" class="form-control" placeholder="Enter name" required="" :value="book.isbn">
+                                                        <input type="number" name="number" class="form-control" placeholder="Enter number" required="" :value="book.isbn">
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Title</label>
-                                                        <input type="text" name="title" class="form-control" placeholder="Enter email" required="" :value="book.title">
+                                                        <input type="text" name="title" class="form-control" placeholder="Enter title" required="" :value="book.title">
                                                     </div>
 
                                                     <div class="form-group">
                                                         <label>Year</label>
-                                                        <input type="number" name="year" class="form-control" placeholder="Enter phone number" required="" :value="book.year">
+                                                        <input type="number" name="year" class="form-control" placeholder="Enter number" required="" :value="book.year">
                                                     </div>
 
                                                     <div class="form-group">
@@ -92,11 +92,11 @@
 
                                                     <div class="form-group">
                                                         <label>Qty Stock</label>
-                                                        <input type="number" name="qty" class="form-control" placeholder="Enter address" required="" :value="book.qty">
+                                                        <input type="number" name="qty" class="form-control" placeholder="Enter number" required="" :value="book.qty">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Harga Pinjam</label>
-                                                        <input type="number" name="price" class="form-control" placeholder="Enter address" required="" :value="book.price">
+                                                        <input type="number" name="price" class="form-control" placeholder="Enter number" required="" :value="book.price">
                                                     </div>
                                             </div>
                                         <div class="modal-footer justify-content-between">
@@ -111,7 +111,8 @@
 @endsection
 
 @section('js')
-<script type ="text/javascript">
+
+ <script type ="text/javascript">
     var actionUrl = '{{ url('books') }}';
     var apiUrl = '{{ url('api/books') }}';
 
