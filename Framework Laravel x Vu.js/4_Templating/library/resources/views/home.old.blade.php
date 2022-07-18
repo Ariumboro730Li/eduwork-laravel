@@ -75,6 +75,7 @@
           <div class="col-md-6">
 
 
+
             <!-- DONUT CHART -->
             <div class="card card-danger">
               <div class="card-header">
@@ -142,7 +143,9 @@
 <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
 <script type="text/javascript">
 
-
+  var label_donut = '{!! json_encode($label_donut) !!}';
+  var data_donut = '{!! json_encode($data_donut) !!}';
+  var data_bar = '{!! json_encode($data_bar) !!}';
 
   $(function () {
     /* ChartJS
@@ -150,15 +153,88 @@
      * Here we will create a few charts using ChartJS
      */
     //-------------
+
+        //--------------
+    //- AREA CHART -
+    //--------------
+
+    //-------------
+    //- BAR CHART -
+    //-------------
+
+    // Get context with jQuery - using jQuery's .get() method.
+    //var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
+
+    var areaChartData = {
+      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Agustus', 'September', 'October', 'November', 'December'],
+      datasets: JSON.parse(data_bar)
+    }
+
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, areaChartData)
+    //var temp0 = areaChartData.datasets[0]
+    //var temp1 = areaChartData.datasets[1]
+    //barChartData.datasets[0] = temp1
+    //barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
+
+
+
+    var areaChartOptions = {
+      maintainAspectRatio : false,
+      responsive : true,
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }],
+        yAxes: [{
+          gridLines : {
+            display : false,
+          }
+        }]
+      }
+    }
+
+    // This will get the first returned node in the jQuery collection.
+    // new Chart(areaChartCanvas, {
+    //  type: 'line',
+    //  data: areaChartData,
+    //  options: areaChartOptions
+    //})
+    
+    //-------------
     //- DONUT CHART -
     //-------------
     // Get context with jQuery - using jQuery's .get() method.
     var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
     var donutData        = {
-      labels: JSON.parse(label_donut),
+      labels: [
+          'Chrome',
+          'IE',
+          'FireFox',
+          'Safari',
+          'Opera',
+          'Navigator',
+      ],
       datasets: [
         {
-          data: JSON.parse(data_donut),
+          data: [700,500,400,600,300,100],
           backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
         }
       ]
@@ -167,32 +243,19 @@
       maintainAspectRatio : false,
       responsive : true,
     }
-
-    <script type="text/javascript">
-    //-------------
-    //- BAR CHART -
-    //-------------
-    var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Agustus', 'September', 'October', 'November', 'December'],
-      datasets: JSON.parse(data_bar)
-    }
-    var barChartCanvas = $('#barChart').get(0).getContext('2d')
-    var barChartData = $.extend(true, {}, areaChartData)
-    //var temp0 = areaChartData.datasets[0]
-    //var temp1 = areaChartData.datasets[1]
-    //barChartData.datasets[0] = temp1
-    //barChartData.datasets[1] = temp0
-    var barChartOptions = {
-      responsive              : true,
-      maintainAspectRatio     : false,
-      datasetFill             : false
-    }
-    new Chart(barChartCanvas, {
-      type: 'bar',
-      data: barChartData,
-      options: barChartOptions
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    new Chart(donutChartCanvas, {
+      type: 'doughnut',
+      data: donutData,
+      options: donutOptions
     })
 
+
+
+
+
+  })
 
 </script>
 </body>

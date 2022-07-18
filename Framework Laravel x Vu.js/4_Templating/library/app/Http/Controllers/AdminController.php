@@ -20,6 +20,8 @@ class AdminController extends Controller
         $total_transaction = Transaction::whereMonth('tgl_pinjam', date('m'))->count();
         $total_publisher = Publisher::count();
 
+        return $data_donat;
+
         $data_donut = Book::select(DB::raw("COUNT(id_publisher) as total"))->groubBy('id_publisher')->orderBy('id_publisher','asc')->pluck('total');
         $label_donut = Publisher::orderBy('publishers.id', 'asc')->join('books', 'books.id_publisher', '=', 'publishers.id')->groubBy('nama_publisher')->pluck('nama_publisher');
 
