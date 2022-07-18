@@ -16,11 +16,13 @@
                 <div class="col-md-15">
                     <div class="card">
                         <div class="card-header">
+                            <div class="row">
                             <a href="#"
                             @click="addData()"
                             {{-- data-target="#modal-default" data-toggle="modal"  --}}
                             class="btn btn-sm btn-primary pull-right">Add New Member</a>
-                            <div class="col-md-2">
+
+                            <div class="col-md-2 ml-auto">
 
                                 <select class="form-control pull-right" name="gender">
                                     <option value="0">Jenis Kelamin</option>
@@ -29,6 +31,7 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
 
                         <div class="card-body p-100">
                             <table id="datatable" class="table table-striped table-bordered">
@@ -169,11 +172,11 @@
         gender = $('select[name=gender]').val();
 
         if (gender == 0) {
-            controller.table.ajax.url(actionUrl).load();        
+            controller.table.ajax.url(apiUrl).load();        
         } else {
-            controller.table.ajax.url(actionUrl+'?gender='+gender).load();
+            controller.table.ajax.url(apiUrl+'?gender='+gender).load();
         }
-    )};
+    });
 </script>
 
 

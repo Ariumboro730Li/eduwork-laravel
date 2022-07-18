@@ -33,9 +33,13 @@ class MemberController extends Controller
         return view ('admin.member.index', compact('members'));
     }
 
-    public function api()
+    public function api(request $request)
     {
-        $members = member::all();
+        if ($request->gender) {
+            $members = member::where("gender", strtoupper ($request->gender));
+        } else {
+            $members = member::all();
+        }
 
         //foreach ($members as $key => $member) {
         //    $member->date = convert_date($member->created_at);
