@@ -17,22 +17,44 @@
                 <div class="col-md-15">
                     <div class="card">
                         <div class="card-header">
+                        <div class="row">
                             <a href="#"
                             @click="addData()"
                             {{-- data-target="#modal-default" data-toggle="modal"  --}}
-                            class="btn btn-sm btn-primary pull-right">Create New transaction</a>
+                            class="btn btn-sm btn-primary pull-right">Create transaction</a>
+
+                            <div class="col-md-2 ml-auto">
+
+                                <select class="form-control pull-right" name="gender">
+                                    <option value="0">Semua Status</option>
+                                    <option value="Sudah">Sudah dikembalikan</option>
+                                    <option value="Belum">Belum dikembalikan</option>
+                                </select>
+                                
+                                <select class="form-control " name="gender">
+                                    <option value="0">Tanggal Pinjam</option>
+                                    <option value="Sudah">Sudah dikembalikan</option>
+                                    <option value="Belum">Belum dikembalikan</option>
+                                </select>
+                            </div>
                         </div>
+                    </div>
 
                         <div class="card-body p-100">
                             <table id="datatable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th style="width: 30px">No.</th>
-                                        <th class="text-center">Member ID</th>
-                                        <th class="text-center">Date Start</th>
-                                        <th class="text-center">Date End</th>
-                                        <th class="text-center">Created At</th>
+                                        
+                                    <form action="/action_page.php">
+                                        <th class="text-center">Tanggal Pinjam</th>
+                                        <th class="text-center">Tanggal Kembali</th>
+                                        <th class="text-center">Nama Peminjam</th>
+                                        <th class="text-center">Lama Pinjam (Hari)</th>
+                                        <th class="text-center">Total Buku</th>
+                                        <th class="text-center">Total Bayar</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
+
                                     </tr>
                                 </thead>
 
@@ -40,14 +62,16 @@
                                     @foreach($transactions as $key => $transaction)
                                         <tr>
                                             <td>{{ $key+1 }}</td>
-                                            <td class="text-center">{{ $transaction->member_id }}</td>
                                             <td class="text-center">{{ $transaction->date_start }}</td>
                                             <td class="text-center">{{ $transaction->date_end }}</td>
-                                            <td class="text-center">{{ convert_date($transaction->created_at) }}</td>
-                                            <td class="text-center">{{ date('H:i:s - d M Y', strtotime ($transaction->updated_at)) }}</td>
-                                            <td class="text-center">{{ count ($transaction->books) }}</td>
+                                            <td class="text-center">{{ $transaction->member_name }}</td>
+                                            <td class="text-center">{{ $transaction->day }}</td>
+                                            <td class="text-center">{{ $transaction->total_book }}</td>
+                                            <td class="text-center">{{ $transaction->total_payment }}</td>
+                                            <td class="text-center">{{ $transaction->status }}</td>
                                             <td class="text-center">
                                                 <a href="javascript:void(0)" @click='editData({{ $transaction }})' class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="javascript:void(0)" @click='detailData({{ $transaction }})' class="btn btn-warning btn-sm">Detail</a>
                                                 <a href="javascript:void(0)" @click='deleteData({{ $transaction["id"] }})' class="btn btn-danger btn-sm">Delete</a>
                                             </td>
                                         </tr>
@@ -75,8 +99,8 @@
 
                                                     <div class="card-body">
                                                         <div class="form-group">
-                                                        <label>Member ID</label>
-                                                        <input type="text" name="member_id" class="form-control" placeholder="Enter Member ID" :value="data.member_id" required="">
+                                                        <label>Member</label>
+                                                        <input type="text" name="member" class="form-control" placeholder="Enter Member Name" :value="data.member_name" required="">
                                                     </div>
 
                                                     <div class="card-body">
@@ -88,6 +112,32 @@
                                                     <div class="form-group">
                                                         <label>Date End</label>
                                                         <input type="text" name="date_end" class="form-control" placeholder="Enter Date End":value="data.date_end"  required="">
+                                                    </div>
+                                                  
+                                                       <!-- /.form-group -->
+                                                       <div class="form-group">
+                                                         <label>Disabled</label>
+                                                         <select class="form-control select2" disabled="able" style="width: 100%;">
+                                                           <option selected="selected">Alabama</option>
+                                                           <option>Alaska</option>
+                                                           <option>California</option>
+                                                           <option>Delaware</option>
+                                                           <option>Tennessee</option>
+                                                           <option>Texas</option>
+                                                           <option>Washington</option>
+                                                         </select>
+                                                       </div>
+                                                       <!-- /.form-group -->
+                                                      </div>
+
+                                                    <label>Status</label>
+                                                    <div class="form-group">
+                                                        <input type="radio" id="sudah_dikembalikan" name="sudah_dikembalikan" value="sudah_dikembalikan">
+                                                        <label for="sudah_dikembalikan">sudah dikembalikan</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="radio" id="belum_dikembalikan" name="sudah_dikembalikan" value="belum_dikembalikan">
+                                                        <label for="belum_dikembalikan">belum dikembalikan</label>
                                                     </div>
 
                                             </div>
@@ -125,15 +175,20 @@
     var apiUrl = '{{ url('api/transactions') }}';
 
     var columns = [
-        {data: 'DT_RowIndex',  class: 'text-center', orderable: true},
-        {data: 'member_id', width: '1000px', class: 'text-center', orderable: true},
         {data: 'date_start', width: '100px', class: 'text-center', orderable: true},
         {data: 'date_end', width: '1000px', class: 'text-center', orderable: true},
-        {data: 'date', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'member_name', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'day', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'total_book', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'total_payment', width: '1000px', class: 'text-center', orderable: true},
+        {data: 'status', width: '1000px', class: 'text-center', orderable: true},
         {render: function (index, row, data, meta) {
             return `
                 <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">
                 Edit
+                </a>
+                <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">
+                Detail
                 </a>
                 <a class="btn btn-danger btn-sm" onclick="controller.deleteData(event, ${data.id})">
                 Delete
@@ -142,6 +197,17 @@
     ];
 </script>
 <script src="{{ asset('js/data.js') }}"></script>
+<script type="text/javascript">
+    $('select[name=status]').on('change', function() {        
+        status = $('select[name=status]').val();
+
+        if (status == 0) {
+            controller.table.ajax.url(apiUrl).load();        
+        } else {
+            controller.table.ajax.url(apiUrl+'?status='+status).load();
+        }
+    });
+</script>
 
 
 
