@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://unpkg.com/vue@3"></script>
+		<title>Event Handling</title>
+	</head>
+	<body>
+		<div id="app">
+			<h1>{{ chapter }}</h1>
+			<br />
+			<h2>Inline Handlers</h2>
+			<button @click="count++">Add</button>
+			<p>Count is: {{ count }}</p>
+
+			<h2>Method Handlers</h2>
+			<button @click="greet">Greet</button>
+
+			<h2>Memanggil Methods di dalam inline handlers</h2>
+			<button @click="say('hello~')">Say Hello</button> <br />
+			<button @click="say('dadaah~')">Say Bye</button> <br />
+			<button @click="inka('Inka Fazarillah dududu')">test</button>
+
+			<h2>Akses Event Argument dalam inline handlers</h2>
+			<p>menggunakan $event special variable</p>
+			<button @click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+			<p>menggunakan inline arrow function</p>
+			<button @click="(event) => warn('Form cannot be submitted yet.', event)">Submit</button>
+
+			<h2>Event Modifier</h2>
+			<!-- contoh click.once berarti hanya bisa klik 1 kali -->
+			<button @click.once="count++">Add</button>
+			<p>Count is: {{ count }}</p>
+			<p>Di kali 2 jadi {{ count * 2 }}</p>
+			<p>Contoh penggunaan click.once</p>
+
+			<h2>Key Modiefiers</h2>
+			<input @keyup.enter="say('menggunakan key modifiers alert muncul pas press enter')" value="press enter" />
+			<!-- method key bisa diganti untuk perinth input atau yang lain -->
+			<br />
+			<input @keyup.ctrl.enter="say('menggunakan key modifiers alert muncul pas press ctrl+enter')" value="press ctrl+enter" />
+			<br />
+			<br />
+			<p>akan jalan selama click + pencet ctrl (sambil pencet key lain gapapa asal ctrl kepencet)</p>
+			<button @click.ctrl="say('Click+Ctrl')">click + ctrl</button>
+			<p>hanya akan jalan kalau bener bener hanya click + ctrl (dengan .exact)</p>
+			<button @click.ctrl.exact="say('cuma click+ctrl')">cuma click + ctrl</button>
+			<p>pencet mouse button kanan kiri tengah beda output:</p>
+			<button @click.left="say('kiri')" @click.right="say('kanan')" @click.middle="say('tengah')">click</button>
+		</div>
+	</body>
+</html>
+
+<script>
+	const { createApp } = Vue;
+
+	createApp({
+		data() {
+			return {
+				chapter: "Event Handling Vue.Js",
+				count: 0,
+				name: "Inka",
+			};
+		},
+		methods: {
+			greet(event) {
+				alert(`Halo ${this.name}~ ini contoh penggunaan Event Handler`);
+				if (event) {
+					alert(event.target.tagName);
+				}
+			},
+			say(message) {
+				alert(message);
+			},
+			inka(text) {
+				alert(text);
+			},
+			warn(message, event) {
+				if (event) {
+					event.preventDefault();
+				}
+				alert(message);
+			},
+		},
+	}).mount("#app");
+</script>
