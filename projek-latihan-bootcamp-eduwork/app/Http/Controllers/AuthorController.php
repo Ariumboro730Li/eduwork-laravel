@@ -26,8 +26,8 @@ class AuthorController extends Controller
     public function index()
     {
         //
-        $author = Author::all();
         // return $catalog;
+        $author= Author::all();
         return view('admin.author', compact('author'));
     }
 
@@ -35,7 +35,7 @@ class AuthorController extends Controller
     {
         $author = Author::all();
         // dd($author);
-        $datatables = datatables()->of->addIndexColumn();
+        $datatables = datatables()->of($author)->addIndexColumn();
         return $datatables->make(true);
         // return (new CollectionDataTable($author))->toJson();
     }
@@ -67,6 +67,7 @@ class AuthorController extends Controller
         ]);
         Author::create($request->all());
         return redirect('author');
+        // return $request;
     }
 
     /**
@@ -109,6 +110,10 @@ class AuthorController extends Controller
         ]);
         $author->update($request->all());
         return redirect('author');
+    }
+    public function tes(){
+        return view('admin.publisher.tes');
+        // return "Tes";
     }
 
     /**

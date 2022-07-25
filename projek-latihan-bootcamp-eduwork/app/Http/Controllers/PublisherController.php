@@ -57,7 +57,7 @@ class PublisherController extends Controller
         $publisher = new Publisher();
         $publisher->name = $request['name'];
         $publisher->email = $request['email'];
-        $publisher->phone_number = $request['phonenumber'];
+        $publisher->phone_number = $request['phone_number'];
         $publisher->address = $request['address'];
         $publisher->save();
         // return $request;
@@ -104,14 +104,14 @@ class PublisherController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required',
-            'phonenumber' => 'required',
+            'phone_number' => 'required',
             'address' => 'required',
         ]);
 
         $penerbit = Publisher::find($id);
         $penerbit->name = $request->name;
         $penerbit->email = $request->email;
-        $penerbit->phone_number = $request->phonenumber;
+        $penerbit->phone_number = $request->phone_number;
         $penerbit->address = $request->address;
         $penerbit->save();
         // $penerbit->update($request->all());

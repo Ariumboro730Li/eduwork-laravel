@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use App\Author;
+use App\Models\Author;
 
 class AuthorSeeder extends Seeder
 {
@@ -18,7 +18,7 @@ class AuthorSeeder extends Seeder
     {
         //
         $faker = Faker::create();
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $author = new Author;
             $author->name = $faker->name;
             $author->email = $faker->email;

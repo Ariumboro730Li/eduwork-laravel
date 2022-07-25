@@ -19,20 +19,21 @@ Route::get('/', function () {
 Route::get('/home', 'App\Http\Controllers\DashboardController@index');
 // Route::get('/catalogs_page', 'App\Http\Controllers\CatalogController@index');
 Route::get('/publisher_page', 'App\Http\Controllers\PublisherController@index');
-Route::resource('/author', 'App\Http\Controllers\AuthorController');
+// Route::resource('/author', 'App\Http\Controllers\AuthorController');
 
 Route::get('/writer', 'App\Http\Controllers\DashboardController@writer');
 Route::get('/member', 'App\Http\Controllers\DashboardController@member');
 Route::get('/memberall', 'App\Http\Controllers\ModelERDController@showAllMembers');
 Route::get('/bookall', 'App\Http\Controllers\ModelERDController@showBooks');
 Route::get('/publisher', 'App\Http\Controllers\ModelERDController@showPublishers');
-Route::get('/authorall', 'App\Http\Controllers\ModelERDController@author');
+// Route::get('/authorall', 'App\Http\Controllers\ModelERDController@author');
 Route::get('/catalog', 'App\Http\Controllers\ModelERDController@catalogAll');
 Route::get('/querybuilder', 'App\Http\Controllers\QueryBuilderController@index');
 
 
 Route::resource('/catalogs', App\Http\Controllers\CatalogController::class);
 Route::resource('author/', App\Http\Controllers\AuthorController::class);
+// Route::get('author/tes', 'App\Http\Controllers\AuthorController@tes');
 Route::resource('/publisher', 'App\Http\Controllers\PublisherController');
 
-Route::get('/author/api', [App\Http\Controllers\AuthorController::class, 'api']);
+Route::get('/api/author', [App\Http\Controllers\AuthorController::class, 'api']);
