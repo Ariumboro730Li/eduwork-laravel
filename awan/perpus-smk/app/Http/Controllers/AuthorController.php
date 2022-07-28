@@ -83,7 +83,15 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone_number' => 'required|numeric|min:10',
+            'address' => 'required'
+        ]);
+
+        $author->update($request->all());
+        return redirect('authors');
     }
 
     /**
@@ -94,6 +102,6 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
     }
 }

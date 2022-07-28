@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('header', 'Author')
+@section('header', 'Publisher')
 
 @section('css')
     
@@ -21,16 +21,16 @@
               </tr>
             </thead>
             <tbody>
-                @foreach ($authors as $key => $authors)                
+                @foreach ($publishers as $key => $publishers)                
                 <tr>
                     <td class="text-center">{{ $key+1 }}</td>
-                    <td>{{ $authors->name }}</td>
-                    <td>{{ $authors->email }}</td>
-                    <td>{{ $authors->phone_number }}</td>
-                    <td>{{ $authors->address }}</td>
+                    <td>{{ $publishers->name }}</td>
+                    <td>{{ $publishers->email }}</td>
+                    <td>{{ $publishers->phone_number }}</td>
+                    <td>{{ $publishers->address }}</td>
                     <td>
-                        <a href="#" @click="editData({{ $authors }})" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="#" @click="deleteData({{ $authors->id }})" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="#" @click="editData({{ $publishers }})" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="#" @click="deleteData({{ $publishers->id }})" class="btn btn-sm btn-danger">Delete</a>
                     </td>
                 </tr>
                 @endforeach
@@ -43,7 +43,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Author</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Publisher</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -81,7 +81,7 @@
         el: '#controller',
         data: {
             data: {},
-            actUrl: '{{ url('authors') }}',
+            actUrl: '{{ url('publishers') }}',
             editStatus: false
         },
         mounted() {
@@ -90,17 +90,17 @@
         methods: {
             addData() {
                 this.data = {};
-                this.actUrl = '{{ url('authors') }}';
+                this.actUrl = '{{ url('publishers') }}';
                 $('#modal-default').modal('show');    
             },
             editData(data) {
                 this.data = data;
-                this.actUrl = '{{ url('authors') }}'+'/'+data.id;
+                this.actUrl = '{{ url('publishers') }}'+'/'+data.id;
                 this.editStatus = true;
                 $('#modal-default').modal('show');    
             },
             deleteData(id) {
-                this.actUrl = '{{ url('authors') }}'+'/'+id;
+                this.actUrl = '{{ url('publishers') }}'+'/'+id;
                 if (confirm("Are you sure?")) {
                     axios.post(this.actUrl, {_method: 'DELETE'}).then(response => {
                         location.reload();
