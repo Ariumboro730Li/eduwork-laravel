@@ -2,13 +2,14 @@
 @section('header', 'Author')
 
 @section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 @endsection
 
 @section('content')
 <div id="controller">
     <div class="container-fluid px-4">
         <a href="#" @click="addData()" class="btn btn-sm btn-primary mb-2">Create New</a>
-        <table class="table table-striped" id="datatablesSimple">
+        <table class="table table-striped" id="dataTable">
             <thead>
               <tr>
                 <th class="text-center">No</th>
@@ -27,7 +28,7 @@
                     <td>{{ $authors->email }}</td>
                     <td>{{ $authors->phone_number }}</td>
                     <td>{{ $authors->address }}</td>
-                    <td>
+                    <td style="width: 110px;">
                         <a href="#" @click="editData({{ $authors }})" class="btn btn-sm btn-warning">Edit</a>
                         <a href="#" @click="deleteData({{ $authors->id }})" class="btn btn-sm btn-danger">Delete</a>
                     </td>
@@ -75,6 +76,13 @@
 @endsection
 
 @section('js')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+    $('#dataTable').DataTable();
+});
+</script>
 <script>
     var controller = new Vue({
         el: '#controller',
