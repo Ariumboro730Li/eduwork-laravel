@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Catalog;
 use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
 
 class CatalogController extends Controller
 {
-    public function _construct()
+    public function __construct()
     {
+        //keamanan jika sudah logon
         $this->middleware('auth');
     }
     /**
@@ -19,30 +19,12 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        $catalogs = Catalog::with('books')->get();
+       $catalogs = Catalog::all();
 
-        //return $catalogs;
-        return view ('admin.catalog.index', compact('catalogs'));
+       // return $catalogs; tes data dr database
+       return view('admin.catalog.index',compact('catalogs'));
     }
 
-    public function api()
-    {
-        $catalogs = catalog::all();
-
-        //foreach ($catalogs as $key => $catalog) {
-        //    $catalog->date = convert_date($catalog->created_at);
-        //}
-
-        //$datatables = datatables()->of($catalogs)->addIndexColumn();
-        $datatables = DataTables::of($catalogs)
-                                ->addColumn('date', function($catalogs) {
-                                    return $catalogs->created_at->format("H:i:s d F Y");                      
-                                 })->addIndexColumn();
-
-        return $datatables->make(true);
-    }
-
-    
     /**
      * Show the form for creating a new resource.
      *
@@ -60,18 +42,22 @@ class CatalogController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        //keamaanan this
         $this->validate($request,[
-            'name'      => ['required'],
+            'name'      =>['required'],
         ]);
-
-        //$catalog = new Catalog;
-        //$catalog->name = $request->name;
-        //$catalog->save();
-
+        
+        //cara save data 1
+        // $catalog = new Catalog;
+        // $catalog->name = $request->name;
+        // $catalog->save();
+        
         Catalog::create($request->all());
+        // cara ke 2 diatas lebih simpel jgn lupa tambahkan proteec filabe di model catalog
 
-        return redirect('catalogs');
+        return redirect ('catalogs');
+
     }
 
     /**
@@ -93,7 +79,7 @@ class CatalogController extends Controller
      */
     public function edit(Catalog $catalog)
     {
-        return view('admin.catalog.edit', compact('catalog'));
+          return view('admin.catalog.edit', compact('catalog'));
     }
 
     /**
@@ -105,13 +91,14 @@ class CatalogController extends Controller
      */
     public function update(Request $request, Catalog $catalog)
     {
-        $this->validate($request,[
-            'name'      => ['required'],
+         $this->validate($request,[
+            'name'      =>['required'],
         ]);
 
         $catalog->update($request->all());
+        
 
-        return redirect('catalogs');
+        return redirect ('catalogs');
     }
 
     /**
@@ -122,8 +109,9 @@ class CatalogController extends Controller
      */
     public function destroy(Catalog $catalog)
     {
-        $catalog->delete();
+        // Catalog::destroy($catalog->id);
+        $catalog->delete(); // Delete data with specific ID
 
-        return redirect('catalogs');
+        return redirect('catalogs')->with('success', 'Catalog has been Deleted');
     }
 }

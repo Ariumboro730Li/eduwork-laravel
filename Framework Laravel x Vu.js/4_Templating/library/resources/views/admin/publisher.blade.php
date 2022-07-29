@@ -1,120 +1,89 @@
 @extends('layouts.admin')
-@section('header', 'Publisher')
+@section('title', 'Publishers')
+@section('wrapper-title', 'Publishers')
 
 @section('css')
-<!--Datatables-->
-<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
-<section class="content">
-    <div id="controller"> <!--kurang-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-15">
-                <div class="card">
-                    <div class="card-header">
-                    <a href="#" 
-                    @click="addData()"
-                    {{-- data-target="#modal-default" data-toggle="modal"  --}}
-                    class="btn btn-sm btn-primary pull-right">Create New Publisher</a>
-                    </div>
- 
-                        <div class="card-body p-0">
-                             <table id="example2" class="table table-striped">
-                                <thead>
-                                 <tr>
-                                    <th style="width: 10px">#</th> <!--30px-->
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Email</th>
-                                    <th class="text-center">Phone Number</th>
-                                    <th class="text-center">Address</th>
-                                    <th class="text-center">Created At</th>
-                                    <th class="text-center">Updated At</th>
-                                    <th class="text-center">Total Books</th>
-                                    <th class="text-center">Action</th>
-                                 </tr>
-                                </thead>
+<div id="controller">
+	<div class="row">
+		<div class="col-12">
+			<div class="card">
+				<div class="card-header">
+					<a href="#" @click="addData()" class="btn btn-sm btn-primary">Create New Publisher</a>
+				</div>
+					<!-- /.card-header -->
+                <div class="card-body">
+                    <table id="datatable" class="table table-bordered table-striped w-100">
+						<thead>
+						<tr>
+							<th width= "30px">NO.</th>
+								<th class="text-center">Name</th>
+								<th class="text-center">Email</th>
+								<th>Phone Number</th>
+								<th class="text-center">Address</th>
+								<th class="text-center">Action</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                            <tbody>
-                                    @foreach($publishers as $key => $publisher)       
-                                    <tr>
-                                        <td>{{ $key+1 }}</td>
-                                        <td class="text-center"> {{ $publisher->name }}</td>
-                                        <td class="text-center"> {{ $publisher->email }}</td>
-                                        <td class="text-center"> {{ $publisher->phone_number }}</td>
-                                        <td class="text-center"> {{ $publisher->address }}</td>
-                                        <td class="text-center"> {{ date('H:i:s - d M Y', strtotime ($publisher->created_at)) }}</td>
-                                        <td class="text-center"> {{ date('H:i:s - d M Y', strtotime ($publisher->updated_at)) }}</td>
-                                        <td class="text-center"> {{ count ($publisher->books) }}</td>
-                                        <td class="text-center">
-                                            <a href="javascript:void(0)" @click='editData({{ $publisher }})' class="btn btn-warning btn-sm">Edit</a>
-                                            <a href="javascript:void(0)" @click='deleteData({{ $publisher["id"] }})' class="btn btn-danger btn-sm">Delete</a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+	<div class="modal fade show" id="modalmadul">
+		<div class="modal-dialog">
+          <div class="modal-content">
+			  <form method="post" :action="actionUrl"autocomplete="off" @submit="submitForm($event,data.id)">
+            <div class="modal-header">
+              <h4 class="modal-title">Publisher</h4>
 
-                <div class="modal fade" id="modal-default">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            {{-- <form method="post" action="{{route('publisher.store')}}" autocomplete="off"> --}}
-                                <form method="post" :action="actionUrl" autocomplete="off">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Publisher</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                            </div>
-                                                <div class="modal-body">
-                                                        @csrf
-
-                                                    <input type="hidden" name="_method" value="PUT" v-if="editStatus">
-
-                                                    <div class="card-body">
-                                                        <div class="form-group">
-                                                        <label>Name</label>
-                                                        <input type="text" name="name" class="form-control" placeholder="Enter name" :value="data.name" required="">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Email</label>
-                                                        <input type="text" name="email" class="form-control" placeholder="Enter email":value="data.email"  required="">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Phone Number</label>
-                                                        <input type="text" name="phone_number" class="form-control" placeholder="Enter phone number" :value="data.phone_number" required="">
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label>Address</label>
-                                                        <input type="text" name="address" class="form-control" placeholder="Enter address" :value="data.address" required="">
-                                                    </div>
-                                            </div>
-                                        <div class="modal-footer justify-content-between">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                        </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-        </div>
-    </div>
-</section>
+            <div class="modal-body">
+				@csrf
+
+				<input type="hidden" name="_method" value="PUT" v-if="editStatus">
+
+						<div class="form__group">
+						<label>Name</label>
+						 <input type="text" class="form-control" name="name" :value="data.name"required="">
+						</div>
+						<div class="form__group">
+						 <label>Email</label>
+						 <input type="text" class="form-control" name="email":value="data.email" required="">
+						 <div class="form__group">
+						</div>
+						 <label>Phone Number</label>
+						 <input type="text" class="form-control" name="phone_number":value="data.phone_number" required="">
+						 <div class="form__group">
+						</div>
+						 <label>Address</label>
+						 <input type="text" class="form-control" name="address":value="data.address" required="">
+						 <div class="form__group">
+						</div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
 @endsection
 
 @section('js')
-<!-- Data Table & Plugin -->
+<!-- DataTables  & Plugins -->
 <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -128,52 +97,100 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script type="text/javascript">
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-  });
-</script>
+var actionUrl = "{{ url('publishers') }}";
+		var apiUrl = "{{ url('api/publishers') }}";
 
-<!-- Crud Vue js -->
-<script type="text/javascript">
-    var controller = new Vue({
-        el: '#controller',
-        data: {
-            data : {},
-            actionUrl : '{{ url('publishers') }}',
-            editStatus : false
-
-        },
-        mounted: function () {
-
-        },
-        methods: {
-            addData() {
-                this.data = {};
-                this.actionUrl = '{{ url('publishers') }}';
-                this.editStatus = false;
-                $('#modal-default').modal();
-            },
-            editData(data) {
-            // editData(id) {
-                console.log(data);
-                this.data = data;
-                this.actionUrl = '{{ url('publishers') }}'+'/'+data.id;
-                this.editStatus = true
-                $('#modal-default').modal();
-            },
-            deleteData(id) {
-                this.actionUrl = '{{ url('publishers') }}'+'/'+id;
-                if (confirm("are you sure ?")) {
-                    axios.post(this.actionUrl, {_method: 'DELETE'}).then(response => {
-                        location.reload();
-                    });
-                }
-            }
-
-        }
-    });
+		var columns = [{
+		        data: 'DT_RowIndex',
+		        class: 'text-center',
+		        orderable: false
+		    },
+		    {
+		        data: 'name',
+		        class: 'text-center',
+		        orderable: false
+		    },
+		    {
+		        data: 'email',
+		        class: 'text-center',
+		        orderable: true
+		    },
+		    {
+		        data: 'phone_number',
+		        class: 'text-center',
+		        orderable: true
+		    },
+		    {
+		        data: 'address',
+		        class: 'text-center',
+		        orderable: true
+		    },
+		    {
+				render: function (index, row, data, meta) {
+					return `
+						<button onclick="publisherVue.editData(event, ${meta.row})"  class="btn btn-sm btn-warning text-white">Edit</button>
+						<button onclick="publisherVue.deleteData(event, ${data.id})"  class="btn btn-sm btn-danger text-white">Delete</button>
+					`;
+				},
+				orderable: false,
+				width: '160px',
+				class: 'text-center'
+			}
+		];
+		var publisherVue = new Vue({
+			el: "#controller",
+			data: {
+				dataList: [],
+				data: {},
+				actionUrl,
+				apiUrl,
+				editStatus: false
+			},
+			mounted() {
+				this.datatable();
+			},
+			methods: {
+				datatable() {
+					const _this = this;
+					_this.table = $('#datatable').DataTable({
+						ajax: {
+							url: _this.apiUrl,
+							type: 'GET'
+						},
+						columns,
+					}).on('xhr',function() {
+						_this.dataList = _this.table.ajax.json().data;
+					})
+				},
+				addData() {
+					this.data = {};
+					this.actionUrl='{{ url('publishers') }}';
+					this.editStatus = false;
+					$('#modalmadul').modal();
+				},
+				editData(event, row) {
+					this.data = this.dataList[row]
+					this.editStatus = true
+					$('#modalmadul').modal();
+				},
+				deleteData(event, id) {
+					if (confirm('Are you sure?')) {
+						$(event.target).parents('tr').remove();
+						axios.post(this.actionUrl + '/' + id, {_method: 'DELETE'}).then(response => {
+							location.reload();
+					    });
+                    }
+				},
+				submitForm(event, id) {
+					event.preventDefault()
+					const _this = this
+					var url = ! this.editStatus ? this.actionUrl : this.actionUrl + '/' + id
+					axios.post(url, new FormData($(event.target)[0])).then(response => {
+						$('#modalmadul').modal('hide')
+						_this.table.ajax.reload();
+					})
+				}
+			}
+		})
 </script>
 @endsection

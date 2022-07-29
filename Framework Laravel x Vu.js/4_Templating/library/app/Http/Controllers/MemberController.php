@@ -8,7 +8,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class MemberController extends Controller
 {
-    public function _construct()
+    public function __construct()
     {
         $this->middleware('auth');
     }
@@ -18,38 +18,15 @@ class MemberController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-//        if ($request->gender) {
-//            $data = member::where('gender', $request->gender)->get();
-//        } else {
-//            $data = member::all();
-//        }
-//        $datatables = datatables()->of($data)->addIndexColumn();
-//        return $datatables->make(true);
-
-        $members = member::with('users')->get();
-
-        //return $members;
-        return view ('admin.member.index', compact('members'));
+    {   
+        $members = Member::all();
+        return view('admin.member',compact('members'));
     }
 
-    public function api(request $request)
+    public function api()
     {
-        if ($request->gender) {
-            $members = member::where("gender", strtoupper ($request->gender));
-        } else {
-            $members = member::all();
-        }
-
-        //foreach ($members as $key => $member) {
-        //    $member->date = convert_date($member->created_at);
-        //}
-
-        //$datatables = datatables()->of($members)->addIndexColumn();
-        $datatables = DataTables::of($members)
-                                ->addColumn('date', function($members) {
-                                    return $members->created_at->format("H:i:s d F Y");                      
-                                 })->addIndexColumn();
+         $members = Member::all();
+         $datatables = datatables()->of($members)->addIndexColumn();
 
         return $datatables->make(true);
     }
@@ -61,7 +38,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('admin.member.create');
+        //
     }
 
     /**
@@ -72,21 +49,17 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
+        //keamaanan this
         $this->validate($request,[
-            'name'      => ['required'],
-            'gender'      => ['required'],
-            'phone_number'      => ['required'],
-            'email'      => ['required'],
-            'address'      => ['required'],
+            'name' => ['required', 'min:3'],
+			'phone_number' => ['required', 'min:10'],
+			'email' => ['required', 'email', 'unique:members'],
+			'address' => ['required'],
         ]);
+        Member::create($request->all());
 
-        //$member = new member;
-        //$member->name = $request->name;
-        //$member->save();
+        return redirect ('members');
 
-        member::create($request->all());
-
-        return redirect('members');
     }
 
     /**
@@ -97,7 +70,7 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        return view('admin.member', compact('member'));
+        //
     }
 
     /**
@@ -108,7 +81,7 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        return view('admin.member', compact('member'));
+        return view('admin.member.index', compact('member'));
     }
 
     /**
@@ -120,17 +93,19 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        $this->validate($request,[
-            'name'      => ['required'],
-            'gender'      => ['required'],
-            'phone_number'      => ['required'],
-            'email'      => ['required'],
-            'address'      => ['required'],
+        // Validation Data
+        $validator = $request->validate([
+            'name' => 'required|min:3|max:32',
+            'gender' => 'required|max:1',
+            'phone_number' => "required|unique:members,phone_number,{$member->id}|min:12|max:15",
+            'address' => 'required',
+			'email' => ['required', 'email', 'unique:members,email,'.$member->id]
         ]);
 
+        // Insert validated data into database
         $member->update($request->all());
 
-        return redirect('members');
+        return redirect('members')->with('success', 'Member data has been Updated');
     }
 
     /**
@@ -141,8 +116,9 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
+        // Delete data with specific ID
         $member->delete();
 
-        return redirect('members');
+        return redirect('members')->with('success', 'Member data has been Deleted');
     }
 }

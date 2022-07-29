@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Author;
 use App\Models\Catalog;
 use App\Models\Publisher;
-use App\Models\Book;
 use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,14 +24,12 @@ class BookController extends Controller
         $publishers = Publisher::all();
         $authors = Author::all();
         $catalogs = Catalog::all();
-
-        return view ('admin.book.index', compact('publishers', 'authors', 'catalogs'));
+        return view('admin.book',compact('publishers','authors','catalogs'));
     }
 
     public function api()
     {
         $books = Book::all();
-
         return json_encode($books);
     }
 
@@ -39,7 +40,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('admin.book.create');
+        //
     }
 
     /**
@@ -50,24 +51,22 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'isbn'      => ['required'],
-            'title'      => ['required'],
-            'year'      => ['required'],
-            'publisher'      => ['required'],
-            'author'      => ['required'],
-            'catalog'      => ['required'],
-            'qty'      => ['required'],
-            'price'      => ['required'],
+        // Validation Data
+        $validator = $request->validate([
+            'isbn' => 'required|unique:books|max:9',
+            'title' => 'required',
+            'year' => 'required|min:2|max:4',
+            'publisher_id' => 'required',
+            'author_id' => 'required',
+            'catalog_id' => 'required',
+            'quantity' => 'required|min:1|max:4',
+            'price' => 'required|min:1|max:11',
         ]);
 
-        //$book = new book;
-        //$book->name = $request->name;
-        //$book->save();
+        // Insert validated data into database
+        $book = Book::create($validator);
 
-        Book::create($request->all());
-
-        return redirect('books');
+        return response()->json($book);
     }
 
     /**
@@ -89,7 +88,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('admin.book', compact('book'));
+        //
     }
 
     /**
@@ -101,20 +100,22 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $this->validate($request,[
-            'isbn'      => ['required'],
-            'title'      => ['required'],
-            'year'      => ['required'],
-            'publisher'      => ['required'],
-            'author'      => ['required'],
-            'catalog'      => ['required'],
-            'qty'      => ['required'],
-            'price'      => ['required'],
+        // Validation Data
+        $validator = $request->validate([
+            'isbn' => "required|unique:books,isbn,{$book->id}|max:9",
+            'title' => 'required',
+            'year' => 'required|min:2|max:4',
+            'publisher_id' => 'required',
+            'author_id' => 'required',
+            'catalog_id' => 'required',
+            'quantity' => 'required|min:1|max:4',
+            'price' => 'required|min:1|max:11',
         ]);
 
-        $book->update($request->all());
+        // Insert validated data into database
+        $book->update($validator);
 
-        return redirect('books');
+        return redirect('books')->with('success', 'book data has been Updated');
     }
 
     /**
@@ -126,7 +127,5 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-
-        return redirect('books');
     }
 }

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Author;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorSeeder extends Seeder
 {
@@ -16,16 +17,16 @@ class AuthorSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        
-        for ($i=0; $i < 20; $i++) {
-        $author = new Author;
-        
-        $author->name = $faker->name;
-        $author->email = $faker->email;
-        $author->phone_number = '0821' . $faker->randomNumber(8);
-        $author->address = $faker->address;
 
-        $author->save();
-        }
+		for ($i = 0; $i < 20; $i++) {
+			$author = new Author;
+
+			$author->name = $faker->name;
+			$author->email = $faker->email;
+			$author->phone_number = '0821'.$faker->randomNumber(8);
+			$author->address = $faker->address;
+
+			$author->save();
+		}
     }
 }

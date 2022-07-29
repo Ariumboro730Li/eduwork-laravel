@@ -1,45 +1,43 @@
 @extends('layouts.admin')
-@section('header', 'Publisher')
-
+@section('title', 'Publisher')
 
 @section('content')
-<section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Create New Publisher</h3>
-                    </div>
-                            <form action="{{ url('publishers') }}" method="post">
-                                @csrf
-                            <div class="card-body">
-                                <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="Enter name" required="">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" name="email" class="form-control" placeholder="Enter email" required="">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Phone Number</label>
-                                <input type="text" name="phone_number" class="form-control" placeholder="Enter phone number" required="">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Address</label>
-                                <input type="text" name="address" class="form-control" placeholder="Enter address" required="">
-                            </div>
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
+	<div class="row">
+          <!-- left column -->
+          <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Create New Publisher</h3>
+              </div>
+             
+              <form action="{{url('publishers')}}"method="post">
+            @csrf
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for=>Name</label>
+                    <input type="text"name="name"class="form-control"  placeholder="Enter name
+                     " required="">
+                     <div class="form__group">
+                      <label>Email</label>
+                      <input type="text" name="email"class="form-control" placeholder="Enter email" value=""required="">
+                      <div class="form__group">
+                     </div>
+                      <label>Phone Number</label>
+                      <input type="text" class="form-control" name="Enter phone_number"  placeholder="phone_number" value=""required="">
+                      <div class="form__group">
+                     </div>
+                      <label>Address</label>
+                      <input type="text" class="form-control" name="Enter address"  placeholder="Enter addres" value=""required="">
+                      <div class="form__group">
+                     </div>
+                  </div>
+            
+                <!-- /.card-body -->
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
-            </form>
-        </div>
-    </div>
-</div>
+              </form>
+            </div>
+           </div>
 @endsection
