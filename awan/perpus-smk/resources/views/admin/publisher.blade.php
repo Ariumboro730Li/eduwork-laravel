@@ -9,7 +9,7 @@
 <div id="controller">
     <div class="container-fluid px-4">
         <a href="#" @click="addData()" class="btn btn-sm btn-primary mb-2">Create New</a>
-        <table class="table table-striped">
+        <table class="table table-striped" id="datatablesSimple">
             <thead>
               <tr>
                 <th class="text-center">No</th>
