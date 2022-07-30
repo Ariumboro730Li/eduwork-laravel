@@ -21,7 +21,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 30px">No.</th>
-                                <th class= "text-center">Nama</th>
+                                <th class= "text-center">Name</th>
                                 <th class= "text-center">Email</th>
                                 <th class= "text-center">No.telp</th>
                                 <th class= "text-center">Alamat</th>

@@ -30,6 +30,15 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $books = Book::count();
+        $members = Member::count();
+        $publishers = Publisher::count();
+        $transactions = Transaction::count();
+
+        if (auth()->user()->level == 1) {
+            return view('admin.home', compact('books', 'member', 'publisher', 'transaction'));
+        }
+
         //$members = Member::with('user')->get();
         //$books = Book::with('publisher')->get();
         //$publishers = Publisher::with('books')->get();
@@ -64,6 +73,6 @@ class HomeController extends Controller
         
 
         //return $data4;
-        return view('home');
+        return view('home', compact('books', 'members', 'publishers', 'transactions'));
     }
 }

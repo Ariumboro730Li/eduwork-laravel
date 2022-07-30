@@ -1,6 +1,6 @@
 @extends('layouts.admin')
-@section('header', 'Book')
+@section('header', 'Member')
 
 @section('content')
-    ini adalah halaman book
+    ini adalah halaman member
 @endsection

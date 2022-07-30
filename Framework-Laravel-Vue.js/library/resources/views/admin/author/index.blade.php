@@ -25,7 +25,7 @@
                                 <th class= "text-center">Email</th>
                                 <th class= "text-center">No.telp</th>
                                 <th class= "text-center">Alamat</th>
-                                <th class= "text-center">created At</th>
+                                <th class= "text-center">Created At</th>
                                 <th class= "text-center">Aksi</th>
                             </tr>
                         </thead>
