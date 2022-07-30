@@ -26,8 +26,7 @@
                     <thead>
                         <th width="5%">No</th>
                         <th>Tanggal</th>
-                        <th>Penjualan</th>
-                        <th>Pembelian</th>
+                        <th>Penjualan</th>                        
                         <th>Pengeluaran</th>
                         <th>Pendapatan</th>
                     </thead>
@@ -57,8 +56,7 @@
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'tanggal'},
-                {data: 'penjualan'},
-                {data: 'pembelian'},
+                {data: 'penjualan'},                
                 {data: 'pengeluaran'},
                 {data: 'pendapatan'}
             ],

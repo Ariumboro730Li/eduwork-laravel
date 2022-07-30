@@ -104,7 +104,7 @@
 
 @push('scripts')
 <!-- ChartJS -->
-<script src="{{ asset('AdminLTE-2/bower_components/chart.js/Chart.js') }}"></script>
+<script src="{{ asset('AdminLTE-3/bower_components/chart.js/Chart.js') }}"></script>
 <script>
 $(function() {
     // Get context with jQuery - using jQuery's .get() method.
