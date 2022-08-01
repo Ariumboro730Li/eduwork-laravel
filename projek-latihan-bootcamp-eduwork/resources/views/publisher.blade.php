@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <div id class="row">
+    <div id="controller" class="row">
         <div class="col-lg-12">
             <a href="#" @click="addData()" class="btn btn-sm btn-primary pull-right">Create
                 Author</a>
@@ -26,8 +26,10 @@
                                 <td>{{ $penerbit->phone_number }}</td>
                                 <td>{{ $penerbit->address }}</td>
                                 <td class="text-right">
-                                    <a href="#" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="#" @click="editData({{ $penerbit }})"
+                                        class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="#" @click="deleteData({{ $penerbit->id }})"
+                                        class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -38,32 +40,35 @@
 
             <!-- Modal -->
             {{-- Line ini gak bisa print console.log() --}}
-            <div class="modal fade" data-toogle="modal" data-target="#exampleModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Form Data</h5>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="{{ url('publisher') }}" autocomplete="off">
+                            <form method="post" :action="actionUrl" autocomplete="off">
                                 @csrf
+                                <input type="hidden" name="_method" value="PUT" v-if="editStatus">
                                 <div class="form-group">
                                     <label for="name" class="col-form-label">Nama:</label>
-                                    <input type="text" class="form-control" name="name" placeholder="Nama">
+                                    <input type="text" class="form-control" name="name" placeholder="Nama"
+                                        :value="data.name">
                                 </div>
                                 <div class="form-group">
                                     <label>Email:</label>
-                                    <input type="text" class="form-control" name="email" placeholder="Email">
+                                    <input type="text" class="form-control" name="email" placeholder="Email"
+                                        :value="data.email">
                                 </div>
                                 <div class="form-group">
                                     <label>Phone Number:</label>
                                     <input type="number" class="form-control" name="phone_number"
-                                        placeholder="Phone Number">
+                                        placeholder="Phone Number" :value="data.phone_number">
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat:</label>
-                                    <textarea type="text" class="form-control" name="address" placeholder="Alamat"></textarea>
+                                    <textarea type="text" class="form-control" name="address" placeholder="Alamat" :value="data.address"></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -81,22 +86,45 @@
                     el: '#controller',
                     data: {
                         //Membuat variabel data bentuk array
-                        data: {},
-                        actionUrl: '{{ url('publisher') }}'
+                        data: {}, //Untuk Menampung Data
+                        actionUrl: '{{ url('publisher') }}',
+                        editStatus: false
 
                     },
                     methods: {
                         addData() {
-                            // this.data = {};
+                            this.data = {};
                             // this.actionUrl = '{{ url('author') }}';
                             // this.editStatus = false;
-                            console.log("Tes klik");
-                            // $('#modalForm').modal("show")
+                            // console.log("Tes klik");
+                            this.actionUrl = '{{ url('publisher') }}';
+                            this.editStatus = false;
+                            $("#exampleModal").modal("show")
                         },
-                        editData() {
+                        editData(data_penerbit) {
+                            this.data = data_penerbit;
+                            this.actionUrl = '{{ url('publisher') }}' + '/' +
+                                data_penerbit.id;
+                            this.editStatus = true;
+                            $('#exampleModal').modal("show")
 
                         },
-                        deleteData() {
+                        //Aksi Delete Tidak Bekerja
+                        deleteData(id) {
+                            this.actionUrl = '{{ url('publisher') }}' + '/' + data.id;
+                            if (confirm("Are you sure to delete this data?")) {
+                                axios.post(this.actionUrl, {
+                                    _method: 'DELETE'
+                                }).then(response => {
+                                    location.reload();
+                                });
+
+                            }
+
+                            // console.log(id);
+
+
+                            // console.log(delete_data_penerbit_id);
 
                         }
                     }

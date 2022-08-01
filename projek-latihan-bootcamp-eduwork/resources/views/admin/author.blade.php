@@ -48,6 +48,7 @@
                         <div class="modal-body">
                             <form method="post" action="{{ url('author') }}" autocomplete="off">
                                 @csrf
+                                <input type="hidden" name="_method" value="PUT">
                                 <div class="form-group">
                                     <label for="name" class="col-form-label">Nama:</label>
                                     <input type="text" class="form-control" name="name" placeholder="Nama">
