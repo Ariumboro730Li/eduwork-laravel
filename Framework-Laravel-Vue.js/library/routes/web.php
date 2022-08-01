@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/transactions', [App\Http\Controllers\TransactionController::class, 'index']);
 
 
 // Route::get('/members', [App\Http\Controllers\MemberController::class, 'index']);
