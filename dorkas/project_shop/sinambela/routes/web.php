@@ -34,6 +34,10 @@ Route::livewire('/shop', 'shop.index')
 Route::livewire('/cart', 'shop.cart')
     ->name('shop.cart');
 
+Route::livewire('/checkout', 'shop.checkout')
+    ->name('shop.checkout');
+
+
 //Route::livewire('/admin/product' , 'product.index');
 
 //Route::middleware(['auth:sanctum', 'verified'])->get('/admin/product', function () {
