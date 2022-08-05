@@ -20,21 +20,6 @@
                 <th class="text-center">Aksi</th>
               </tr>
             </thead>
-            <tbody>
-                @foreach ($authors as $key => $authors)                
-                <tr>
-                    <td class="text-center">{{ $key+1 }}</td>
-                    <td>{{ $authors->name }}</td>
-                    <td>{{ $authors->email }}</td>
-                    <td>{{ $authors->phone_number }}</td>
-                    <td>{{ $authors->address }}</td>
-                    <td style="width: 110px;">
-                        <a href="#" @click="editData({{ $authors }})" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="#" @click="deleteData({{ $authors->id }})" class="btn btn-sm btn-danger">Delete</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
         </table>
     </div>
     
@@ -47,7 +32,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" :action="actUrl">
+                    <form method="post" :action="actUrl" @submit="submitForm($event, data.id)">
                         @csrf
 
                         <input type="hidden" name="_method" value="PUT" v-if="editStatus">
@@ -78,12 +63,32 @@
 @section('js')
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script>
+{{-- <script>
     $(document).ready(function () {
     $('#dataTable').DataTable();
 });
-</script>
+</script> --}}
 <script>
+    var actUrl = '{{ url('authors') }}';
+    var apiUrl = '{{ url('api/authors') }}';
+
+    var columns = [
+        {data: 'DT_RowIndex', class: 'text-center', orderable: true},   
+        {data: 'name', class: 'text-center', orderable: true},
+        {data: 'email', class: 'text-center', orderable: true},
+        {data: 'phone_number', class: 'text-center', orderable: true},
+        {data: 'address', class: 'text-center', orderable: true},
+        {render: function (index, row, data, meta) {
+            return `
+            <a href="#" onclick="controller.editData(event, ${meta.row})" class="btn btn-sm btn-warning">Edit</a>
+            <a href="#" onclick="controller.deleteData(event, ${data.id})" class="btn btn-sm btn-danger">Delete</a>`;
+        }, orderable: false, width: '110px', class: 'text-center'},
+    ];
+</script>
+<script src="{{ asset('js/data.js') }}"></script>
+
+
+{{-- <script>
     var controller = new Vue({
         el: '#controller',
         data: {
@@ -116,5 +121,5 @@
             },
         }
     });
-</script>
+</script> --}} 
 @endsection
