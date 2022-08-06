@@ -24,9 +24,12 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
     <!-- Custom styles for this page -->
-    <link href="{{asset('assets/vendors/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     {{-- Via CDN Data Tables --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
     @yield('css')
 </head>
 
@@ -514,8 +517,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- Page level plugins -->
-    <script src="{{ asset('assets/vendors/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{asset('assets/vendors/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{ asset('assets/vendors/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables/dataTables.bootstrap4.min.js') }}"></script>
     {{-- Jquery Data Tables --}}
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
 

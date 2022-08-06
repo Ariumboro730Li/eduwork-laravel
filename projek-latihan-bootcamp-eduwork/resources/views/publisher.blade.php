@@ -5,41 +5,22 @@
             <a href="#" @click="addData()" class="btn btn-sm btn-primary pull-right">Create
                 Author</a>
             <div class="card-body p-0">
-                <table id="example2" class="table table-striped table-bordered">
+                <table id="data-table-example" class="table table-striped table-bordered" style="width: 100%">
                     <thead>
                         <tr>
                             <th width="30px">No.</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone Number</th>
-                            <th>Address</th>
-                            <th class="text-right"> Action</th>
+                            <th class="text-center">Address</th>
+                            <th class="text-center"> Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach ($publishers as $key => $penerbit)
-                            <tr>
-                                {{-- dd($author); --}}
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $penerbit->name }}</td>
-                                <td>{{ $penerbit->email }}</td>
-                                <td>{{ $penerbit->phone_number }}</td>
-                                <td>{{ $penerbit->address }}</td>
-                                <td class="text-right">
-                                    <a href="#" @click="editData({{ $penerbit }})"
-                                        class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="#" @click="deleteData({{ $penerbit->id }})"
-                                        class="btn btn-danger btn-sm">Delete</a>
-                                </td>
-                            </tr>
-                        @endforeach
 
-                    </tbody>
                 </table>
             </div>
 
             <!-- Modal -->
-            {{-- Line ini gak bisa print console.log() --}}
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -81,6 +62,81 @@
             </div>
         @endsection
         @section('js')
+            //Data Table Yajra Tidak Dapat Tampil
+            <script type="text/javascript">
+                var actionUrl = "{{ url('publisher') }}";
+                var apiUrl = "{{ url('api/publisher') }}";
+
+                var columns = [{
+                        data: 'DT_RowIndex',
+                        class: 'text-center',
+                        orderable: true
+                    },
+                    {
+                        data: 'name',
+                        class: 'text-center',
+                        orderable: true
+                    }, {
+                        data: 'email',
+                        class: 'text-center',
+                        orderable: true
+                    }, {
+                        data: 'phone_number',
+                        class: 'text-center',
+                        orderable: true
+                    }, {
+                        data: 'address',
+                        class: 'text-center',
+                        orderable: true
+                    }, {
+                        render: function(index, row, data, meta) {
+                            return `
+                                                                                                                                                                                                                                             <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">Edit</a>
+                                                                                                                                                                                                                                             <a class = "btn btn-danger btn-sm" onclick="controller.deleteData(event, ${data.id})">Delete</a>`;
+                        },
+                        orderable: false,
+                        width: '200px',
+                        class: 'text-center'
+                    },
+                ];
+                var controller = new Vue({
+                    el = "controller",
+                    data: {
+                        datas: [],
+                        data: {},
+                        actionUrl,
+                        apiUrl,
+                        editStatus: false,
+                    },
+                    mounted: function() {
+                        this.datatable();
+                    },
+                    methods: {
+                        datatable() {
+                            const _this = this;
+                            _this.table = $('#data-table-example').DataTable({
+                                ajax: {
+                                    url: _this.apiUrl,
+                                    type: 'GET',
+
+                                },
+                                columns: columns
+
+                            }).on('xhr', function() {
+                                _this.datas = _this.table.ajax.json().data;
+                            });
+                        },
+
+                    }
+
+                });
+            </script>
+            {{-- <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#data-table-example').DataTable();
+                });
+            </script>
+            //CRUD VUE JS
             <script type="text/javascript">
                 var controller = new Vue({
                     el: '#controller',
@@ -111,7 +167,7 @@
                         },
                         //Aksi Delete Tidak Bekerja
                         deleteData(id) {
-                            this.actionUrl = '{{ url('publisher') }}' + '/' + data.id;
+                            this.actionUrl = '{{ url('publisher') }}' + '/' + id;
                             if (confirm("Are you sure to delete this data?")) {
                                 axios.post(this.actionUrl, {
                                     _method: 'DELETE'
@@ -131,5 +187,5 @@
 
 
                 });
-            </script>
+            </script> --}}
         @endsection

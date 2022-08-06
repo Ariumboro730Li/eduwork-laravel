@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class PublisherController extends Controller
 {
+    public function API(){
+        $publishers = Publisher::all();
+        $dataTables = datatables()->of($publishers)->addIndexColumn();
+        return $dataTables->make(true);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +20,7 @@ class PublisherController extends Controller
     public function index()
     {
         //
-        $publishers = Publisher::all();
-        // return $catalog;
-        return view('publisher', compact('publishers'));
+        return view('publisher');
     }
 
 
