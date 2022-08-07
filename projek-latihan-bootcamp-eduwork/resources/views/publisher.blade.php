@@ -29,7 +29,8 @@
                             <h5 class="modal-title" id="exampleModalLabel">Form Data</h5>
                         </div>
                         <div class="modal-body">
-                            <form method="post" :action="actionUrl" autocomplete="off">
+                            <form method="post" :action="actionUrl" autocomplete="off"
+                                @submit="submitForm($event, data.id)">
                                 @csrf
                                 <input type="hidden" name="_method" value="PUT" v-if="editStatus">
                                 <div class="form-group">
@@ -62,7 +63,6 @@
             </div>
         @endsection
         @section('js')
-            //Data Table Yajra Tidak Dapat Tampil
             <script type="text/javascript">
                 var actionUrl = "{{ url('publisher') }}";
                 var apiUrl = "{{ url('api/publisher') }}";
@@ -100,7 +100,7 @@
                     },
                 ];
                 var controller = new Vue({
-                    el = "controller",
+                    el: "#controller",
                     data: {
                         datas: [],
                         data: {},
@@ -120,12 +120,58 @@
                                     type: 'GET',
 
                                 },
-                                columns: columns
+                                columns
 
                             }).on('xhr', function() {
                                 _this.datas = _this.table.ajax.json().data;
                             });
                         },
+                        addData() {
+                            this.data = {};
+                            // this.actionUrl = '{{ url('author') }}';
+                            // this.editStatus = false;
+                            // console.log("Tes klik");
+                            this.actionUrl = '{{ url('publisher') }}';
+                            this.editStatus = false;
+                            $("#exampleModal").modal("show")
+                        },
+                        editData(event, row) {
+                            this.data = this.datas[row];
+                            this.actionUrl = '{{ url('publisher') }}' + '/' +
+                                this.data.id;
+                            this.editStatus = true;
+                            $('#exampleModal').modal("show")
+
+                        },
+                        deleteData(event, id) {
+                            this.actionUrl = '{{ url('publisher') }}' + '/';
+                            if (confirm("Are you sure to delete this data?")) {
+                                axios.post(this.actionUrl + '/' + id, {
+                                    _method: 'DELETE'
+                                }).then(response => {
+                                    location.reload();
+                                });
+
+                            }
+
+                            // console.log(id);
+
+
+                            // console.log(delete_data_penerbit_id);
+
+                        },
+                        submitForm(event, id) {
+                            // console.log(id);
+                            // event.preventDefault();
+                            // const _this = this;
+                            // var actionUrl = !this.editStatus ? this.actionUrl : this.actionUrl + '/' + id;
+                            // axios.post(actionUrl, new FormData($(event.target)[0])).then(response => {
+                            // $('#exampleModal').modal("hide")
+                            // _this.table.ajax.reload();
+                            // });
+                            console.log(actionUrl);
+                        }
+
 
                     }
 
