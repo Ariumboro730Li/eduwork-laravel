@@ -43,9 +43,9 @@
                             <input type="text" name="name" class="form-control" :value="data.name" required>
                             
                             <label class="form-label">Kelamin</label><br>
-                            <input v-model="data.gender" type="radio" name="gender" id="M" value="M">
+                            <input :checked="data.gender == `M`" type="radio" name="gender" id="M" value="M">
                             <label for="M">Laki-laki</label>
-                            <input v-model="data.gender" type="radio" name="gender" id="F" value="F">
+                            <input :checked="data.gender == `F`" type="radio" name="gender" id="F" value="F">
                             <label for="F">Perempuan</label><br>                            
                             
                             <label class="form-label">Nomer HP</label>
