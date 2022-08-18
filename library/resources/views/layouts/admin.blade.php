@@ -111,7 +111,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('catalog') }}" class="nav-link {{ request()->is('catalogs') ? 'active' : '' }}">
+            <a href="{{ url('catalogs') }}" class="nav-link {{ request()->is('catalogs') ? 'active' : '' }}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Catalog

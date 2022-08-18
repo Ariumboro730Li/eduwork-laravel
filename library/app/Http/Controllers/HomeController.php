@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Member;
 use App\Models\Book;
 use App\Models\Author;
-use App\Models\Catalog;
+use App\Models\Catalogs;
 use App\Models\Publisher;
 use App\Models\Transaction;
 
