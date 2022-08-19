@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class AuthorController extends Controller
 {
+    public function _construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,29 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        return view ('admin.author.index');
+        //$authors =::all();
+        //$authors = Author::with('books')->get();
+
+        //return $authors;
+        //return view('admin.author.index', compact('authors'));
+        return view('admin.author.index');
+    }
+
+    public function api()
+    {
+        $authors = Author::all();
+
+        //foreach ($authors as $key => $author) {
+        //    $author->date = convert_date($author->created_at);
+        //}
+
+        //$datatables = datatables()->of($authors)->addIndexColumn();
+        $datatables = DataTables::of($authors)
+                                ->addColumn('date', function($authors) {
+                                    return $authors->created_at->format("H:i:s d F Y");
+                                 })->addIndexColumn();
+
+        return $datatables->make(true);
     }
 
     /**
@@ -24,7 +51,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.author');
     }
 
     /**
@@ -35,7 +62,20 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'      => ['required'],
+            'phone_number'      => ['required'],
+            'email'      => ['required'],
+            'address'      => ['required'],
+        ]);
+
+        //$author = new Author;
+        //$author->name = $request->name;
+        //$author->save();
+
+        Author::create($request->all());
+
+        return redirect('authors');
     }
 
     /**
@@ -57,7 +97,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('admin.author', compact('author'));
     }
 
     /**
@@ -69,7 +109,16 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $this->validate($request,[
+            'name'      => ['required'],
+            'phone_number'      => ['required'],
+            'email'      => ['required'],
+            'address'      => ['required'],
+        ]);
+
+        $author->update($request->all());
+
+        return redirect('authors');
     }
 
     /**
@@ -80,6 +129,8 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
+
+        return redirect('authors');
     }
 }

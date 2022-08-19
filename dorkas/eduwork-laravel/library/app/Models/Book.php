@@ -9,10 +9,10 @@ class book extends Model
 {
     use HasFactory;
 
-    //public function publisher()
-    public function transactiondetail()
-    {
-    //    return $this->belongsTo('App\Models\Publisher', 'publisher_id');
-        return $this->belongsTo('App\Models\TransactionDetail', 'transactiondetail_id');
+    protected $fillable = ['isbn', 'title', 'year', 'publisher_id', 'author_id', 'catalog_id', 'quantity', 'price'];
+
+    public function publisher()
+	{
+		return $this->belongsTo('App\Models\Publisher','publisher_id');
     }
 }

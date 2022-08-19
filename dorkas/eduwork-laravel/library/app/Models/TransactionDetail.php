@@ -9,11 +9,15 @@ class TransactionDetail extends Model
 {
     use HasFactory;
 
-    // public function transaction()
-     public function book()
+    protected $fillable = ['book_id','transaction_id','quantity'];
+
+    public function transaction()
     {
-    //    return $this->belongsTo('App\Models\Transaction', 'transaction_id');
-        return $this->belongsTo('App\Models\Book', 'book_id');
+        return $this->belongsTo(Transaction::class, 'transaction_id');
+    }
+    public function book()
+    {
+        return $this->belongsTo(Book::class, 'book_id');
     }
 
 }
