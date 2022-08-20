@@ -29,10 +29,9 @@
                             <h5 class="modal-title" id="exampleModalLabel">Form Data</h5>
                         </div>
                         <div class="modal-body">
-                            <form method="post" :action="actionUrl" autocomplete="off"
-                                @submit="submitForm($event, data.id)">
+                            <form autocomplete="off" @submit.prevent="submitForm($event, data.id)">
                                 @csrf
-                                <input type="hidden" name="_method" value="PUT" v-if="editStatus">
+                                <input type="" name="_method" value="PUT" v-if="editStatus">
                                 <div class="form-group">
                                     <label for="name" class="col-form-label">Nama:</label>
                                     <input type="text" class="form-control" name="name" placeholder="Nama"
@@ -99,84 +98,8 @@
                         class: 'text-center'
                     },
                 ];
-                var controller = new Vue({
-                    el: "#controller",
-                    data: {
-                        datas: [],
-                        data: {},
-                        actionUrl,
-                        apiUrl,
-                        editStatus: false,
-                    },
-                    mounted: function() {
-                        this.datatable();
-                    },
-                    methods: {
-                        datatable() {
-                            const _this = this;
-                            _this.table = $('#data-table-example').DataTable({
-                                ajax: {
-                                    url: _this.apiUrl,
-                                    type: 'GET',
-
-                                },
-                                columns
-
-                            }).on('xhr', function() {
-                                _this.datas = _this.table.ajax.json().data;
-                            });
-                        },
-                        addData() {
-                            this.data = {};
-                            // this.actionUrl = '{{ url('author') }}';
-                            // this.editStatus = false;
-                            // console.log("Tes klik");
-                            this.actionUrl = '{{ url('publisher') }}';
-                            this.editStatus = false;
-                            $("#exampleModal").modal("show")
-                        },
-                        editData(event, row) {
-                            this.data = this.datas[row];
-                            this.actionUrl = '{{ url('publisher') }}' + '/' +
-                                this.data.id;
-                            this.editStatus = true;
-                            $('#exampleModal').modal("show")
-
-                        },
-                        deleteData(event, id) {
-                            this.actionUrl = '{{ url('publisher') }}' + '/';
-                            if (confirm("Are you sure to delete this data?")) {
-                                axios.post(this.actionUrl + '/' + id, {
-                                    _method: 'DELETE'
-                                }).then(response => {
-                                    location.reload();
-                                });
-
-                            }
-
-                            // console.log(id);
-
-
-                            // console.log(delete_data_penerbit_id);
-
-                        },
-                        submitForm(event, id) {
-                            // console.log(id);
-                            // event.preventDefault();
-                            // const _this = this;
-                            // var actionUrl = !this.editStatus ? this.actionUrl : this.actionUrl + '/' + id;
-                            // axios.post(actionUrl, new FormData($(event.target)[0])).then(response => {
-                            // $('#exampleModal').modal("hide")
-                            // _this.table.ajax.reload();
-                            // });
-                            console.log(actionUrl);
-                        }
-
-
-                    }
-
-                });
             </script>
+            <script src="{{ asset('js/data.js') }}"></script>
             {{-- <script type="text/javascript">
                 $(document).ready(function() {
                     $('#data-table-example').DataTable();
