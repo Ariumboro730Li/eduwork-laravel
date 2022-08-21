@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+  @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -95,7 +96,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('author') }}" class="nav-link {{ request()->is('authors') ? 'active' : '' }}">
+            <a href="{{ url('authors') }}" class="nav-link {{ request()->is('authors') ? 'active' : '' }}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Author
@@ -103,7 +104,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('book') }}" class="nav-link {{ request()->is('books') ? 'active' : '' }}">
+            <a href="{{ url('books') }}" class="nav-link {{ request()->is('books') ? 'active' : '' }}">
             <i class="nav-icon fas fa-edit"></i>
               <p>
                 Book
@@ -119,7 +120,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('member') }}" class="nav-link {{ request()->is('members') ? 'active' : '' }}">
+            <a href="{{ url('members') }}" class="nav-link {{ request()->is('members') ? 'active' : '' }}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Member
@@ -127,7 +128,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('publisher') }}" class="nav-link {{ request()->is('publishers') ? 'active' : '' }}">
+            <a href="{{ url('publishers') }}" class="nav-link {{ request()->is('publishers') ? 'active' : '' }}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Publisher
@@ -135,7 +136,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('transaction') }}" class="nav-link {{ request()->is('transactions') ? 'active' : '' }}">
+            <a href="{{ url('transactions') }}" class="nav-link {{ request()->is('transactions') ? 'active' : '' }}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Transaction
@@ -143,7 +144,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('transaction_detail') }}" class="nav-link {{ request()->is('transaction_details') ? 'active' : '' }}">
+            <a href="{{ url('transaction_details') }}" class="nav-link {{ request()->is('transaction_details') ? 'active' : '' }}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 TransactionDetail
@@ -210,5 +211,8 @@
 <script src="{{ asset('assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/dist/js/adminlte.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+@yield('js')
 </body>
 </html>
