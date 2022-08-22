@@ -40,7 +40,7 @@
                                 <td class="text-center">{{ date('d M Y', strtotime($author->updated_at)) }}</td>
                                 <td class="text-right">
                                     <a href="#" @click="editData({{ $author }})" class="btn btn-warning btn-sm">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                    <a href="#" @click="deleteData({{ $author->id }})" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -62,21 +62,24 @@
                     </div>
                     <div class="modal-body">
                         @csrf
+
+                        <input type="hidden" name="_method" value="PUT" v-if="editStatus">
+
                         <div class="form-group">
                                 <label for="exampleInputEmail1">Name</label>
-                                <input type="text" name="name" class="form-control" placeholder="Enter name" :value="data.name" required="">
+                                <input type="text" name="name" class="form-control" :value="data.name" required="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
-                                <input type="email" name="email" class="form-control" placeholder="Enter email" :value="data.email" required="">
+                                <input type="email" name="email" class="form-control" :value="data.email" required="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Phone Number</label>
-                                <input type="number" name="phone_number" class="form-control" placeholder="Enter phone number" :value="data.phone_number" required="">
+                                <input type="number" name="phone_number" class="form-control" :value="data.phone_number" required="">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Address</label>
-                                <input type="text" name="address" class="form-control" placeholder="Enter address" :value="data.address" required="">
+                                <input type="text" name="address" class="form-control" :value="data.address" required="">
                             </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -97,6 +100,7 @@
             data: {
                 data : {},
                 actionUrl : '{{ url('authors') }}'
+                editStatus : false,
             },
             mounted: function () {
 
@@ -105,15 +109,22 @@
                 addData() {
                     this.data = {};
                     this.actionUrl = '{{ url('authors') }}';
+                    this.editStatus = false;
                     $('#modal-primary').modal();
                 },
                 editData(data) {
                     this.data = data;
                     this.actionUrl = '{{ url('authors') }}'+'/'+data.id;
-                    $('modal-primary').modal();
+                    this.editStatus = true;
+                    $('#modal-primary').modal();
                 },
-                deleteData() {
-
+                deleteData(id) {
+                    this.actionUrl = '{{ url('authors') }}'+'/'+id;
+                    if(confirm("Are you sure?")){
+                        axios.post(this.actionUrl, {_method: 'DELETE'}).then(response => {
+                            location.reload();
+                        })
+                    }
                 }
             }
         })

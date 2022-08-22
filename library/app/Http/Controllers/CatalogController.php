@@ -101,6 +101,6 @@ class CatalogController extends Controller
     {
         $catalog->delete();
 
-        return redirect('catalogs');   
+        return redirect('catalogs');
     }
 }
