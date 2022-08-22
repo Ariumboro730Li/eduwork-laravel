@@ -19,11 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+Route::resource('/home', App\Http\Controllers\HomeController::class);
 Route::resource('/authors', App\Http\Controllers\AuthorController::class);
-Route::get('/books', [App\Http\Controllers\BookController::class, 'index']);
+Route::resource('/books', App\Http\Controllers\BookController::class);
 Route::resource('/catalogs', App\Http\Controllers\CatalogController::class);
-Route::get('/members', [App\Http\Controllers\MemberController::class, 'index']);
+Route::resource('/members', App\Http\Controllers\MemberController::class);
 Route::resource('/publishers', App\Http\Controllers\PublisherController::class);
-Route::get('/transactions', [App\Http\Controllers\TransactionController::class, 'index']);
-Route::get('/transaction_details', [App\Http\Controllers\TransactionDetailController::class, 'index']);
+Route::resource('/transactions', App\Http\Controllers\TransactionController::class);
+Route::resource('/transaction_details', App\Http\Controllers\TransactionDetailController::class);
