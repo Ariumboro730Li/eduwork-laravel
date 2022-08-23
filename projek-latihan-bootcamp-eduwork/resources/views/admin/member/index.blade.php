@@ -167,6 +167,7 @@
                         axios.post(this.actionUrl, new FormData($(event.target)[0])).then(response => {
                             _this.table.ajax.reload();
                         });
+                        console.log(actionUrl, this.actionUrl);
                     }
                 }
             }

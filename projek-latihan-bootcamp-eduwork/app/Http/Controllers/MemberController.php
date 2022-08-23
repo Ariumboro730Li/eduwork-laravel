@@ -43,6 +43,11 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         //
+        $member = new Member();
+        $member->name = $request['name'];
+        // $member->email = $request['email'];
+        $member->save();
+        return redirect('member');
     }
 
     /**
