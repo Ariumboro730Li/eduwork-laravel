@@ -22,55 +22,55 @@
             </div>
 
         </div>
-
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Form Data</h5>
-                </div>
-                <div class="modal-body">
-                    <form autocomplete="off" @submit.prevent="submitForm($event, data.id)">
-                        @csrf
-                        {{-- <input type="" name="_method" value="PUT" v-if="editStatus"> --}}
-                        <div class="form-group">
-                            <label for="name" class="col-form-label">Nama:</label>
-                            <input type="text" class="form-control" name="name" placeholder="Nama"
-                                :value="data.name">
-                        </div>
-                        <div class="form-group">
-                            <label for="sel1">Jenis Kelamin:</label>
-                            <select class="form-control" id="pilihJurusan">
-                                <option>-</option>
-                                <option :value="data.gender == `M`">Laki-laki</option>
-                                <option :value="data.gender == `F`">Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Email:</label>
-                            <input type="text" class="form-control" name="email" placeholder="Email"
-                                :value="data.email">
-                        </div>
-                        <div class="form-group">
-                            <label>Phone Number:</label>
-                            <input type="number" class="form-control" name="phone_number" placeholder="Phone Number"
-                                :value="data.phone_number">
-                        </div>
-                        <div class="form-group">
-                            <label>Alamat:</label>
-                            <textarea type="text" class="form-control" name="address" placeholder="Alamat" :value="data.address"></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </form>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Form Data</h5>
+                    </div>
+                    <div class="modal-body">
+                        <form autocomplete="off" @submit.prevent="submitForm($event, data.id)">
+                            @csrf
+                            <input type="hidden" name="_method" value="PUT" v-if="editStatus">
+                            <div class="form-group">
+                                <label for="name" class="col-form-label">Nama:</label>
+                                <input type="text" class="form-control" name="name" placeholder="Nama"
+                                    :value="data.name">
+                            </div>
+                            <div class="form-group">
+                                <label for="sel1">Jenis Kelamin:</label>
+                                <select class="form-control" name="gender">
+                                    <option>-</option>
+                                    <option :selected="data.gender == `M`" value="M">Laki-laki</option>
+                                    <option :selected="data.gender == `F`" value="F">Perempuan</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="text" class="form-control" name="email" placeholder="Email"
+                                    :value="data.email">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number:</label>
+                                <input type="number" class="form-control" name="phone_number" placeholder="Phone Number"
+                                    :value="data.phone_number">
+                            </div>
+                            <div class="form-group">
+                                <label>Alamat:</label>
+                                <textarea type="text" class="form-control" name="address" placeholder="Alamat" :value="data.address"></textarea>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 @endsection
 @section('js')
@@ -141,7 +141,7 @@
                 methods: {
                     datatable() {
                         const _this = this;
-                        _this.table = $('#data-table-eample').DataTable({
+                        _this.table = $('#data-table-example').DataTable({
                             ajax: {
                                 url: _this.apiUrl,
                                 type: 'GET',
@@ -160,11 +160,26 @@
                         this.editStatus = false;
                         $("#exampleModal").modal("show")
                     },
+                    editData(event, row) {
+                        this.data = this.datas[row];
+                        this.editStatus = true;
+                        $('#exampleModal').modal("show")
+                    },
+                    deleteData(event, id) {
+                        if (confirm("Are you sure to delete this data?")) {
+                            axios.post(this.actionUrl + '/' + id, {
+                                _method: 'DELETE'
+                            }).them(response => {
+                                alert('Data berhasil dihapus');
+                            });
+                        }
+                    },
                     submitForm(event, id) {
                         event.preventDefault();
                         const _this = this;
                         $('#exampleModal').modal("hide")
                         axios.post(this.actionUrl, new FormData($(event.target)[0])).then(response => {
+                            console.log(response);
                             _this.table.ajax.reload();
                         });
                         console.log(actionUrl, this.actionUrl);

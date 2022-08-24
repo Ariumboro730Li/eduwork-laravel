@@ -31,7 +31,7 @@
                         <div class="modal-body">
                             <form autocomplete="off" @submit.prevent="submitForm($event, data.id)">
                                 @csrf
-                                <input type="" name="_method" value="PUT" v-if="editStatus">
+                                <input type="hidden" name="_method" value="PUT" v-if="editStatus">
                                 <div class="form-group">
                                     <label for="name" class="col-form-label">Nama:</label>
                                     <input type="text" class="form-control" name="name" placeholder="Nama"

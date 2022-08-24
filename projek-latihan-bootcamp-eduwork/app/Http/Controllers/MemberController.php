@@ -41,13 +41,16 @@ class MemberController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {        //
+        // return $request->all();
         $member = new Member();
         $member->name = $request['name'];
-        // $member->email = $request['email'];
+        $member->gender = $request['gender'];
+        $member->phone_number = $request['phone_number'];
+        $member->address = $request['address'];
+        $member->email = $request['email'];
         $member->save();
-        return redirect('member');
+        // return redirect('member');
     }
 
     /**
@@ -70,6 +73,8 @@ class MemberController extends Controller
     public function edit(Member $member)
     {
         //
+        // $member = Member::all();
+        // return view('admin.member.edit', compact('member'));
     }
 
     /**
