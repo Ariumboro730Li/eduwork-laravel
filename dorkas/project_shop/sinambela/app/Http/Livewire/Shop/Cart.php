@@ -25,5 +25,4 @@ class Cart extends Component
         $this->cart = FacadesCart::get();
         $this->emit('removeFromCart');
     }
-
 }

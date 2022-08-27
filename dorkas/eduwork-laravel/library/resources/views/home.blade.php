@@ -1,11 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-Ini adalah halaman home
-@endsection
-@extends('layouts.admin')
-
-@section('content')
 <div class="row">
     <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
@@ -185,7 +180,5 @@ Ini adalah halaman home
                     options: barChartOptions
                 })
             })
-
         </script>
-        </body>
-        </html>
+@endsection

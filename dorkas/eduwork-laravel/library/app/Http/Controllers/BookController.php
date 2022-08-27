@@ -12,6 +12,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -40,7 +44,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('admin.book.create');
+        // return view('admin.book.create');
     }
 
     /**
@@ -51,24 +55,22 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'isbn'      => ['required'],
-            'title'      => ['required'],
-            'year'      => ['required'],
-            'publisher'      => ['required'],
-            'author'      => ['required'],
-            'catalog'      => ['required'],
-            'qty'      => ['required'],
-            'price'      => ['required'],
-        ]);
+       // Validation Data
+       $validator = $request->validate([
+        'isbn' => 'required|unique:books|max:9',
+        'title' => 'required',
+        'year' => 'required|min:2|max:4',
+        'publisher_id' => 'required',
+        'author_id' => 'required',
+        'catalog_id' => 'required',
+        'quantity' => 'required|min:1|max:4',
+        'price' => 'required|min:1|max:11',
+    ]);
 
-        //$book = new book;
-        //$book->name = $request->name;
-        //$book->save();
+    // Insert validated data into database
+    $book = Book::create($validator);
+    return response()->json($book);
 
-        Book::create($request->all());
-
-        return redirect('books');
     }
 
     /**
@@ -102,20 +104,23 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $this->validate($request,[
-            'isbn'      => ['required'],
-            'title'      => ['required'],
-            'year'      => ['required'],
-            'publisher'      => ['required'],
-            'author'      => ['required'],
-            'catalog'      => ['required'],
-            'qty'      => ['required'],
-            'price'      => ['required'],
+         // Validation Data
+         $validator = $request->validate([
+            'isbn' => "required|unique:books,isbn,{$book->id}|max:9",
+            'title' => 'required',
+            'year' => 'required|min:2|max:4',
+            'publisher_id' => 'required',
+            'author_id' => 'required',
+            'catalog_id' => 'required',
+            'quantity' => 'required|min:1|max:4',
+            'price' => 'required|min:1|max:11',
         ]);
 
-        $book->update($request->all());
+        // Insert validated data into database
+        $book->update($validator);
 
-        return redirect('books');
+        return redirect('books')->with('success', 'book data has been Updated');
+
     }
 
     /**
@@ -127,7 +132,6 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-
-        return redirect('books');
+        //return redirect('books');
     }
 }

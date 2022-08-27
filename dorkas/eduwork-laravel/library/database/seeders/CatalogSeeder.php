@@ -17,12 +17,12 @@ class CatalogSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i=0; $i < 20; $i++) {
-        $catalog = new Catalog;
+        for ($i = 0; $i < 4; $i++) {
+            $catalog = new Catalog;
 
-        $catalog->name = $faker->name;
+            $catalog->name = $faker->sentence(1);
 
-        $catalog->save();
+            $catalog->save();
         }
     }
 }

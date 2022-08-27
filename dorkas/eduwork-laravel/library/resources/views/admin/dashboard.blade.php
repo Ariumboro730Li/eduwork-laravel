@@ -182,8 +182,6 @@
             })
 
         </script>
-        </body>
-
-        </html>
+@endsection
 
 

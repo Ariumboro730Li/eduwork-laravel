@@ -3,12 +3,14 @@
 namespace App\Http\Livewire\Shop;
 
 use Livewire\Component;
+use App\Facades\Cart;
 
 class Checkout extends Component
 {
     public $first_name;
     public $last_name;
     public $email;
+    public $phone;
     public $address;
     public $city;
     public $postal_code;

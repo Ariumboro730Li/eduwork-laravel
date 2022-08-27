@@ -22,7 +22,7 @@ class PublisherSeeder extends Seeder
 
         $publisher->name = $faker->name;
         $publisher->email = $faker->email;
-        $publisher->phone_number = '0821' . $faker->randomNumber(8);
+        $publisher->phone_number = "0821{$faker->randomNumber(8, true)}";
         $publisher->address = $faker->address;
 
         $publisher->save();

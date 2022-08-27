@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
 use DB;
 use App\Book;
 use App\Catalog;
@@ -93,19 +92,19 @@ class AdminController extends Controller
 
     public function test_spatie()
     {
-        $role = Role::create(['name' => 'petugas']);
-        $permission = Permission::create(['name' => 'index peminjaman']);
+        // $role = Role::create(['name' => 'petugas']);
+        // $permission = Permission::create(['name' => 'index peminjaman']);
 
-        $role->givePermissionTo($permission);
-        $permission->assignRole($role);
+        // $role->givePermissionTo($permission);
+        // $permission->assignRole($role);
 
-        $user = auth()->user();
-        //$user = assignRole('petugas);
+         $user = auth()->user();
+        // $user = assignRole('petugas);
 
-        //$user = User::with('roles')->get();
-        //return $user;
+        // $user = User::with('roles')->get();
+         return $user;
 
-        //$user = auth()->user();
-        //$user->removeRole('petugas');
+        // $user = auth()->user();
+        // $user->removeRole('petugas');
     }
 }

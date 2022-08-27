@@ -19,10 +19,10 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        $catalogs = Catalog::with('books')->get();
+        $catalogs = Catalog::all();
 
-        //return $catalogs;
-        return view ('admin.catalog.index', compact('catalogs'));
+        // return $catalogs; tes data dr database
+        return view('admin.catalog',compact('catalogs'));
     }
 
     public function api()

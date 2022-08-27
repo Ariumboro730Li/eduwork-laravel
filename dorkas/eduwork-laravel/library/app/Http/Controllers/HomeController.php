@@ -78,49 +78,49 @@ class HomeController extends Controller
                     //->get();
 
         // nomor 6
-        $data6 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
-                    ->join('members', 'transactions.member_id', '=', 'members.id')
-                    ->get();
+        //$data6 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
+                    //->join('members', 'transactions.member_id', '=', 'members.id')
+                    //->get();
 
         // nomor 7
-        $data7 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
-                    ->join('members', 'transactions.member_id', '=', 'members.id')
-                    ->whereMonth('date_end', '6')
-                    ->get();
+        //$data7 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
+                    //->join('members', 'transactions.member_id', '=', 'members.id')
+                    //->whereMonth('date_end', '6')
+                    //->get();
 
         // nomor 8
-        $data8 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
-                    ->join('members', 'transactions.member_id', '=', 'members.id')
-                    ->whereMonth('date_start', '5')
-                    ->get();
+        //$data8 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
+                    //->join('members', 'transactions.member_id', '=', 'members.id')
+                    //->whereMonth('date_start', '5')
+                    //->get();
 
         // nomor 9
-        $data9 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
-                    ->join('members', 'transactions.member_id', '=', 'members.id')
-                    ->whereMonth('date_start', '6')
-                    ->whereMonth('date_end', '6')
-                    ->get();
+        //$data9 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
+                    //->join('members', 'transactions.member_id', '=', 'members.id')
+                    //->whereMonth('date_start', '6')
+                    //->whereMonth('date_end', '6')
+                    //->get();
 
         // morno 10
-        $data10 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
-                    ->join('members', 'transactions.member_id', '=', 'members.id')
-                    ->where('address', 'like', '%Bandung%')
-                    ->get();
+        //$data10 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
+                    //->join('members', 'transactions.member_id', '=', 'members.id')
+                    //->where('address', 'like', '%Bandung%')
+                    //->get();
 
         // nomor 11
-        $data11 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
-                    ->join('members', 'transactions.member_id', '=', 'members.id')
-                    ->where('gender', 'F')
-                    ->where('address', 'like', '%Bandung%')
-                    ->get();
+        //$data11 = Transaction::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end')
+                    //->join('members', 'transactions.member_id', '=', 'members.id')
+                    //->where('gender', 'F')
+                    //->where('address', 'like', '%Bandung%')
+                    //->get();
 
         // nomor 12
-        $data12 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn')
-                    ->join('transactions', 'transaction_details.transaction_id', '=', 'transactions.id')
-                    ->join('members', 'transactions.member_id', '=', 'members.id')
-                    ->join('books', 'transaction_details.book_id', '=', 'books.id')
-                    ->where('transaction_details.qty', '>', 1)
-                    ->get();
+        //$data12 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn')
+                    //->join('transactions', 'transaction_details.transaction_id', '=', 'transactions.id')
+                    //->join('members', 'transactions.member_id', '=', 'members.id')
+                    //->join('books', 'transaction_details.book_id', '=', 'books.id')
+                    //->where('transaction_details.qty', '>', 1)
+                    //->get();
 
         // nomor 13
         //$data13 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn', 'transaction_details.qty', 'books.title', 'books.price', 'books.price * transaction_details.qty')
@@ -130,43 +130,43 @@ class HomeController extends Controller
                     //->get();
 
         // nomor 14
-        $data14 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn', 'transaction_details.qty', 'books.title', 'publishers.name as publisher', 'authors.name as author', 'catalogs.name as catalog')
-                    ->join('transactions', 'transaction_details.transaction_id', '=', 'transactions.id')
-                    ->join('members', 'transactions.member_id', '=', 'members.id')
-                    ->join('books', 'transaction_details.book_id', '=', 'books.id')
-                    ->join('publishers', 'books.publisher_id', '=', 'publishers.id')
-                    ->join('authors', 'books.author_id', '=', 'authors.id')
-                    ->join('catalogs', 'books.catalog_id', '=', 'catalogs.id')
-                    ->get();
+        //$data14 = TransactionDetail::select('members.name', 'members.phone_number', 'members.address', 'transactions.date_start', 'transactions.date_end', 'books.isbn', 'transaction_details.qty', 'books.title', 'publishers.name as publisher', 'authors.name as author', 'catalogs.name as catalog')
+                    //->join('transactions', 'transaction_details.transaction_id', '=', 'transactions.id')
+                    //->join('members', 'transactions.member_id', '=', 'members.id')
+                    //->join('books', 'transaction_details.book_id', '=', 'books.id')
+                    //->join('publishers', 'books.publisher_id', '=', 'publishers.id')
+                    //->join('authors', 'books.author_id', '=', 'authors.id')
+                    //->join('catalogs', 'books.catalog_id', '=', 'catalogs.id')
+                    //->get();
 
         // nomor 15
-        $data15 = Catalog::select('catalogs.*', 'books.title')
-                    ->leftJoin('books', 'catalogs.id', '=', 'books.catalog_id')
-                    ->get();
+        //$data15 = Catalog::select('catalogs.*', 'books.title')
+                    //->leftJoin('books', 'catalogs.id', '=', 'books.catalog_id')
+                    //->get();
 
         // nomor 16
-        $data16 = Book::select('books.*', 'publishers.name')
-                    ->leftJoin('publishers', 'publishers.id', '=', 'books.publisher_id')
-                    ->get();
+        //$data16 = Book::select('books.*', 'publishers.name')
+                    //->leftJoin('publishers', 'publishers.id', '=', 'books.publisher_id')
+                    //->get();
 
         // nomor 17
-        $data17 = Book::where('author_id', 5)
-                    ->count();
+        //$data17 = Book::where('author_id', 5)
+                    //->count();
 
         // nomor 18
-        $data18 = Book::select('*')->where('price', '>', '10000')
-                    ->get();
+        //$data18 = Book::select('*')->where('price', '>', '10000')
+                    //->get();
 
         // nomor 19
-        $data19 = Book::select('*')
-                    ->where('author_id', '=', 1)
-                    ->where('qty', '>', '10')
-                    ->get();
+        //$data19 = Book::select('*')
+                    //->where('author_id', '=', 1)
+                    //->where('qty', '>', '10')
+                    //->get();
 
         // nomor 20
-        $data20 = Member::select('*')
-                    ->whereMonth('created_at', '>=', '6')
-                    ->get();
+        //$data20 = Member::select('*')
+                    //->whereMonth('created_at', '>=', '6')
+                    //->get();
 
 
         //return $data20;
