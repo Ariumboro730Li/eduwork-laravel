@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/typicons/typicons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/simple-line-icons/css/simple-line-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
+
+    {{-- Font Awesome Review --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
@@ -111,7 +114,8 @@
                     <li class="nav-item">
                         <form class="search-form" action="#">
                             <i class="icon-search"></i>
-                            <input type="search" class="form-control" placeholder="Search Here" title="Search here">
+                            <input type="search" class="form-control" placeholder="Search Here"
+                                title="Search here">
                         </form>
                     </li>
                     <li class="nav-item dropdown">
@@ -405,6 +409,12 @@
                         <a class="nav-link" href="{{ url('home') }}">
                             <i class="mdi mdi-home-account menu-icon"></i>
                             <span class="menu-title">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-item {{ request()->is('books') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('books') }}">
+                            <i class="mdi mdi-library-books menu-icon"></i>
+                            <span class="menu-title">Book</span>
                         </a>
                     </li>
                     <li class="nav-item {{ request()->is('catalogs_page') ? 'active' : '' }}">

@@ -40,3 +40,6 @@ Route::get('/api/author', [App\Http\Controllers\AuthorController::class, 'api'])
 Route::get('/api/publisher', [App\Http\Controllers\PublisherController::class, 'api']);
 Route::resource('/member', App\Http\Controllers\MemberController::class);
 Route::get('/api/member', [App\Http\Controllers\MemberController::class, 'api']);
+
+Route::resource('/books', App\Http\Controllers\BookController::class);
+Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api']);
