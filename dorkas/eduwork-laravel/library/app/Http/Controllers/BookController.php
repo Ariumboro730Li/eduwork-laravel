@@ -33,7 +33,6 @@ class BookController extends Controller
     public function api()
     {
         $books = Book::all();
-
         return json_encode($books);
     }
 
@@ -92,7 +91,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('admin.book', compact('book'));
+        //return view('admin.book', compact('book'));
     }
 
     /**

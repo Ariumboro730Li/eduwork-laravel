@@ -36,10 +36,10 @@ class AuthorController extends Controller
         //}
 
         //$datatables = datatables()->of($authors)->addIndexColumn();
-        $datatables = DataTables::of($authors)
-                                ->addColumn('date', function($authors) {
-                                    return $authors->created_at->format("H:i:s d F Y");
-                                 })->addIndexColumn();
+          $datatables = datatables()->of($authors)
+                                ->editColumn('created_at',function($members){
+                                    return convert_date($members->created_at);
+                                })->addIndexColumn();
 
         return $datatables->make(true);
     }
@@ -51,7 +51,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('admin.author');
+        //return view('admin.author');
     }
 
     /**
@@ -74,7 +74,6 @@ class AuthorController extends Controller
         //$author->save();
 
         Author::create($request->all());
-
         return redirect('authors');
     }
 
@@ -117,7 +116,6 @@ class AuthorController extends Controller
 		]);
 
         $author->update($request->all());
-
         return redirect('authors');
     }
 
@@ -130,7 +128,6 @@ class AuthorController extends Controller
     public function destroy(Author $author)
     {
         $author->delete(); // Delete data with specific ID
-
         return redirect('authors')->with('success', 'Author has been Deleted');
     }
 }

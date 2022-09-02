@@ -19,25 +19,15 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        $publishers = publisher::with('books')->get();
-
-        //return $publishers;
-        return view ('admin.publisher.index', compact('publishers'));
+        $publishers = Publisher::all();
+         //return $publishers; //cek data DB
+        return view('admin.publisher',compact('publishers'));
     }
 
     public function api()
     {
-        $publishers = publisher::all();
-
-        //foreach ($publishers as $key => $publisher) {
-        //    $publisher->date = convert_date($publisher->created_at);
-        //}
-
-        //$datatables = datatables()->of($publishers)->addIndexColumn();
-        $datatables = DataTables::of($publishers)
-                                ->addColumn('date', function($publishers) {
-                                    return $publishers->created_at->format("H:i:s d F Y");
-                                 })->addIndexColumn();
+         $publishers = Publisher::all();
+         $datatables = datatables()->of($publishers)->addIndexColumn();
 
         return $datatables->make(true);
     }
@@ -49,7 +39,7 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        return view('admin.publisher.create');
+        // return view ('admin.publisher.create');
     }
 
     /**
@@ -60,20 +50,17 @@ class PublisherController extends Controller
      */
     public function store(Request $request)
     {
+        //keamaanan this
         $this->validate($request,[
-            'name'      => ['required'],
-            'phone_number'      => ['required'],
-            'email'      => ['required'],
-            'address'      => ['required'],
+            'name' => ['required', 'min:3'],
+			'phone_number' => ['required', 'min:10'],
+			'email' => ['required', 'email', 'unique:publishers'],
+			'address' => ['required'],
         ]);
-
-        //$publisher = new Publisher;
-        //$publisher->name = $request->name;
-        //$publisher->save();
-
         Publisher::create($request->all());
 
-        return redirect('publishers');
+        return redirect ('publishers');
+
     }
 
     /**
@@ -95,7 +82,8 @@ class PublisherController extends Controller
      */
     public function edit(Publisher $publisher)
     {
-        return view('admin.publisher', compact('publisher'));
+        return view('admin.publisher.index', compact('publisher'));
+
     }
 
     /**
@@ -108,15 +96,15 @@ class PublisherController extends Controller
     public function update(Request $request, Publisher $publisher)
     {
         $this->validate($request,[
-            'name'      => ['required'],
-            'phone_number'      => ['required'],
-            'email'      => ['required'],
-            'address'      => ['required'],
+            'name' => ['required', 'min:3'],
+			'phone_number' => ['required', 'min:10'],
+			'email' => ['required', 'email', 'unique:publishers,email,'.$publisher->id],
+			'address' => ['required']
         ]);
-
         $publisher->update($request->all());
 
-        return redirect('publishers');
+        return redirect ('publishers');
+
     }
 
     /**
@@ -127,6 +115,7 @@ class PublisherController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
+        // Delete data with specific ID
         $publisher->delete();
 
         return redirect('publishers')->with('success', 'Publisher data has been Deleted');

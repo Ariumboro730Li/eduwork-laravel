@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Catalog;
-use Faker\Factory as Faker;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+use App\Models\Catalog;
 
 class CatalogSeeder extends Seeder
 {
@@ -17,10 +18,10 @@ class CatalogSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 4; $i++) {
-            $catalog = new Catalog;
+        for ($i = 0; $i < 20; $i++) {
+            $catalog = new catalog;
 
-            $catalog->name = $faker->sentence(1);
+            $catalog->name = $faker->name;
 
             $catalog->save();
         }

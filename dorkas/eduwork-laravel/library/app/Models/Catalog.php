@@ -13,6 +13,6 @@ class catalog extends Model
 
     public function books()
     {
-        return $this->hasMany('App\Models\Book', 'catalog_id');
+        return $this->hasMany(Book::class, 'catalog_id');
     }
 }
