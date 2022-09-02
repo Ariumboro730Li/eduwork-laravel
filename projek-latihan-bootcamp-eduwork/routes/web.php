@@ -43,3 +43,4 @@ Route::get('/api/member', [App\Http\Controllers\MemberController::class, 'api'])
 
 Route::resource('/books', App\Http\Controllers\BookController::class);
 Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api']);
+Route::put('edit/{id}','ProductController@update')->name('product.update');

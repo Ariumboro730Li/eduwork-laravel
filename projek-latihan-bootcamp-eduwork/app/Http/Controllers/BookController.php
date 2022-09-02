@@ -48,16 +48,17 @@ class BookController extends Controller
     public function store(Request $request)
     {
         //
-        $validator = Validator::make(\request()->all(),
-          [
-            'isbn' => 'required',
-            'title' => 'required',
-            'year' => 'required',
-            'qty' => 'required',
-            'price' => 'required'
-        ]);
-        Book::create($request->all());
-        return redirect('/books');
+        // $validator = Validator::make(\request()->all(),
+        //   [
+        //     'isbn' => 'required',
+        //     'title' => 'required',
+        //     'year' => 'required',
+        //     'qty' => 'required',
+        //     'price' => 'required'
+        // ]);
+        // Book::create($request->all());
+        // return redirect('/books');
+        dd($request->all());
     }
 
     /**
@@ -89,24 +90,31 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book, $id)
+    public function update(Request $request, Book $book)
     {
         //
-        // $book = Book::findOrFail($request->id);
+        // $book = Book::findOrFail($request->$id);
         // $book->title = $request->get('title');
         // $book->year = $request->get('year');
         // $book->qty = $request->get('qty');
         // $book->price = $request->get('price');
-        $validator = Validator::make(request()->all(),
-          [
-            'isbn' => 'required',
-            'title' => 'required',
-            'year' => 'required',
-            'qty' => 'required',
-            'price' => 'required'
-        ]);
-        return $validator->fails();
+        // $validator = Validator::make(request()->all(),
+        //   [
+        //     'isbn' => 'required',
+        //     'title' => 'required',
+        //     'year' => 'required',
+        //     'qty' => 'required',
+        //     'price' => 'required'
+        // ]);
+        // return $validator->fails();
         $book->update($request->all());
+        // $book->save();
+        // $book->update($request->all());
+
+        // $input = $request->all();
+        // $book->update($request->all());
+
+        // dd($request->all());
         return redirect('/books');
     }
 

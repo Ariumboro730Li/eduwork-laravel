@@ -51,9 +51,9 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <input type="hidden" name="_method" value="PUT" v-if="editStatus" @click="editData(book)">
-                            <form method="post" action="{{ url('books') }}" autocomplete="off">
+                            <form method="post" :action="actionUrl" autocomplete="off">
                                 @csrf
+                                <input type="hidden" name="_method" value="PUT" v-if="editStatus">
                                 <div class="mb-3">
                                     <label for="recipient-name" class="col-form-label">ISBN:</label>
                                     <input type="number" class="form-control" name="isbn" :value="book.isbn">
@@ -105,9 +105,14 @@
                                     <input type="number" class="form-control" name="price" :value="book.price">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                                        v-if="editStatus" v-on:click="deleteData(book.id)">Delete</button>
-                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    <button type="button" class="btn btn-danger" v-if="editStatus"
+                                        v-on:click="deleteData(book)">Delete</button>
+                                    {{-- <button type="submit" class="btn btn-primary" v-if="editStatus"
+                                        v-on:click="editData(book.id)">
+                                        Edit Changes</button> --}}
+                                    <button type="submit" class="btn btn-primary" v-if="addDataButton"
+                                        v-on:click="editData(book)">
+                                        Save Changes</button>
                                 </div>
                             </form>
                         </div>
@@ -129,7 +134,8 @@
                 books: [],
                 search: '',
                 book: {},
-                editStatus: false
+                editStatus: false,
+                addDataButton: true
             },
             mounted: function() {
                 this.get_books();
@@ -153,6 +159,7 @@
                 },
                 addData() {
                     this.book = {};
+                    this.actionUrl = '{{ url('books') }}';
                     this.editStatus = false;
                     $('#modal-default').modal('show');
 
@@ -160,14 +167,32 @@
 
                 },
                 editData(book) {
+                    // console.log(book);
                     this.book = book;
-                    this.actionUrl = '{{ url('books') }} ' + '/' + book.id;
+                    // this.addDataButton = true;
+                    this.actionUrl = '{{ url('books') }}' + '/' + book.id;
                     // console.log(this.actionUrl);
                     this.editStatus = true;
                     $('#modal-default').modal('show');
                 },
                 deleteData(id) {
-                    console.log(id)
+                    // console.log(id)
+                    // this.book = book;
+                    const self = this;
+                    this.actionUrl = '{{ url('books') }}' + '/' + id;
+                    if (confirm("Anda yakin?!")) {
+                        axios.post(this.actionUrl, {
+                            _method: 'DELETE'
+                        }).then(response => {
+                            // location.reload($('#modal-default').modal('hide'));
+                            location.reload(true);
+                            // console.log(response);
+                            // axios.get(this.actionUrl);
+
+                            // self.close();
+                        });
+
+                    }
 
                 },
                 numberWithCommas(x) {
