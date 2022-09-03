@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class MemberController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,25 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('admin.member.index');
+        $members = Member::all();
+
+        return view('admin.member.index')->with("members", $members);
+        //return view('admin.member.index');
+    }
+    public function api() 
+    {
+        $members = Member::all();
+
+        // foreach ($members as $key => $member) {
+        //     $member->date = convert_date($member->created_at);
+        // }
+
+        $datatables = datatables()->of($members)
+                                ->addColumn('date', function($member) {
+                                    return convert_date($member->created_at);
+                                })->addIndexColumn();
+
+        return $datatables->make(true);            
     }
 
     /**
@@ -35,7 +58,19 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'          =>['required'],
+            'gender'        =>['required'],
+            'phone_number'  =>['required'],
+            'address'       =>['required'],
+            'email'         =>['required'],                       
+        ]);
+        
+        Member::create($request->all());
+        
+        return redirect('members');
+        
+        //return $request;
     }
 
     /**
@@ -69,7 +104,17 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        $this->validate($request,[
+            'name'          =>['required'],
+            'gender'        =>['required'],
+            'phone_number'  =>['required'],
+            'address'       =>['required'],
+            'email'         =>['required'], 
+        ]);
+        
+        $author->update($request->all());
+        
+        return redirect('members');
     }
 
     /**

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
+use App\Models\Book;
+use App\Models\User;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class TransactionController extends Controller
 {
@@ -14,7 +19,13 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('admin.transaction.index');
+        $transactions = Transaction::select('transactions.date_start','transactions.date_end', 'members.name')
+                            ->join('members', 'members.id', '=', 'transactions.member_id')
+                            ->join('transaction_details', 'transaction_details.transaction_id', '=', 'transactions.id')
+                            ->join('books', 'books.id', '=', 'transaction_details.book_id')
+                            ->get();
+
+        return view('admin.transaction.index')->with('transactions', $transactions);
     }
 
     /**
@@ -24,7 +35,9 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+        $members = Member::all();
+        $books = Book::all();
+         return view ('admin.transaction.create', compact('members', 'books'));    
     }
 
     /**
@@ -35,7 +48,19 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $this->validate($request,[
+            'member_id'      =>['required'],
+            'date_start'      =>['required'],
+            'date_end'      =>['required'],
+            'book_id'      =>['required'],
+        ]);
+        
+
+        Transaction::create($request->all());
+        
+        return redirect('transactions');
     }
 
     /**
