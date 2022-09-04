@@ -4,12 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Catalog;
+use App\Models\Book;
 use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation;
 
 class CatalogController extends Controller
 {
+    public function api(){
+        $catalogs = Catalog::all();
+        $dataTables = datatables()->of($catalogs)->addIndexColumn();
+        return $dataTables->make(true);
+    }
+    public function tes(){
+        return "tes";
+    }
 
     /**
      * Display a listing of the resource.
@@ -19,9 +28,10 @@ class CatalogController extends Controller
     public function index()
     {
         //
-        $catalogs = Catalog::all();
-        // return $catalog;
-        return view('catalog', compact('catalogs'));
+        $catalogs = Catalog::with('catalog')->get();
+        // return $catalogs;
+        // dd($catalogs);
+        return view('admin.catalog.index', compact('catalogs'));
     }
 
     /**
@@ -61,7 +71,7 @@ class CatalogController extends Controller
         $catalog->save();
         // dd($catalog);
         // return $request;
-        return redirect('catalogs_page');
+        return redirect('catalogs');
     }
 
     /**

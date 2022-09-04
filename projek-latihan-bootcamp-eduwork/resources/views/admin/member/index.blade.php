@@ -109,7 +109,7 @@
                 orderable: true
             },
             {
-                data: 'created_at',
+                data: 'date',
                 class: 'text-center',
                 orderable: true
             },
@@ -169,7 +169,7 @@
                         if (confirm("Are you sure to delete this data?")) {
                             axios.post(this.actionUrl + '/' + id, {
                                 _method: 'DELETE'
-                            }).them(response => {
+                            }).then(response => {
                                 alert('Data berhasil dihapus');
                             });
                         }

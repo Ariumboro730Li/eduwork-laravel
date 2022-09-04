@@ -27,7 +27,7 @@ Route::get('/memberall', 'App\Http\Controllers\ModelERDController@showAllMembers
 Route::get('/bookall', 'App\Http\Controllers\ModelERDController@showBooks');
 Route::get('/publisher', 'App\Http\Controllers\ModelERDController@showPublishers');
 // Route::get('/authorall', 'App\Http\Controllers\ModelERDController@author');
-Route::get('/catalog', 'App\Http\Controllers\ModelERDController@catalogAll');
+// Route::get('/catalog', 'App\Http\Controllers\ModelERDController@catalogAll');
 Route::get('/querybuilder', 'App\Http\Controllers\QueryBuilderController@index');
 
 
@@ -44,3 +44,6 @@ Route::get('/api/member', [App\Http\Controllers\MemberController::class, 'api'])
 Route::resource('/books', App\Http\Controllers\BookController::class);
 Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api']);
 Route::put('edit/{id}','ProductController@update')->name('product.update');
+
+Route::get('/api/catalogs', [App\Http\Controllers\CatalogController::class]);
+Route::resource('/catalogs',App\Http\Controllers\CatalogController::class);

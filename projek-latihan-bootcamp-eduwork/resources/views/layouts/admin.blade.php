@@ -417,8 +417,8 @@
                             <span class="menu-title">Book</span>
                         </a>
                     </li>
-                    <li class="nav-item {{ request()->is('catalogs_page') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('catalogs_page') }}">
+                    <li class="nav-item {{ request()->is('catalogs') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('catalogs') }}">
                             <i class="mdi mdi-book menu-icon"></i>
                             <span class="menu-title">Catalog</span>
                         </a>

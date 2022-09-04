@@ -8,6 +8,7 @@ use App\Models\Author;
 use App\Models\Catalog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 class BookController extends Controller
 {
     function api(){
@@ -93,7 +94,8 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         //
-        // $book = Book::findOrFail($request->$id);
+        // $book = Book::findOrFail($request->id);
+        // $record=DB::table('books')->where('id',$book);
         // $book->title = $request->get('title');
         // $book->year = $request->get('year');
         // $book->qty = $request->get('qty');
@@ -107,9 +109,10 @@ class BookController extends Controller
         //     'price' => 'required'
         // ]);
         // return $validator->fails();
-        $book->update($request->all());
+        // $book->update($record->all());
         // $book->save();
-        // $book->update($request->all());
+        $book->update($request->all());
+        dd($book);
 
         // $input = $request->all();
         // $book->update($request->all());
