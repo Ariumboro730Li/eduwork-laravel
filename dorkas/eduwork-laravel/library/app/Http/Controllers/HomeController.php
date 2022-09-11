@@ -34,7 +34,7 @@ class HomeController extends Controller
 	public function home() {
         $total_books = Book::count();
 		$total_members =Member::count();
-		$total_books = Book::count();
+
 		$total_transactions = Transaction::whereMonth('date_start', date('m'))->count();
 		$total_publishers = Publisher::count();
 

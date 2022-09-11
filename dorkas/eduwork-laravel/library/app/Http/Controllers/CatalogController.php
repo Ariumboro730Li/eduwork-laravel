@@ -25,6 +25,13 @@ class CatalogController extends Controller
        // return $catalogs; tes data dr database
        return view('admin.catalog.index',compact('catalogs'));
     }
+    public function api()
+    {
+        $catalogs = Catalog::all();
+        $datatables = datatables()->of($catalogs)->addIndexColumn();
+
+        return $datatables->make(true);
+    }
 
     /**
      * Show the form for creating a new resource.

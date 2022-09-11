@@ -5,22 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class member extends Model
+class Member extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable =
+    [
+        'name',
+        'gender',
+        'phone_number',
+        'address',
+        'email'
+    ];
 
-    public function users()
-
+    public function user()
     {
-        return $this->hasOne(User::class, 'member_id');
+        return $this->hasOne('App\Models\User','member_id');
     }
 
-    // Get the transaction for the member
     public function transactions()
     {
-        return $this->hasMany(Transaction::class, 'member_id');
+        return $this->hasMany('App\Models\Transaction','member_id');
     }
-}
 
+}

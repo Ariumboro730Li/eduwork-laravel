@@ -2,23 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Hasmany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class transaction extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = ['member_id', 'date_start', 'date_end', 'status'];
 
-    public function member()
+
+    public function member(): BelongsTo
     {
         return $this->belongsTo(Member::class);
     }
 
-    public function transactionDetails()
+    public function transactionDetails(): HasMany
     {
         return $this->hasMany(TransactionDetail::class);
     }
+
 
 }

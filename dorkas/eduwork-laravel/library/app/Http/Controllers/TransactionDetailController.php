@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class TransactionDetailController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,7 @@ class TransactionDetailController extends Controller
      */
     public function index()
     {
-        return view ('admin.transactiondetail.index');
+        return view('admin.detail_transaction.index');
     }
 
     /**

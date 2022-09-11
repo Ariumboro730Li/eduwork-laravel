@@ -2,22 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TransactionDetail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['book_id','transaction_id','quantity'];
+    protected $fillable = ['transaction_id', 'book_id','qty'];
 
-    public function transaction()
+
+    public function transaction(): BelongsTo
     {
-        return $this->belongsTo(Transaction::class, 'transaction_id');
+        return $this->belongsTo(Transaction::class);
     }
-    public function book()
+
+    public function books(): BelongsTo
     {
         return $this->belongsTo(Book::class, 'book_id');
     }
 
+
+    // public function transaction()
+    // {
+    //     return $this->belongsTo('App\Models\Transaction','id');
+    // }
 }
