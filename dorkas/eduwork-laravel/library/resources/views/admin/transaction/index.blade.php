@@ -11,12 +11,25 @@
 @section('content')
 <div id="controller">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+            </div>
+            @endif
+            @if ($message = Session::get('delete'))
+            <div class="alert alert-primary alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>{{ $message }}</strong>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-8">
-                            <a href="{{ url('transactions/create') }}" class="btn btn-primary btn-sm ">Create New Transaction</a>
+                        <div class="col-md-8">
+                        <a href="{{url('transactions/create')}}"
+                        class="btn btn-sm btn-primary pull-right">Create New Transaction</a>
                         </div>
                         <div class="col-2">
                             <select class="form-control" name="status">
@@ -53,6 +66,7 @@
         </div>
     </div>
 </div>
+@endcan
 @endsection
 
 @section('js')
@@ -127,5 +141,4 @@
         }
     })
 </script>
-
 @endsection

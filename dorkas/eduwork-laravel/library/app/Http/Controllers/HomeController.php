@@ -234,5 +234,36 @@ class HomeController extends Controller
 
         //return $data20;
         return view('home');
+        $all_members = Member::count();
+        $all_books = Book::count();
+        $all_transactions = Transaction::whereMonth('date_start', date('m'))->count();
+        $all_publishers = Publisher::count();
+
+        $label_donut = Publisher::orderBy('publisher_id')->join('books', 'books.publisher_id', 'publishers.id')->groupBy('publishers.name')->limit(5)->pluck('publishers.name');
+        $data_donut = Book::select(DB::raw("COUNT(publisher_id) as total"))->groupBy('publisher_id')->orderBy('publisher_id')->limit(5)->pluck('total');
+
+        $label_pie = Catalog::orderBy('catalog_id')->join('books', 'books.catalog_id', 'catalogs.id')->groupBy('catalogs.name')->pluck('catalogs.name');
+        $data_pie = Book::select(DB::raw("COUNT(catalog_id) as total"))->groupBy('catalog_id')->orderBy('catalog_id')->pluck('total');
+
+        // return $data_pie;
+
+
+        $label_bar = ['Transactions'];
+        $data_bar = [];
+
+        foreach ($label_bar as $key => $value) {
+            $data_bar[$key]['label'] = $label_bar[$key];
+            $data_bar[$key]['backgroundColor'] = 'rgba(60, 141, 138, 0.9)';
+            $data_month = [];
+
+            foreach (range(1, 12) as $month) {
+                $data_month[] = Transaction::select(DB::raw("COUNT(*) as total"))->whereMonth('date_start', $month)->first()->total;
+            }
+
+            $data_bar[$key]['data'] = $data_month;
+        }
+
+
+        //return view('admin.dashboard',compact('all_members','all_books','all_transactions','all_publishers','data_donut','label_donut','data_bar','label_pie','data_pie'));
     }
 }

@@ -2,13 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\CatalogController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PublisherController;
-use App\Http\Controllers\TransactionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +28,7 @@ Route::get('/authors', [App\Http\Controllers\AuthorController::class, 'index'])-
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
 Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members');
 Route::get('/transactions', [App\Http\Controllers\TransactionController::class, 'index'])->name('transactions');
-Route::get('/transactiondetails', [App\Http\Controllers\TransactionDetailController::class, 'index'])->name('transactiondetails');
+//Route::get('/transactiondetails', [App\Http\Controllers\TransactionDetailController::class, 'index'])->name('transactiondetails');
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
 
 
@@ -74,8 +68,15 @@ Route::get('/api/catalogs', [App\Http\Controllers\CatalogController::class, 'api
 Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api']);
 
 // Transaction
-Route::resource('transactions', TransactionController::class);
+//Route::resource('transactions', TransactionController::class);
+//Route::get('/api/transactions', [App\Http\Controllers\TransactionController::class, 'api']);
+Route::resource('/transactions', App\Http\Controllers\TransactionController::class);
 Route::get('/api/transactions', [App\Http\Controllers\TransactionController::class, 'api']);
+Route::get('/test_spatie', [App\Http\Controllers\TransactionController::class, 'test_spatie']);
 
 //spatie Transaction
-Route::get('spaties', [TransactionController::class,'setRole']);
+//Route::get('spatie', [TransactionController::class,'setRole']);
+
+// Transaction Details
+//Route::resource('/transactionsDetails', App\Http\Controllers\TransactionDetailController::class);
+Route::get('/transactionDetails', [App\Http\Controllers\TransactionDetailController::class, 'index']);

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('header','Detail Transaction')
+@section('header','Transaction Detail')
 
 @section('content')
 <section class="content">
@@ -21,7 +21,7 @@
                 </div>
               </div>
               <div class="card-body">
-               Ini Page Detail Transaction
+               Ini Page Transaction Detail
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
