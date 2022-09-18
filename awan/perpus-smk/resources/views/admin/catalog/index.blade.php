@@ -21,7 +21,7 @@
                 <td class="text-center">{{ $key+1 }}</td>
                 <td>{{ $catalog->name }}</td>
                 <td class="text-center">{{ count($catalog->books) }}</td>
-                <td>{{ $catalog->created_at }}</td>
+                <td>{{ format_tanggal($catalog->created_at) }}</td>
                 <td>
                     <a href="{{ url('catalogs/'.$catalog->id.'/edit') }}" class="btn btn-sm btn-warning">Edit</a>
 

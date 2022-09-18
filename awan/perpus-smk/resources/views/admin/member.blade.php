@@ -18,6 +18,7 @@
                 <th class="text-center">Nomer HP</th>
                 <th class="text-center">Alamat</th>
                 <th class="text-center">Email</th>
+                <th class="text-center">Dibuat</th>
                 <th class="text-center">Aksi</th>
               </tr>
             </thead>
@@ -88,6 +89,7 @@
         {data: 'phone_number', class: 'text-center', orderable: true},
         {data: 'address', class: 'text-center', orderable: true},
         {data: 'email', class: 'text-center', orderable: true},
+        {data: 'date', class: 'text-center', orderable: true},
         {render: function (index, row, data, meta) {
             return `
             <a href="#" onclick="controller.editData(event, ${meta.row})" class="btn btn-sm btn-warning">Edit</a>
