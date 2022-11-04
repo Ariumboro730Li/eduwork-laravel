@@ -48,7 +48,22 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation Data
+        $validator = $request->validate([
+            'isbn' => 'required|unique:books|max:9',
+            'title' => 'required',
+            'year' => 'required|min:2|max:4',
+            'publisher_id' => 'required',
+            'author_id' => 'required',
+            'catalog_id' => 'required',
+            'quantity' => 'required|min:1|max:4',
+            'price' => 'required|min:1|max:11',
+        ]);
+
+        // Insert validated data into database
+        $book = Book::create($validator);
+
+        return response()->json($book);
     }
 
     /**
@@ -82,7 +97,22 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        // Validation Data
+        $validator = $request->validate([
+            'isbn' => "required|unique:books,isbn,{$book->id}|max:9",
+            'title' => 'required',
+            'year' => 'required|min:2|max:4',
+            'publisher_id' => 'required',
+            'author_id' => 'required',
+            'catalog_id' => 'required',
+            'quantity' => 'required|min:1|max:4',
+            'price' => 'required|min:1|max:11',
+        ]);
+
+        // Insert validated data into database
+        $book->update($validator);
+
+        return redirect('books')->with('success', 'book data has been Updated');
     }
 
     /**
@@ -93,6 +123,6 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
     }
 }

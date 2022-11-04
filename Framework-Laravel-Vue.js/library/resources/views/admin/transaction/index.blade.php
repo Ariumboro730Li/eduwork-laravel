@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+
 @section('header', 'Transaction')
 
 @section('css')
@@ -10,13 +11,20 @@
 
 @section('content')
 <div id="controller">
+    <!-- Data Table -->
     <div class="row">
         <div class="col-md-12">
+        <!-- Displaying The Success Message of Modifying DataBase -->
+        @if (session()->has('success'))
+            <div class="alert alert-info">
+                {{ session('success') }}
+            </div>
+        @endif
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <a href="{{ url('transactions/create') }}" class="btn btn-primary btn-sm ">Create New Transaction</a>                    
+                            <a href="{{ route('transactions.create') }}" class="btn btn-primary">Create New Transaction</a>                    
                         </div>
                         <div class="col-2">
                             <select class="form-control" name="status">
@@ -31,7 +39,7 @@
                     </div>
                 </div>
  
-                <div class="card-body">
+                <div class="card-body p-3">
                     <!-- <table class="table table-bordered"> -->
                     <table id="datatable" class="table table-bordered table-striped">
                         <thead>
@@ -72,9 +80,9 @@
 
 <!-- Page specific script -->
 <script>
-    // $(function () {
-    //     $("#dataTable").DataTable();
-    // });
+    $(function () {
+         $("#dataTable").DataTable();
+     });
 </script>
 
 <script>
@@ -114,9 +122,9 @@
         let status = $('select[name=status]').val();
 
         if (status == '') {
-            controller.table.ajax.url(apiUrl).load()
+            controller.table.ajax.url(apiUrl).load();
         } else {
-            controller.table.ajax.url(`${apiUrl}?status=${status}`).load()
+            controller.table.ajax.url(`${apiUrl}?status=${status}`).load();
         }
     })
 
@@ -125,9 +133,9 @@
         console.log(date)
 
         if (date == '') {
-        controller.table.ajax.url(apiUrl).load()
+        controller.table.ajax.url(apiUrl).load();
         } else {
-        controller.table.ajax.url(`${apiUrl}?date_start=${date}`).load()
+        controller.table.ajax.url(`${apiUrl}?date_start=${date}`).load();
         }
     })
 </script>

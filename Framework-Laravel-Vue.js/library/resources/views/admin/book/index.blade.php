@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 @section('header', 'Book')
 
+@section('css')
+	
+@endsection
 @section('content')
 <div id="controller">
     <div class="row">

@@ -10,16 +10,16 @@
 
 @section('content')
 <div id="controller">
-    <div class="row">
+<div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-10">
-                            <a href="#" @click="addData()" class="btn btn-primary">Add new Member</a>
+                            <a href="#" @click="addData()" class="btn btn-sm btn-primary pull-right">Add new Member</a>
                         </div>
-                        <div class="col-2">
-                            <select class="form-control" name="sex">
+                        <div class="col-md-2">
+                            <select class="form-control" name="gender">
                                 <option value="0">All</option>
                                 <option value="M">Male</option>
                                 <option value="F">Female</option>
@@ -65,7 +65,7 @@
 
                         <input type="hidden" name="_method" value="PUT" v-if="editStatus">
 
-                            <div class="form-group">
+                        <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" name="name" class="form-control" :value="data.name" required="">
                             </div>
@@ -121,61 +121,31 @@
         {data:'DT_RowIndex', class: 'text-center', orderable: true},
         {data:'name', class: 'text-center', orderable: true},
         {data:'gender', class: 'text-center', orderable: true},
-        {data:'email', class: 'text-center', orderable: true},
         {data:'phone_number', class: 'text-center', orderable: true},
         {data:'address', class: 'text-center', orderable: true},
+        {data:'email', class: 'text-center', orderable: true},
         {data:'date', class: 'text-center', orderable: true},
         {render: function (index, row, data, meta){
             return `
                 <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">
                     Edit
                 </a>
-                <a href="#" class="btn btn-danger btn-sm" onclick="controller.deleteData(event, ${data.id})">
+                <a class="btn btn-danger btn-sm" onclick="controller.deleteData(event, ${data.id})">
                     Delete
                 </a>`;
-        }, orderable: false, width: '200px', class: 'text-center'},
+        }, orderable: false, width: '100px', class: 'text-center'},
     ];
 </script>
 <script src="{{ asset('js/data.js') }}"></script>
+<script type="text/javascript">
+    $('select[name=gender]').on('change', function() {
+        let gender = $('select[name=gender]').val();
 
-<!-- <script type="text/javascript">
-    $(function () {
-    $("#datatable").DataTable()
+        if (gender == '') {
+            controller.table.ajax.url(actionUrl).load();
+        } else {
+            controller.table.ajax.url(`${apiUrl}?gender=${gender}`).load();
+        }
     });
-</script> -->
-<!-- CRUD Vue js -->
-    <!-- <script type="text/javascript">
-        var controller = new Vue({
-            el: '#controller',
-            data: {
-                data : {},
-                actionUrl :'{{ url('members') }}',
-                editStatus : false
-            },
-            mounted: function () {
-            },
-            methods: {
-                addData() {
-                    this.data = {};
-                    this.actionUrl = '{{ url('members') }}'
-                    this.editStatus = false;
-                    $('#modal-default').modal();
-                },
-                editData(data) {
-                    this.data = data;
-                    this.actionUrl = '{{ url('members') }}'+'/'+data.id;
-                    this.editStatus = true;
-                    $('#modal-default').modal();
-                },
-                deleteData(id) {
-                    this.actionUrl = '{{ url('members') }}'+'/'+id;
-                    if(confirm("Are you sure ?")) {
-                        axios.post(this.actionUrl, {_method: 'DELETE'}).then(response => {
-                            location.reload();
-                        })
-                    }
-                }
-            }
-        });
-    </script> -->
+</script>
 @endsection

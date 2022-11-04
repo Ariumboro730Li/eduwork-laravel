@@ -17,11 +17,20 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $members = Member::all();
+        // if ($request->gender) {
+        //     $members = Member::where('gender', $request->gender)->get();
+        // } else {
+        //     $members = Member::all();
+        // }
 
-        return view('admin.member.index')->with("members", $members);
+        // $datatables = datatables()->of($members)->addIndexColumn();
+
+        // return $datatables->make(true);
+         $members = Member::all();
+
+         return view('admin.member.index')->with("members", $members);
         //return view('admin.member.index');
     }
     public function api() 
@@ -125,6 +134,9 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        // Delete data with specific ID
+        $member->delete();
+
+        return redirect('members')->with('success', 'Member data has been Deleted');
     }
 }
