@@ -1,0 +1,5 @@
+1. update pasien set jenis_kelamin='P' where id_pasien='P002';
+2. update obat set nama_obat='Woods' where id_obat='OB002';
+3. update pasien set nama_pasien='Achmad', umur = '27' where id_pasien='P001';
+4. delete from pasien where id_pasien='P010';
+5. delete from pasien where nama_pasien like '%sup%';
