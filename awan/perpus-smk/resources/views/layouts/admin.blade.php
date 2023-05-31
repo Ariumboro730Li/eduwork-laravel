@@ -25,6 +25,7 @@
                     <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
+
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
@@ -53,27 +54,31 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="{{ url('home') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-home-alt"></i></div>
                                 Dashboard
                             </a>
+                            <a class="nav-link" href="{{ url('transactions') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Transactions
+                            </a>
                             <a class="nav-link" href="{{ url('catalogs') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
                                 Catalog
                             </a>
                             <a class="nav-link" href="{{ url('publishers') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-people-carry"></i></div>
                                 Publisher
                             </a>
                             <a class="nav-link" href="{{ url('authors') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-certificate"></i></div>
                                 Author
                             </a>
                             <a class="nav-link" href="{{ url('books') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                                 Book
                             </a>
                             <a class="nav-link" href="{{ url('members') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                                 Member
                             </a>
                         </div>
