@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Event Handling</title>
+    <style>
+        .example {
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+	<div id="example-1" class="example">
+	  <button v-on:click="counter += 1">Add 1</button>
+	  <p>The button above has been clicked {{ counter }} times.</p>
+	</div>
+
+	<div id="example-2" class="example">
+	  <!-- `greet` is the name of a method defined below -->
+	  <button v-on:click="greet">Greet</button>
+	</div> 
+
+	<div id="example-3" class="example">
+	  <button v-on:click="say('hi')">Say hi</button>
+	  <button v-on:click="say('what')">Say what</button>
+	  <span id="example-3_1">
+	    <button v-on:click="warn('Form cannot be submitted yet.', $event)">Submit</button>
+      </span>
+    </div> 
+
+	<div id="example-4" class="example">
+	 <button v-on:click.once="greet">Greet Once</button>
+	</div> 
+
+	<div id="app" class="example">
+		<label>Nama: </label>
+		<input type="text" @keyup.enter='pesan' placeholder="tekan enter">
+	</div> 
+
+	<div id="app1" class="example">
+		<label>Nama: </label>
+		<input type="text" @keyup.shift.enter='myListener' placeholder="tekan shift+enter">
+	</div>
+
+	<div id="editor" class="example">
+	  <textarea rows="15" :value="input" 
+        @click.right="logme('ini right')"  
+        @click.left="logme('ini left')" placeholder="klik kanan atau kiri">
+      </textarea>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
