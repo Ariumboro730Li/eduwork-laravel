@@ -23,8 +23,8 @@ class TransactionSeeder extends Seeder
             $transaction = new Transaction();
 
             $transaction->member_id = rand(1, 20);
-            $transaction->date_start = $faker->date();
-            $transaction->date_end = $faker->date();
+            $transaction->date_start = $faker->dateTimeBetween();
+            $transaction->date_end = $faker->dateTimeBetween('-1 week', '+1 week');
             $transaction->status = $faker->randomElement(['Y', 'N']);
 
             $transaction->save();
