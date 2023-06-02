@@ -37,6 +37,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 Route::resources([
     'catalogs' => App\Http\Controllers\CatalogController::class,
     'publishers' => App\Http\Controllers\PublisherController::class,
+    'transactions' => App\Http\Controllers\TransactionController::class,
     'authors' => App\Http\Controllers\AuthorController::class,
     'members' => App\Http\Controllers\MemberController::class,
     'books' => App\Http\Controllers\BookController::class
@@ -44,6 +45,7 @@ Route::resources([
 
 Route::get('/api/authors', [App\Http\Controllers\AuthorController::class, 'api']);
 Route::get('/api/publishers', [App\Http\Controllers\PublisherController::class, 'api']);
+Route::get('/api/transactions', [App\Http\Controllers\TransactionController::class, 'api']);
 Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api']);
 Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api']);
 

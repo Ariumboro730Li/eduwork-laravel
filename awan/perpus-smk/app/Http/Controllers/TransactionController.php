@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +18,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.transaction');
     }
 
     /**
@@ -22,9 +26,19 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function api()
+    {
+        $transaction = Transaction::all();
+        $datatables = datatables()->of($transaction)
+            ->addColumn('date', function ($transaction) {
+                return format_tanggal($transaction->created_at);
+            })->addIndexColumn();
+
+        return $datatables->make(true);
+    }
+
     public function create()
     {
-        //
     }
 
     /**
