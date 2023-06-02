@@ -32,7 +32,7 @@
                     <a class="nav-link" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-bell"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         @foreach (telat_pengembalian() as $item)
-                            <li><p class="dropdown-item">{{ $item->name }} telat mengembalikan</p></li>
+                            <li><strong><p class="dropdown-item">{{ $item->name }}</strong> terlambat mengembalikan</p></li>
                         @endforeach
                     </ul>
                 </li>

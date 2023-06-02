@@ -94,6 +94,8 @@
     var label_area = '{!! json_encode($label_area) !!}';
     var data_area = '{!! json_encode($data_area) !!}';
 
+    // console.log('data_area');
+
     var ctx = document.getElementById("grafikPenerbit");
     var myPieChart = new Chart(ctx, {
     type: 'pie',
@@ -101,7 +103,7 @@
         labels: JSON.parse(label_donat),
         datasets: [{
         data: JSON.parse(data_donat),
-        backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745', '#333333', '#23a310', '#871ae1', '#1ee230'],
+        backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745', '#333333', '#23a310', '#871ae1', '#1ee230', '#1f6', '#e00030', '#1a0030', '#50e230', '#1e0123', '#1ee2ee'],
         }],
     },
     });
@@ -194,8 +196,5 @@
         }
     }
     });
-
-
-
 </script>
 @endsection

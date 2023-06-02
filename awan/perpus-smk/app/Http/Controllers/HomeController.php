@@ -220,5 +220,6 @@ class HomeController extends Controller
 
         // return $data_month;
         return view('admin.home', compact('total_anggota', 'total_buku', 'total_peminjaman', 'total_penerbit', 'data_donat', 'label_donat', 'data_bar', 'label_area', 'data_area'));
+        // return $data_bar;
     }
 }
