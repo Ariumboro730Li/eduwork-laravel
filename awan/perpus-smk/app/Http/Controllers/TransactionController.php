@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -28,11 +29,16 @@ class TransactionController extends Controller
      */
     public function api()
     {
-        $transaction = Transaction::all();
+        $transaction = Transaction::select(DB::raw('(transaction_details.qty * books.price) as price'), 'transactions.date_start', 'transactions.date_end', 'members.name', 'transactions.status', 'transaction_details.qty')
+            ->join('members', 'transactions.member_id', '=', 'members.id')
+            ->Rightjoin('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
+            ->Leftjoin('books', 'transaction_details.book_id', '=', 'books.id')
+            ->get();
         $datatables = datatables()->of($transaction)
             ->addColumn('date', function ($transaction) {
                 return format_tanggal($transaction->created_at);
-            })->addIndexColumn();
+            })
+            ->addIndexColumn();
 
         return $datatables->make(true);
     }

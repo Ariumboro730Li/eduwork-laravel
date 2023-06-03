@@ -42,16 +42,16 @@
     var columns = [
         {data: 'date_start', class: 'text-center', orderable: true},   
         {data: 'date_end', class: 'text-center', orderable: true},   
-        {data: 'nama_peminjam', class: 'text-center', orderable: true},
-        {data: 'email', class: 'text-center', orderable: true},
-        {data: 'phone_number', class: 'text-center', orderable: true},
-        {data: 'address', class: 'text-center', orderable: true},
-        {data: 'status', class: 'text-center', orderable: true},
+        {data: 'name', class: 'text-center', orderable: true},
+        {data: 'name', class: 'text-center', orderable: true},
+        {data: 'qty', class: 'text-center', orderable: true},
+        {data: 'price', class: 'text-center', orderable: true},
+        {data: 'status', class: 'text-center', orderable: false},
         {render: function (index, row, data, meta) {
             return `
             <a href="#" onclick="controller.editData(event, ${meta.row})" class="btn btn-sm btn-warning">Edit</a>
             <a href="#" onclick="controller.deleteData(event, ${data.id})" class="btn btn-sm btn-danger">Delete</a>`;
-        }, orderable: false, width: '110px', class: 'text-center'},
+        }, orderable: false, width: '120px', class: 'text-center'},
     ];
 </script>
 <script src="{{ asset('js/data.js') }}"></script>
