@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use DateTime;
+use App\Models\Book;
+use App\Models\Member;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,6 +54,11 @@ class TransactionController extends Controller
 
     public function create()
     {
+        $member = Member::all();
+        $book = Book::where('qty', '>', 1)->get();
+
+        // return $book;
+        return view('admin.transaction.create', compact('member', 'book'));
     }
 
     /**
