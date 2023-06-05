@@ -43,7 +43,7 @@
         {data: 'date_start', class: 'text-center', orderable: true},   
         {data: 'date_end', class: 'text-center', orderable: true},   
         {data: 'name', class: 'text-center', orderable: true},
-        {data: 'name', class: 'text-center', orderable: true},
+        {data: 'lama_hari', class: 'text-center', orderable: true},
         {data: 'qty', class: 'text-center', orderable: true},
         {data: 'price', class: 'text-center', orderable: true},
         {data: 'status', class: 'text-center', orderable: false},

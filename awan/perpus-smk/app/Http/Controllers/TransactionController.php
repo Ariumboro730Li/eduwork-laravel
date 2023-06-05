@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -35,8 +36,14 @@ class TransactionController extends Controller
             ->Leftjoin('books', 'transaction_details.book_id', '=', 'books.id')
             ->get();
         $datatables = datatables()->of($transaction)
-            ->addColumn('date', function ($transaction) {
-                return format_tanggal($transaction->created_at);
+            ->addColumn('lama_hari', function ($transaction) {
+                $fdate = $transaction->date_start;
+                $tdate = $transaction->date_end;
+                $datetime1 = new DateTime($fdate);
+                $datetime2 = new DateTime($tdate);
+                $interval = $datetime1->diff($datetime2);
+                $days = $interval->format('%a');
+                return $days;
             })
             ->addIndexColumn();
 
