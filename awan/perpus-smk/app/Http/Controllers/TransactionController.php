@@ -6,6 +6,7 @@ use DateTime;
 use App\Models\Book;
 use App\Models\Member;
 use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -69,7 +70,23 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $this->validate($request, [
+            'member_id' => 'required|numeric',
+            'date_start' => 'required|date',
+            'date_end' => 'required||date',
+            'status' => 'required',
+        ]);
+
+        $create = Transaction::create($request->all());
+
+        TransactionDetail::create([
+            'transaction_id' => $create->id,
+            'book_id' => $request->book_id,
+            'qty' => 1
+        ]);
+        // return $last_id;
+        return redirect('transactions');
     }
 
     /**
