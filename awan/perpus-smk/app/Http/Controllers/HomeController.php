@@ -190,7 +190,7 @@ class HomeController extends Controller
 
         $total_anggota = Member::count();
         $total_buku = Book::count();
-        $total_peminjaman = Transaction::count();
+        $total_peminjaman = TransactionDetail::count();
         $total_penerbit = Publisher::count();
 
         $data_donat = Book::select(DB::raw("COUNT(publisher_id) as total"))->groupBy('publisher_id')->orderBy('publisher_id', 'asc')->pluck('total');

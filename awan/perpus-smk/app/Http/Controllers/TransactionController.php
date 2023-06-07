@@ -116,7 +116,16 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        $data = Transaction::select('members.name', 'books.title', 'transactions.date_start', 'transactions.date_end', 'transactions.status', 'transactions.member_id', 'transaction_details.book_id', 'transaction_details.transaction_id')
+            ->join('members', 'transactions.member_id', '=', 'members.id')
+            ->Rightjoin('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
+            ->Leftjoin('books', 'transaction_details.book_id', '=', 'books.id')
+            ->where('transaction_details.id', '=', $transaction->id)
+            ->get();
+        $member = Member::all();
+        $book = Book::where('qty', '>', 1)->get();
+
+        return view('admin.transaction.edit', compact('transaction', 'data', 'member', 'book'));
     }
 
     /**
@@ -126,9 +135,26 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction $transaction)
+    public function update(Request $request, Transaction $transaction, TransactionDetail $detail)
     {
-        //
+        // return $request;
+        $this->validate($request, [
+            'member_id' => 'required|numeric',
+            'date_start' => 'required|date',
+            'date_end' => 'required||date',
+            'book_id' => 'required|numeric',
+            'status' => 'required',
+        ]);
+
+        // $create = Transaction::create($request->all());
+        $transaction->update($request->all());
+
+        $detail->update([
+            'book_id' => $request->book_id,
+            'qty' => 1
+        ]);
+
+        return redirect('transactions');
     }
 
     /**

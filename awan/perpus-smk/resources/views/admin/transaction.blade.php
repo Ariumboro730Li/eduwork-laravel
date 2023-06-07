@@ -59,7 +59,7 @@
             // console.log(data.status);
             return `
             <a href="{{ url('transactions')}}/${data.id}" class="btn btn-sm btn-info">Detail</a>
-            <a href="{{ url('transactions')}}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="{{ url('transactions')}}/${data.id}/edit" class="btn btn-sm btn-warning">Edit</a>
             <form action="{{ url('transactions') }}/${data.id}" method="post" class="d-inline-block">
                 <input class="btn btn-sm btn-danger" type="submit" value="Delete" onclick="return confirm('Are you sure?')">
                 @method('delete')
