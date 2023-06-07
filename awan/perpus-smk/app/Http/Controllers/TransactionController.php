@@ -33,7 +33,7 @@ class TransactionController extends Controller
      */
     public function api()
     {
-        $transaction = Transaction::select('transaction_details.id', DB::raw('(transaction_details.qty * books.price) as price'), 'transactions.date_start', 'transactions.date_end', 'members.name', 'transactions.status', 'transaction_details.qty')
+        $transaction = Transaction::select('transaction_details.transaction_id', 'transaction_details.id', DB::raw('(transaction_details.qty * books.price) as price'), 'transactions.date_start', 'transactions.date_end', 'members.name', 'transactions.status', 'transaction_details.qty')
             ->join('members', 'transactions.member_id', '=', 'members.id')
             ->Rightjoin('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
             ->Leftjoin('books', 'transaction_details.book_id', '=', 'books.id')
@@ -137,8 +137,14 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(TransactionDetail $transaction)
     {
-        //
+        // return $transaction;
+        // return "tes";
+        // $transaction = Transaction::find($transaction->id);
+        // return $transaction;
+
+        $transaction->delete();
+        return redirect('transactions');
     }
 }
