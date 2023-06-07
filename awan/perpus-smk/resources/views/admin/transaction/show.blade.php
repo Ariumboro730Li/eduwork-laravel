@@ -21,7 +21,7 @@
                         <div class="mb-3 row">
                             <label class="col-md-3 col-form-label">Tanggal Peminjaman</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" value="{{ $transaction->date_start }} / {{ $transaction->date_end }}" class="form-control">
+                                <input type="text" class="form-control" value="{{ $item->date_start }} / {{ $item->date_end }}" class="form-control">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -33,7 +33,7 @@
                         <div class="mb-3 row">
                             <label class="col-md-3 col-form-label">Status</label>
                             <div class="col-md-9">
-                                <input type="text" value="{{ $transaction->status }}" class="form-control">
+                                <input type="text" value="{{ $item->status }}" class="form-control">
                             </div>
                         </div>
                     </div>

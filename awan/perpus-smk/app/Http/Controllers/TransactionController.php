@@ -97,7 +97,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        $data = Transaction::select('members.name', 'books.title')
+        $data = Transaction::select('members.name', 'books.title', 'transactions.date_start', 'transactions.date_end', 'transactions.status')
             ->join('members', 'transactions.member_id', '=', 'members.id')
             ->Rightjoin('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
             ->Leftjoin('books', 'transaction_details.book_id', '=', 'books.id')
@@ -105,7 +105,7 @@ class TransactionController extends Controller
             ->get();
 
         // return $data;
-        return view('admin.transaction.show', compact('transaction', 'data'));
+        return view('admin.transaction.show', compact('data'));
     }
 
     /**
