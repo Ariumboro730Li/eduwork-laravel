@@ -56,9 +56,10 @@
         {data: 'price', class: 'text-center', orderable: true},
         {data: 'status', class: 'text-center', orderable: false},
         {render: function (index, row, data, meta) {
+            // console.log(data.status);
             return `
-            <a href="{{ url('catalogs/')}}" class="btn btn-sm btn-warning">Edit</a>
-            <a href="#" class="btn btn-sm btn-info">Detail</a>
+            <a href="{{ url('transactions')}}/${data.id}" class="btn btn-sm btn-info">Detail</a>
+            <a href="{{ url('transactions')}}" class="btn btn-sm btn-warning">Edit</a>
             <a href="#" class="btn btn-sm btn-danger">Delete</a>`;
         }, orderable: false, width: '170px', class: 'text-center'},
     ];

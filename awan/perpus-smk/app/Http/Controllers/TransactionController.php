@@ -33,7 +33,7 @@ class TransactionController extends Controller
      */
     public function api()
     {
-        $transaction = Transaction::select(DB::raw('(transaction_details.qty * books.price) as price'), 'transactions.date_start', 'transactions.date_end', 'members.name', 'transactions.status', 'transaction_details.qty')
+        $transaction = Transaction::select('transaction_details.id', DB::raw('(transaction_details.qty * books.price) as price'), 'transactions.date_start', 'transactions.date_end', 'members.name', 'transactions.status', 'transaction_details.qty')
             ->join('members', 'transactions.member_id', '=', 'members.id')
             ->Rightjoin('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
             ->Leftjoin('books', 'transaction_details.book_id', '=', 'books.id')
@@ -97,7 +97,15 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        $data = Transaction::select('members.name', 'books.title')
+            ->join('members', 'transactions.member_id', '=', 'members.id')
+            ->Rightjoin('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
+            ->Leftjoin('books', 'transaction_details.book_id', '=', 'books.id')
+            ->where('transaction_details.id', '=', $transaction->id)
+            ->get();
+
+        // return $data;
+        return view('admin.transaction.show', compact('transaction', 'data'));
     }
 
     /**
