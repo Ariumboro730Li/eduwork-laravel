@@ -21,9 +21,12 @@
 <div class="wrapper">
 
   <!-- Preloader -->
- {{-- <div class="preloader flex-column justify-content-center align-items-center">
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center" style="display: flex;">
     <img class="animation__shake" src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTELogo" height="60" width="60">
-  </div>--}}
+  </div>
+
+
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -243,7 +246,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
