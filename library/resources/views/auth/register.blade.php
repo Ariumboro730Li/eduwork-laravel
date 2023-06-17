@@ -7,17 +7,17 @@
 @section('content')
     <div class="register-box">
   <div class="register-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html" class="h2" >Register</a>
   </div>
 
   <div class="card">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">Register a new membership</p>
+      <p class="login-box-msg">Daftarlah Sekarang Untuk Menjadi Member Baru</p>
 
       <form method="POST" action="{{ route('register') }}">
         @csrf
         <div class="input-group mb-3">
-          <input id="name" placeholder="Full Name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+          <input id="name" placeholder="Nama Lengkap" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
             @error('name')
                 <span class="invalid-feedback" role="alert">
@@ -72,13 +72,13 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" class="btn btn-primary btn-block">Daftar</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      <a href="/login" class="text-center">I already have a membership</a>
+      <a href="/login" class="text-center">Login Jika Sudah Memiliki Akun</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

@@ -10,10 +10,10 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a>
+      <a href="../../index2.html" class="h1">Login</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Silahkan Login Untuk Memasuki Halaman Dashboard</p>
 
       <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -52,24 +52,24 @@
               <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                 <label class="form-check-label" for="remember">
-                    {{ __('Remember Me') }}
+                    {{ __('Ingatkan Saya') }}
                 </label>
             </label>
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="forgot-password.html">Lupa Password</a>
       </p>
       <p class="mb-0">
-        <a href="/register" class="text-center">Register a new membership</a>
+        <a href="/register" class="text-center">Silahkan Daftar Menjadi Member</a>
       </p>
     </div>
     <!-- /.card-body -->
