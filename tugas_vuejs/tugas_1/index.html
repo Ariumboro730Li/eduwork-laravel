@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tugas Vue Js</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+	<div id="app" v-if="status == 'tampilkan' ">
+		{{ message }} <br> <br>
+		<label v-for="user in users">
+			Nama : {{user.name}}, 
+			Umur : {{user.age}} <br> 
+		</label>
+	</div>
+	
+	
+	<script>
+		var app = new Vue({
+		  el: '#app',
+		  data: {
+		    message: 'Hello Vue!',
+		  	status:'tampilkan',
+		  	users:[
+		  		{
+		  			name:'khozin',
+		  			age:'20' 
+		  		},
+		  		{
+		  			name:'khoirul',
+		  			age:'21'
+		  		},
+		  		{
+		  			name:'zaki',
+		  			age:'25'
+		  		}
+		  		]
+		  }
+		})
+	</script>
+</body>
+</html>
