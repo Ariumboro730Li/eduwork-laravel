@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class publisher extends Model
 {
-    use HasFactory;
+     public function books(){
+        return $this->hasMany('App\Models\Book', 'publisher_id');
+    }
 }
