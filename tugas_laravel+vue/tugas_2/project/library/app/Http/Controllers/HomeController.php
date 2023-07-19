@@ -246,15 +246,14 @@ class HomeController extends Controller
               //  ->get(); 
 
       // no.20
-              $data = Member::select('members.*') 
-              ->whereMONTH('created_at','=', '06')
-               ->get(); 
+              // $data = Member::select('members.*') 
+              // ->whereMONTH('created_at','=', '06')
+              //  ->get(); 
 
 
-              
+            
 
-
-          return $data;
+          // return $data;
 
     // ------------------------Akhir Tugas 10-----------------------------
 

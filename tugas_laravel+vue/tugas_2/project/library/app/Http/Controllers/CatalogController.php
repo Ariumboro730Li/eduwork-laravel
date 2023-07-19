@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Author;
 use App\Models\Catalog;
+use App\Models\Publisher;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class CatalogController extends Controller
@@ -14,7 +16,11 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        return view('admin.catalog.index');
+        
+        $catalogs=Catalog::with('books')->get();
+        
+        // return $catalogs;
+        return view('admin.catalog.index', compact('catalogs'));
     }
 
     /**
