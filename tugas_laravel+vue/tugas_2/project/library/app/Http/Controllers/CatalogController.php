@@ -18,9 +18,10 @@ class CatalogController extends Controller
     {
         
         $catalogs=Catalog::with('books')->get();
+        $authors=Author::with('books')->get();
         
         // return $catalogs;
-        return view('admin.catalog.index', compact('catalogs'));
+        return view('admin.catalog.index', compact('catalogs','authors'));
     }
 
     /**
@@ -30,7 +31,7 @@ class CatalogController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.catalog.create');
     }
 
     /**
@@ -41,7 +42,29 @@ class CatalogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute harus diisi minimal :min karakter ',
+            'max' => ':attribute harus diisi maksimal :max karakter ',
+        ];
+
+        $this->validate($request,[
+                'name_c' => 'required',
+
+        ],$messages);
+
+
+        // $catalog = new Catalog;
+        // $catalog->name = $request->name;
+        // $catalog->save();
+
+        Catalog::create($request->all());
+
+        return redirect('catalogs');
+
+
+
     }
 
     /**
@@ -63,7 +86,7 @@ class CatalogController extends Controller
      */
     public function edit(Catalog $catalog)
     {
-        //
+        return view('admin.catalog.edit', ['catalog' => $catalog]);
     }
 
     /**
@@ -75,7 +98,24 @@ class CatalogController extends Controller
      */
     public function update(Request $request, Catalog $catalog)
     {
-        //
+         $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute harus diisi minimal :min karakter ',
+            'max' => ':attribute harus diisi maksimal :max karakter ',
+        ];
+
+        $this->validate($request,[
+                'name_c' => 'required',
+
+        ],$messages);
+
+        $catalog->update($request->all());
+
+         
+
+        return redirect('catalogs');
+
+
     }
 
     /**
@@ -86,6 +126,7 @@ class CatalogController extends Controller
      */
     public function destroy(Catalog $catalog)
     {
-        //
+        $catalog->delete();
+        return redirect('catalogs');
     }
 }

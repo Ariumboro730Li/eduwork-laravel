@@ -5,20 +5,24 @@
 <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Data Catalog</h3>
+                 <a href=" {{url('catalogs/create')}} " class="btn btn-sm btn-primary pull-left">Create New Catalog</a>
+                <!-- <h3 class="card-title">Data Catalog</h3> -->
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                
+
                 <table class="table table-bordered">
-                  <thead class="text-center">
                     <tr>
+                  <thead class="text-center">
                       <th style="width: 10px">No</th>
                       <th>Name</th>
                       <th>Total Books</th>
                       <th>Created At</th>
+                      <th >Action</th>
                      
                     </tr>
                   </thead>
@@ -29,6 +33,19 @@
                       <td> {{$catalog->name_c}} </td>
                       <td> {{count($catalog->books)}} </td>
                       <td> {{ date('H:i:s - d M Y', strtotime($catalog->created_at)) }} </td>
+                      <td> <a href=" {{ url('catalogs/'.$catalog->id.'/edit')}} " class="btn btn-warning btn-sm">Edit</a>
+
+                       <form action=" {{url('catalogs', ['id' => $catalog->id]) }} " method="post" class="d-inline">
+                          <input type="submit" class="btn btn-danger btn-sm" value="delete" onclick="return confirm('Apakah ingin menghapus data ini ?')">
+                        @method('delete')
+                        @csrf
+                        </form>
+
+
+                      </td>
+                      
+                       
+                     
                     </tr>
                     @endforeach
                   </tbody>
@@ -45,5 +62,6 @@
               </div>
       </div>
       </div>
-    </section>
+
+      
 @endsection

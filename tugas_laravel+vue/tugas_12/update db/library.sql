@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2023 at 09:27 PM
+-- Generation Time: Jul 22, 2023 at 07:03 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -97,7 +97,7 @@ INSERT INTO `books` (`id`, `isbn`, `title`, `year`, `publisher_id`, `author_id`,
 
 CREATE TABLE `catalogs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_c` varchar(64) NOT NULL,
+  `name_c` varchar(64) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -116,7 +116,8 @@ INSERT INTO `catalogs` (`id`, `name_c`, `created_at`, `updated_at`) VALUES
 (7, 'Bernie Homenick', '2023-07-12 21:55:57', '2023-07-12 21:55:57'),
 (8, 'Roxane Volkman', '2023-07-12 21:55:57', '2023-07-12 21:55:57'),
 (9, 'Angeline Bashirian', '2023-07-12 21:55:57', '2023-07-12 21:55:57'),
-(10, 'Dr. Koby Bradtke', '2023-07-12 21:55:57', '2023-07-12 21:55:57');
+(10, 'Dr. Koby Bradtke', '2023-07-12 21:55:57', '2023-07-12 21:55:57'),
+(11, 'laravelx', '2023-07-19 21:05:01', '2023-07-21 04:45:40');
 
 -- --------------------------------------------------------
 
@@ -194,7 +195,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2023_07_12_144745_create_catalogs_table', 1),
 (20, '2023_07_12_144902_create_books_table', 1),
 (21, '2023_07_12_145021_create_transactions_table', 1),
-(22, '2023_07_12_145132_create_transaction_details_table', 1);
+(22, '2023_07_12_145132_create_transaction_details_table', 1),
+(23, '2023_07_20_041540_update_catalogs_table', 2);
 
 -- --------------------------------------------------------
 
@@ -234,10 +236,10 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `publishers` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name_p` varchar(64) NOT NULL,
-  `email` varchar(64) NOT NULL,
-  `phone_number` char(14) NOT NULL,
-  `address` text NOT NULL,
+  `name_p` varchar(64) DEFAULT NULL,
+  `email` varchar(64) DEFAULT NULL,
+  `phone_number` char(14) DEFAULT NULL,
+  `address` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -448,7 +450,7 @@ ALTER TABLE `books`
 -- AUTO_INCREMENT for table `catalogs`
 --
 ALTER TABLE `catalogs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -466,7 +468,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -478,7 +480,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `publishers`
 --
 ALTER TABLE `publishers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `transactions`
