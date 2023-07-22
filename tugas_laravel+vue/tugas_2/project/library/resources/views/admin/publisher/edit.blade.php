@@ -8,7 +8,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Create New Publisher</h3>
+                <h3 class="card-title">Edit Data Publisher</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
@@ -16,15 +16,7 @@
               	@csrf
                 {{ method_field('PUT') }}
                 <div class="card-body">
-                     @if (count($errors) > 0)
-                  <div class="alert alert-danger">
-                      <ul>
-                          @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                          @endforeach
-                      </ul>
-                  </div>
-                  @endif
+                   
                   <div class="form-group">
                     <label for="name">Name</label>
                     <input id="name" type="text" name="name_p" class="form-control"  placeholder="Enter Name" autofocus  value="{{$publisher->name_p}}">

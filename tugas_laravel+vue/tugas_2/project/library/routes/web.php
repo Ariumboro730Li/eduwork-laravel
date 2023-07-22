@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/homes', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/members', [App\Http\Controllers\MemberController::class, 'index']);
 
@@ -51,6 +51,6 @@ Route::delete('/publishers/{publisher}', [App\Http\Controllers\PublisherControll
 
 //menu author
 Route::get('/authors', [App\Http\Controllers\AuthorController::class, 'index']);
-Route::get('/authors/create', [App\Http\Controllers\AuthorController::class, 'create']);
+// Route::get('/authors/create', [App\Http\Controllers\AuthorController::class, 'create']);
 
 //akhir menu author

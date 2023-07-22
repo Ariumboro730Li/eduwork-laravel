@@ -160,7 +160,7 @@
                 Home
               </p>
             </a> -->
-            <a href=" {{ url('homes')}} " class="nav-link {{ request()->is('homes') ? 'active' : '' }} ">
+            <a href=" {{ url('home')}} " class="nav-link {{ request()->is('homes') ? 'active' : '' }} ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Home</p>
             </a>

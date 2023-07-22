@@ -18,10 +18,10 @@ class CatalogController extends Controller
     {
         
         $catalogs=Catalog::with('books')->get();
-        $authors=Author::with('books')->get();
+       
         
         // return $catalogs;
-        return view('admin.catalog.index', compact('catalogs','authors'));
+        return view('admin.catalog.index', compact('catalogs'));
     }
 
     /**
