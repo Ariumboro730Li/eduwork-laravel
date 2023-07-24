@@ -14,9 +14,10 @@ class PublisherController extends Controller
      */
     public function index()
     {
-         $publishers=publisher::with('books')->get();
+         // $publishers=publisher::with('books')->get();
+         $publishers=Publisher::all();
 
-        return view('admin.publisher.index', compact('publishers'));
+        return view('admin.publisher', compact('publishers'));
     }
 
     /**
@@ -52,11 +53,14 @@ class PublisherController extends Controller
                 'address' => 'required',
 
         ],$messages);
+        $this->validate($request,[
+                'name_p' => 'required',
+                'email' => 'email',
+                'phone_number' => 'required|min:12|max:13',
+                'address' => 'required',
 
-
-         $this->validate($request,[
-                
         ]);
+         
 
         Publisher::create($request->all());
 
@@ -82,7 +86,7 @@ class PublisherController extends Controller
      */
     public function edit(Publisher $publisher)
     {
-        return view('admin.publisher.edit', ['publisher' => $publisher]);
+        // return view('admin.publisher.edit', ['publisher' => $publisher]);
 
     }
 
@@ -95,20 +99,28 @@ class PublisherController extends Controller
      */
     public function update(Request $request, Publisher $publisher)
     {
-          $messages = [
-            'required' => ':attribute wajib diisi',
-            'min' => ':attribute harus diisi minimal :min karakter ',
-            'max' => ':attribute harus diisi maksimal :max karakter ',
-            'email' => ':attribute hanya boleh menginputkan email ',
-        ];
+        //   $messages = [
+        //     'required' => ':attribute wajib diisi',
+        //     'min' => ':attribute harus diisi minimal :min karakter ',
+        //     'max' => ':attribute harus diisi maksimal :max karakter ',
+        //     'email' => ':attribute hanya boleh menginputkan email ',
+        // ];
 
-        $this->validate($request,[
+        // $this->validate($request,[
+        //         'name_p' => 'required',
+        //         'email' => 'email',
+        //         'phone_number' => 'required|min:12|max:13',
+        //         'address' => 'required',
+
+        // ],$messages);
+
+         $this->validate($request,[
                 'name_p' => 'required',
                 'email' => 'email',
                 'phone_number' => 'required|min:12|max:13',
                 'address' => 'required',
 
-        ],$messages);
+        ]);
 
          $publisher->update($request->all());
 
@@ -124,6 +136,6 @@ class PublisherController extends Controller
     public function destroy(Publisher $publisher)
     {
         $publisher->delete();
-        return redirect('publishers');
+        // return redirect('publishers');
     }
 }

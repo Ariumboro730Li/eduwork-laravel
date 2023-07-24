@@ -41,16 +41,19 @@ Route::resource('/catalogs',App\Http\Controllers\CatalogController::class);
 // --akhir menu catalog
 
 // menu publisher
-Route::get('/publishers', [App\Http\Controllers\PublisherController::class, 'index']);
-Route::get('/publishers/create', [App\Http\Controllers\PublisherController::class, 'create']);
-Route::post('/publishers', [App\Http\Controllers\PublisherController::class, 'store']);
-Route::get('/publishers/{publisher}/edit', [App\Http\Controllers\PublisherController::class, 'edit']);
-Route::put('/publishers/{publisher}', [App\Http\Controllers\PublisherController::class, 'update']);
-Route::delete('/publishers/{publisher}', [App\Http\Controllers\PublisherController::class, 'destroy']);
+// Route::get('/publishers', [App\Http\Controllers\PublisherController::class, 'index']);
+// Route::get('/publishers/create', [App\Http\Controllers\PublisherController::class, 'create']);
+// Route::post('/publishers', [App\Http\Controllers\PublisherController::class, 'store']);
+// Route::get('/publishers/{publisher}/edit', [App\Http\Controllers\PublisherController::class, 'edit']);
+// Route::put('/publishers/{publisher}', [App\Http\Controllers\PublisherController::class, 'update']);
+// Route::delete('/publishers/{publisher}', [App\Http\Controllers\PublisherController::class, 'destroy']);
+Route::resource('/publishers',App\Http\Controllers\PublisherController::class);
+
 // akhir menu publisher
 
 //menu author
-Route::get('/authors', [App\Http\Controllers\AuthorController::class, 'index']);
+// Route::get('/authors', [App\Http\Controllers\AuthorController::class, 'index']);
 // Route::get('/authors/create', [App\Http\Controllers\AuthorController::class, 'create']);
 
+Route::resource('/authors',App\Http\Controllers\AuthorController::class);
 //akhir menu author

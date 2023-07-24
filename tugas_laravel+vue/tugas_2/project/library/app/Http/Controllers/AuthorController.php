@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+ 
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +18,9 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $authors=Author::with('books')->get();
+        $authors=Author::all();
         
-        return view('admin.author.index' , compact('authors'));
+        return view('admin.author' , compact('authors'));
     }
 
     /**
@@ -37,7 +41,24 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute harus diisi minimal :min karakter ',
+            'max' => ':attribute harus diisi maksimal :max karakter ',
+            'email' => ':attribute hanya boleh menginputkan email ',
+        ];
+        
+        $this->validate($request,[
+                'name_a' => 'required',
+                'email' => 'email',
+                'phone_number' => 'required|min:12|max:13',
+                'address' => 'required',
+
+        ],$messages);
+
+        Author::create($request->all());
+
+        return redirect('authors');
     }
 
     /**
@@ -71,7 +92,17 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $this->validate($request,[
+                'name_a' => 'required',
+                'email' => 'email',
+                'phone_number' => 'required|min:12|max:13',
+                'address' => 'required',
+
+        ]);
+
+        $author->update($request->all());
+
+        return redirect('authors');
     }
 
     /**
@@ -82,6 +113,6 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
     }
 }
