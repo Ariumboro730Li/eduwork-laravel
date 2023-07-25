@@ -2,6 +2,7 @@
 @section('header', 'Author')
 
 @section('css')
+ 
 @endsection
 
 @section('content')
@@ -17,21 +18,19 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-               
-                <table class="table table-bordered">
-                    <tr>
+                 <table id="author" class="table table-bordered table-striped">
                   <thead class="text-center">
+                  <tr>
                       <th style="width: 10px">No</th>
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone Number</th>
                       <th style="width:190px">Address</th>
                       <th >Action</th>
-                     
-                    </tr>
+                  </tr>
                   </thead>
                   <tbody class="text-center">
-                    @foreach($authors as $key => $author)
+                     @foreach($authors as $key => $author)
                     <tr >
                       <td> {{$key+1}} </td>
                       <td> {{$author->name_a}} </td>
@@ -41,22 +40,14 @@
                       <td>
                         <a href="#" @click="editData({{$author}})" class="btn btn-warning btn-sm">Edit</a>
                         <a href="#" @click="deleteData({{$author->id}})" class="btn btn-danger btn-sm">Delete</a>
-                        
                       </td>
                     </tr>
                     @endforeach
+                  
                   </tbody>
                 </table>
               </div>
-              <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
-              </div>
+             
       </div>
       </div>
 
@@ -133,7 +124,17 @@
 
 
 @section('js')
+<!-- //---------------------datatables------------ -->
+<script>
+  $(function () {
+    $("#author").DataTable({
+      // "responsive": true, "lengthChange": false, "autoWidth": false,
+      // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#author .col-md-6:eq(0)');
+  });
+</script>
 
+<!-- //--------------------- akhir datatables------------ -->
 
 
 

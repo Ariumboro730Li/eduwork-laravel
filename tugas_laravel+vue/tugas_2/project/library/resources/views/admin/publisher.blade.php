@@ -16,22 +16,20 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-               
-                <table class="table table-bordered">
-                    <tr>
+                <table id="publisher" class="table table-bordered table-striped">
                   <thead class="text-center">
+                  <tr>
                       <th style="width: 10px">No</th>
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone Number</th>
                       <th style="width:190px">Address</th>
                       <th >Action</th>
-                     
-                    </tr>
+                  </tr>
                   </thead>
                   <tbody class="text-center">
-                    @foreach($publishers as $key => $publisher)
-                    <tr >
+                      @foreach($publishers as $key => $publisher)
+                    <tr>
                       <td> {{$key+1}} </td>
                       <td> {{$publisher->name_p}} </td>
                       <td> {{$publisher->email}} </td>
@@ -44,17 +42,9 @@
                       </td>
                     </tr>
                     @endforeach
+                  
                   </tbody>
-                </table>
-              </div>
-              <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-right">
-                  <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                </ul>
+               </table>
               </div>
       </div>
       </div>
@@ -124,6 +114,17 @@
 
 
 @section('js')
+<!-- //---------------------datatables------------ -->
+<script>
+  $(function () {
+    $("#publisher").DataTable({
+      // "responsive": true, "lengthChange": false, "autoWidth": false,
+      // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#publisher .col-md-6:eq(0)');
+  });
+</script>
+
+<!-- //--------------------- akhir datatables------------ -->
 
 
 
