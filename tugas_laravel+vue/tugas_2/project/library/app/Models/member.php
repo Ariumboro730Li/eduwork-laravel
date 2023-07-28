@@ -9,6 +9,7 @@ class member extends Model
 {
     use HasFactory;
 
+     protected $fillable = ['name','gender','phone_number','address','email'];
 // -----------------relasi ke user---------- 
 
     public function user(){

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('header', 'author')
+@section('header', 'Member')
 
 @section('css')
 
@@ -14,7 +14,7 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                   <a href="#" @click="addData()" class="btn btn-sm btn-primary pull-left">Create New Author</a>
+                   <a href="#" @click="addData()" class="btn btn-sm btn-primary pull-left">Create New Member</a>
                   <!-- <h3 class="card-title">Data Catalog</h3> -->
                 </div>
                 <!-- /.card-header -->
@@ -24,10 +24,11 @@
                     <thead class="text-center">
                         <tr>
                         <th style="width: 10px">No</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th style="width: 200px">Name</th>
+                        <th>Gender</th>
                         <th>Phone Number</th>
                         <th style="width:190px">Address</th>
+                        <th>Email</th>
                         <th >Action</th>
                       </tr>
                     </thead>
@@ -41,7 +42,7 @@
                   <div class="modal-content">
                     <form :action="actionUrl" method="POST" @submit="submitForm($event, data.id)">
                     <div class="modal-header">
-                      <h4 class="modal-title">Create Author</h4>
+                      <h4 class="modal-title">Member</h4>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -52,15 +53,15 @@
 
                           <div class="form-group">
                             <label for="name">Name</label>
-                            <input id="name" type="text" name="name_a" class="form-control"  placeholder="Enter Name" autofocus :value="data.name_a">
-                             @error('name_a')
+                            <input id="name" type="text" name="name" class="form-control"  placeholder="Enter Name" autofocus :value="data.name">
+                             @error('name')
                                   {{$message}}
                              @enderror
                           </div>
-                           <div class="form-group">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" name="email" class="form-control"  placeholder="Enter Email" autofocus :value="data.email">
-                             @error('email')
+                          <div class="form-group">
+                            <label for="name">Gender</label>
+                            <input id="name" type="text" name="gender" class="form-control"  placeholder="Enter gender" autofocus :value="data.gender">
+                             @error('gender')
                                   {{$message}}
                              @enderror
                           </div>
@@ -68,6 +69,13 @@
                             <label for="number">Phone Number</label>
                             <input id="number" type="text" name="phone_number" class="form-control"  placeholder="Enter Phone Number" value="0891" autofocus :value="data.phone_number">
                              @error('phone_number')
+                                  {{$message}}
+                             @enderror
+                          </div>
+                           <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" class="form-control"  placeholder="Enter Email" autofocus :value="data.email">
+                             @error('email')
                                   {{$message}}
                              @enderror
                           </div>
@@ -96,15 +104,16 @@
 
 @section('js')
 <script type="text/javascript">
-var actionUrl = '{{ url('authors') }}';
-var apiUrl = '{{ url('api/authors') }}';
+var actionUrl = '{{ url('members') }}';
+var apiUrl = '{{ url('api/members') }}';
 
 var columns = [
        {data: 'DT_RowIndex', class:'text-center', orderable: true},
-       {data: 'name_a', class:'text-center', orderable: true},
-       {data: 'email', class:'text-center', orderable: true},
+       {data: 'name', class:'text-center', orderable: true},
+       {data: 'gender', class:'text-center', orderable: true},
        {data: 'phone_number', class:'text-center', orderable: true},
        {data: 'address', class:'text-center', orderable: true},
+       {data: 'email', class:'text-center', orderable: true},
        {render:function (index, row, data, meta){
            return `
               <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">

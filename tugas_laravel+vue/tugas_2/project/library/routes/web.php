@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/members', [App\Http\Controllers\MemberController::class, 'index']);
+// Route::get('/members', [App\Http\Controllers\MemberController::class, 'index']);
 
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index']);
 Route::get('/transactions', [App\Http\Controllers\TransactionController::class, 'index']);
@@ -48,6 +48,7 @@ Route::resource('/catalogs',App\Http\Controllers\CatalogController::class);
 // Route::put('/publishers/{publisher}', [App\Http\Controllers\PublisherController::class, 'update']);
 // Route::delete('/publishers/{publisher}', [App\Http\Controllers\PublisherController::class, 'destroy']);
 Route::resource('/publishers',App\Http\Controllers\PublisherController::class);
+Route::get('/api/publishers', [App\Http\Controllers\PublisherController::class, 'api']);
 
 // akhir menu publisher
 
@@ -55,5 +56,11 @@ Route::resource('/publishers',App\Http\Controllers\PublisherController::class);
 // Route::get('/authors', [App\Http\Controllers\AuthorController::class, 'index']);
 // Route::get('/authors/create', [App\Http\Controllers\AuthorController::class, 'create']);
 
-Route::resource('/authors',App\Http\Controllers\AuthorController::class);
+Route::resource('/authors', App\Http\Controllers\AuthorController::class);
+Route::get('/api/authors', [App\Http\Controllers\AuthorController::class, 'api']);
+
 //akhir menu author
+Route::resource('/members', App\Http\Controllers\MemberController::class);
+Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api']);
+// menu member
+// akhir menu member
