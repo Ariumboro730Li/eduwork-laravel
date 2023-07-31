@@ -23,7 +23,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 // Route::get('/members', [App\Http\Controllers\MemberController::class, 'index']);
 
-Route::get('/books', [App\Http\Controllers\BookController::class, 'index']);
 Route::get('/transactions', [App\Http\Controllers\TransactionController::class, 'index']);
 Route::get('/transactiondetails', [App\Http\Controllers\TransactionDetailController::class, 'index']);
 
@@ -60,7 +59,16 @@ Route::resource('/authors', App\Http\Controllers\AuthorController::class);
 Route::get('/api/authors', [App\Http\Controllers\AuthorController::class, 'api']);
 
 //akhir menu author
+
+// menu member
 Route::resource('/members', App\Http\Controllers\MemberController::class);
 Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api']);
-// menu member
 // akhir menu member
+
+// menu book
+// Route::get('/books', [App\Http\Controllers\BookController::class, 'index']);
+Route::resource('/books', App\Http\Controllers\BookController::class);
+Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api']);
+
+
+// akhir menu book

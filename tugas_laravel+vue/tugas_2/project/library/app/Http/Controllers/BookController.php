@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Publisher;
+use App\Models\Author;
+use App\Models\Catalog;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -14,8 +17,22 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('admin.book.index');
+
+        // untuk tampil ke combobox
+        $publishers = Publisher::all();
+        $authors = Author::all();
+        $catalogs = Catalog::all();
+
+        return view('admin.book', compact('publishers','authors','catalogs'));
     }
+
+     public function api()
+    {
+        $books = Book::all();
+
+        return json_encode($books);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,7 +52,30 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute harus diisi minimal :min karakter ',
+            'max' => ':attribute harus diisi maksimal :max karakter ',
+            'email' => ':attribute hanya boleh menginputkan email ',
+        ];
+        
+        $this->validate($request,[
+                'isbn' => 'required',
+                'title' => 'required',
+                'year' => 'required',
+                'publisher_id' => 'required',
+                'author_id' => 'required',
+                'catalog_id' => 'required',
+                'qty' => 'required',
+                'price' => 'required',
+                
+
+        ],$messages);
+
+        Book::create($request->all());
+
+        return redirect('books');
+
     }
 
     /**
@@ -69,7 +109,28 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+       $messages = [
+            'required' => ':attribute wajib diisi',
+            'min' => ':attribute harus diisi minimal :min karakter ',
+            'max' => ':attribute harus diisi maksimal :max karakter ',
+            'email' => ':attribute hanya boleh menginputkan email ',
+        ];
+        
+        $this->validate($request,[
+                'isbn' => 'required',
+                'title' => 'required',
+                'year' => 'required',
+                'publisher_id' => 'required',
+                'author_id' => 'required',
+                'catalog_id' => 'required',
+                'qty' => 'required',
+                'price' => 'required',
+                
+        ],$messages);
+
+        $book->update($request->all());
+
+        return redirect('books');
     }
 
     /**
@@ -80,6 +141,6 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+         $book->delete();
     }
 }
