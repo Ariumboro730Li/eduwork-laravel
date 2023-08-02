@@ -30,7 +30,14 @@ class BookController extends Controller
     {
         $books = Book::all();
 
+        // $data=datatables()->of($books)
+        //                         ->addColumn('date', function($book){
+        //                             return convert_date($book->created_at);
+        //                         })
+        //                         ->addIndexColumn();
+                               
         return json_encode($books);
+        // 
     }
 
 

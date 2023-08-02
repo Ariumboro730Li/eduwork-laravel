@@ -65,10 +65,9 @@ Route::resource('/members', App\Http\Controllers\MemberController::class);
 Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api']);
 // akhir menu member
 
+
 // menu book
 // Route::get('/books', [App\Http\Controllers\BookController::class, 'index']);
 Route::resource('/books', App\Http\Controllers\BookController::class);
 Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api']);
-
-
 // akhir menu book

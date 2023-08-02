@@ -27,7 +27,8 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
-                        <th style="width:190px">Address</th>
+                        <th style="width:90px">Address</th>
+                        <th>Created At</th>
                         <th >Action</th>
                       </tr>
                     </thead>
@@ -105,6 +106,7 @@ var columns = [
        {data: 'email', class:'text-center', orderable: true},
        {data: 'phone_number', class:'text-center', orderable: true},
        {data: 'address', class:'text-center', orderable: true},
+       {data: 'date', class:'text-center', orderable: true},
        {render:function (index, row, data, meta){
            return `
               <a href="#" class="btn btn-warning btn-sm" onclick="controller.editData(event, ${meta.row})">

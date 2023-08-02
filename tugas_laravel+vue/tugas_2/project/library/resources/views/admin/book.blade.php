@@ -36,6 +36,7 @@
 				<div class="info-box-content" >
 					<span class="info-box-text h3">@{{ book.title }} ( @{{ book.qty}} ) </span>
 					<span class="info-box-number">Rp. @{{ numberWithSpaces(book.price) }} ,-<small></small></span>
+          <span>@{{book.created_at}}</span>
 				</div>
 			</div>
 		</div>
@@ -127,6 +128,7 @@
 
 @section('js')
 
+
 <script>
 var actionUrl = '{{ url('books') }}';
 var apiUrl = '{{ url('api/books') }}';
@@ -185,7 +187,7 @@ var app = new Vue({
           },
           numberWithSpaces(x) {
     			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-		  },
+		      },
 		  submitForm(event, id){
               event.preventDefault();
               const _this = this;

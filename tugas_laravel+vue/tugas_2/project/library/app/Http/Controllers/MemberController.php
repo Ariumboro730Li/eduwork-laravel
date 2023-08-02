@@ -19,14 +19,18 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::all();
-        return view('admin.member', compact('members'));
+        // $members = Member::all();
+        return view('admin.member');
     }
 
     public function api()
     {
         $members = Member::all();
-        $datatables=datatables()->of($members)->addIndexColumn();
+        $datatables=datatables()->of($members)
+                                ->addColumn('date', function($member){
+                                    return convert_date($member->created_at);
+                                })
+                                ->addIndexColumn();
 
         return $datatables->make(true);
     }
