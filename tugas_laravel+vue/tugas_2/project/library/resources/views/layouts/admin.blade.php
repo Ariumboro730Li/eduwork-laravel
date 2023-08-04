@@ -169,9 +169,13 @@
                 Home
               </p>
             </a> -->
-            <a href=" {{ url('home')}} " class="nav-link {{ request()->is('homes') ? 'active' : '' }} ">
+            <!-- <a href=" {{ url('home')}} " class="nav-link {{ request()->is('home') ? 'active' : '' }} ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Home</p>
+            </a> -->
+            <a href=" {{ url('dashboards')}} " class="nav-link {{ request()->is('dashboards') ? 'active' : '' }} ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>Dashboard</p>
             </a>
             <a href=" {{ url('authors')}} " class="nav-link {{ request()->is('authors') ? 'active' : '' }} ">
               <i class="nav-icon fas fa-users"></i>
@@ -267,7 +271,7 @@
 <!-- Bootstrap 4 -->
 <script src=" {{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}} "></script>
 <!-- ChartJS -->
-<!-- <script src=" {{ asset('assets/plugins/chart.js/Chart.min.js')}} "></script> -->
+<script src=" {{ asset('assets/plugins/chart.js/Chart.min.js')}} "></script>
 <!-- Sparkline -->
 
 <!-- JQVMap -->

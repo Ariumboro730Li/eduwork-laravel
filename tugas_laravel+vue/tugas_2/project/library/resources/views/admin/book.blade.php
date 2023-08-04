@@ -36,7 +36,7 @@
 				<div class="info-box-content" >
 					<span class="info-box-text h3">@{{ book.title }} ( @{{ book.qty}} ) </span>
 					<span class="info-box-number">Rp. @{{ numberWithSpaces(book.price) }} ,-<small></small></span>
-          <span>@{{book.created_at}}</span>
+          <span>@{{ book.created_at }}</span>
 				</div>
 			</div>
 		</div>
