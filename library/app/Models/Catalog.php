@@ -11,6 +11,6 @@ class Catalog extends Model
 
     public function books()
     {
-        return $this->belongsTo('App\Models\Book', 'catalog_id');
+        return $this->hasMany('App\Models\Book', 'catalog_id');
     }
 }

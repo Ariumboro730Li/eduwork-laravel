@@ -4,13 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
-class Publisher extends Model
+class Transaction extends Model
 {
     use HasFactory;
 
-    public function books()
+    public function transaction_details()
     {
-        return $this->hasMany('App\Models\Book', 'publisher_id');
+        return $this->hasMany(TransactionDetail::class);
+    }
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
     }
 }

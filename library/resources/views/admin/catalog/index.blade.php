@@ -4,7 +4,7 @@
 @section('content')
     Ini adalah halaman Catalog
     @component("component.table-catalog", [
-        "title"=> "HOME"
+        "catalogs"=> $catalogs
     ])
         
     @endcomponent

@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionDetail extends Model
 {
     use HasFactory;
+
+    
+
     public function transaction()
     {
-    	return $this->belongsTo('App\Models\Transaction', 'transaction_id');
+        return $this->belongsTo(Transaction::class);
     }
 
-    public function books()
+    public function book()
     {
-    	return $this->hasMany('App\Models\Book', 'book_id');
+        return $this->belongsTo(Book::class);
     }
 }

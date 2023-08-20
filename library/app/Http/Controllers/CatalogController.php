@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Catalog;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent;
 
 class CatalogController extends Controller
 {
@@ -14,72 +15,11 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        return view('admin.catalog.index');
+        $catalogs = Catalog::withCount('books')->get();
+        //return $catalogs;
+        //dd($catalogs);
+        return view('admin.catalog.index', compact('catalogs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Catalog  $catalog
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Catalog $catalog)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Catalog  $catalog
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Catalog $catalog)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Catalog  $catalog
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Catalog $catalog)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Catalog  $catalog
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Catalog $catalog)
-    {
-        //
-    }
+    // ... (metode lainnya)
 }
