@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>AdminLTE 3 | Dashboard</title>
 
   <!-- Google Font: Source Sans Pro -->
@@ -260,8 +261,16 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-
-<script src=" {{ asset('assets/plugins/jquery/jquery.min.js')}} "></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<!-- <script src=" {{ asset('assets/plugins/jquery/jquery.min.js')}} "></script> -->
+<!-- datatables -->
+<script src="{{asset('assets/plugins/datatables/jquery.dataTables.min.js')}} "></script>
+<script src="{{asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}} "></script>
+<script src="{{asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}} "></script>
+<script src="{{asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}} "></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')}} "></script>
+<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}} "></script>
 <!-- jQuery UI 1.11.4 -->
 <script src=" {{ asset('assets/plugins/jquery-ui/jquery-ui.min.js')}} "></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -301,13 +310,9 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
 
-<!-- datatables -->
-<script src="{{asset('assets/plugins/datatables/jquery.dataTables.min.js')}} "></script>
-<script src="{{asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}} "></script>
-<script src="{{asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}} "></script>
-<script src="{{asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}} "></script>
-<script src="{{asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')}} "></script>
-<script src="{{asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}} "></script>
+
+
+<!-- copy excel csv pdf print -->
 <script src="{{asset('assets/plugins/jszip/jszip.min.js')}} "></script>
 <script src="{{asset('assets/plugins/pdfmake/pdfmake.min.js')}} "></script>
 <script src="{{asset('assets/plugins/pdfmake/vfs_fonts.js')}} "></script>

@@ -9,7 +9,6 @@
       },
       mounted: function(){
         this.datatable();
-        
       },
       methods: {
         datatable() {

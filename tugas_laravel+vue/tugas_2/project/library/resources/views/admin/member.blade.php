@@ -14,7 +14,19 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                   <a href="#" @click="addData()" class="btn btn-sm btn-primary pull-left">Create New Member</a>
+                  <div class="row">
+                    <div class="col-md-10">
+                       <a href="#" @click="addData()" class="btn btn-sm btn-primary pull-right">Create New Member</a>
+                    </div>
+                    <div class="col-sm-2">
+                      <select class="form-control" name="gender">
+                        <option value="0">Semua Jenis Kelamin</option>
+                        <option value="F">Perempuan</option>
+                        <option value="M">Laki-laki</option>
+                      </select>
+                    </div>
+                  </div>
+                  
                   <!-- <h3 class="card-title">Data Catalog</h3> -->
                 </div>
                 <!-- /.card-header -->
@@ -38,67 +50,7 @@
         </div>
         </div>
         </div>
-            <div class="modal fade" id="modal-default">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <form :action="actionUrl" method="POST" @submit="submitForm($event, data.id)">
-                    <div class="modal-header">
-                      <h4 class="modal-title">Member</h4>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      @csrf
-                        <input type="hidden" name="_method" value="PUT" v-if="editStatus">
-
-                          <div class="form-group">
-                            <label for="name">Name</label>
-                            <input id="name" type="text" name="name" class="form-control"  placeholder="Enter Name" autofocus :value="data.name">
-                             @error('name')
-                                  {{$message}}
-                             @enderror
-                          </div>
-                          <div class="form-group">
-                            <label for="name">Gender</label>
-                            <input id="name" type="text" name="gender" class="form-control"  placeholder="Enter gender" autofocus :value="data.gender">
-                             @error('gender')
-                                  {{$message}}
-                             @enderror
-                          </div>
-                           <div class="form-group">
-                            <label for="number">Phone Number</label>
-                            <input id="number" type="text" name="phone_number" class="form-control"  placeholder="Enter Phone Number" value="0891" autofocus :value="data.phone_number">
-                             @error('phone_number')
-                                  {{$message}}
-                             @enderror
-                          </div>
-                           <div class="form-group">
-                            <label for="email">Email</label>
-                            <input id="email" type="email" name="email" class="form-control"  placeholder="Enter Email" autofocus :value="data.email">
-                             @error('email')
-                                  {{$message}}
-                             @enderror
-                          </div>
-                          <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea id="address" type="text" name="address" class="form-control"  placeholder="Enter Address" autofocus :value="data.address">
-                            </textarea>
-                             @error('address')
-                                  {{$message}}
-                             @enderror
-                          </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                     </form>
-                  </div>
-                  <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-              </div>
+        
       </section>
 </div>
 @endsection
@@ -129,7 +81,17 @@ var columns = [
 
 </script>
 <script src="{{asset('js/data.js')}}"></script>
+<script>
+  $('select[name=gender]').on('change', function(){
+      gender= $('select[name=gender]').val();
 
+      if (gender == 0){
+        controller.table.ajax.url(actionUrl).load();
+      } else {
+        controller.table.ajax.url(actionUrl+'?gender='+gender).load();
+      }
+  });
+</script>
 
 <!-- <script type="text/javascript">
 $(function () {

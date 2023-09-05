@@ -17,9 +17,21 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $members = Member::all();
+        
+
+        if ($request->gender){
+            $datas = Member::where('gender', $request->gender)->get();
+            dd($datas);
+        } else {
+            $datas = Member::all();
+        }
+        $datatables= datatables()
+                    ->of($datas)
+                    ->addIndexColumn();
+
+        $datatables->make(true);
         return view('admin.member');
     }
 
