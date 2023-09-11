@@ -2,6 +2,14 @@
 @section('header', 'Catalog')
 
 @section('content')
+
+
+<!-- ada 2 cara : -->
+<!-- 1.memanggil dengan permession -->
+<!-- @can('index peminjaman') -->
+<!-- @endcan -->
+<!-- 2.memanggil dengan role -->
+<!-- @role('petugas') -->
 <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -62,6 +70,6 @@
               </div>
       </div>
       </div>
-
+<!-- @endrole -->
       
 @endsection

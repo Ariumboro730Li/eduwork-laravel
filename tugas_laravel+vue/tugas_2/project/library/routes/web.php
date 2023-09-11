@@ -43,7 +43,7 @@ Route::get('/transactiondetails', [App\Http\Controllers\TransactionDetailControl
 // Route::put('/catalogs/{catalog}', [App\Http\Controllers\CatalogController::class, 'update']);
 // Route::delete('/catalogs/{catalog}', [App\Http\Controllers\CatalogController::class, 'destroy']);
 
-Route::resource('/catalogs',App\Http\Controllers\CatalogController::class);
+// Route::resource('/catalogs',App\Http\Controllers\CatalogController::class);
 // --akhir menu catalog
 
 // menu publisher
@@ -82,3 +82,9 @@ Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api']);
 // menu dashboard
 
 //akhri menu dashboard
+
+//menggunakan laravel spatie
+Route::get('test_spatie', [App\Http\Controllers\AdminController::class, 'test_spatie']);
+Route::get('/catalogs', [App\Http\Controllers\AdminController::class, 'katalog']);
+// Route::get('test_spatie', 'AdminController@test_spatie');
+//akhir menggunakan laravel spatie
