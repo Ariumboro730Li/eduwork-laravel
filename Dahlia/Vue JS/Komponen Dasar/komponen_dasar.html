@@ -1,0 +1,46 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="index.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+	<div id="app" v-if = "status == 'tampilkan'">
+		{{ message }} <br><br>
+        <label v-for = "user  in users">Nama : {{ user.name}},<br> Umur : {{ user.age}} <br> Tanggal Lahir : {{ user.tanggal_lahir}} <br><br></label>
+	</div>
+
+	<script>
+		var app = new Vue({ 
+		    el: '#app',
+		    data: {
+		        message: 'Hello Vue!', 
+                status : 'tampilkan',
+
+                users : [
+                    {
+                        name : 'Dahlia',
+                        age : '26',
+                        tanggal_lahir : '12 Agustus 1997',
+                    },
+                    {
+                        name : 'Agustriani',
+                        age : '27',
+                        tanggal_lahir : '15 Desember 1996',
+                    },
+                    {
+                        name : 'Purba',
+                        age : '28',
+                        tanggal_lahir : '17 April 1995',
+                    }
+
+                ]
+                
+		    }
+		});
+	</script>
+</body>
+
+</html>

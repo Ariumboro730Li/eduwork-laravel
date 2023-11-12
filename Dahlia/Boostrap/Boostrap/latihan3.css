@@ -1,0 +1,13 @@
+.header{
+    background: pink;
+}
+.navbar{
+    padding: 20px;
+}
+.content{
+    background: #DDD;
+    height: 400px;
+}
+.footer{
+    background: pink;
+}

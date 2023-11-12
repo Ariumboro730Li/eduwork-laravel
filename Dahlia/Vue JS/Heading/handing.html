@@ -1,0 +1,92 @@
+<html>
+<head>
+    <title> Event Headling</title>
+	<link rel="stylesheet" href="index.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app-4">
+        <br>
+        <ol>
+          <li v-for="todo in todos">
+            {{ todo.teks }}
+          </li>
+        </ol>
+        <br><br>
+    </div>
+    <div id="example-1">
+        <button v-on:click="counter +=2">Add 1</button>
+        <p> Tambahkan tombol klick tombol di samping ini {{ counter }} times. </p>
+    </div>
+    <div id="example-2">
+        <p>{{ pesan }}</p>
+        <button v-on:click="balikkanPesan">Balikkan Pesan</button><br><br>
+    </div>
+    <div id="app-2">
+        <span v-bind:title="pesan">
+          Arahkan mouse Anda kesini dan tunggu dalam beberapa detik
+          untuk melihat judul pesan yang dinamis
+        </span>
+    </div>
+    <div id="app-3">
+        <span v-if="terlihat"><br><br>Saya bisa dilihat</span>
+    </div>
+    <div id="app-6">
+        <p>{{ pesan }}</p>
+        <input v-model="pesan">
+    </div>
+</body>
+</html>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+<script type="text/javascript">
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos: [
+            { teks: 'Belajar JavaScript' },
+            { teks: 'Belajar Vue' },
+            { teks: 'Buat proyek keren' }
+            ]
+        }
+    })
+    var example1 = new Vue({ 
+        el: '#example-1',
+        data: {
+           counter : 0
+        }
+    });
+
+    var example2 = new Vue({
+        el: '#example-2',
+        data: {
+            pesan: 'Hai Vue.js!'
+        },
+        methods: {
+            balikkanPesan: function () {
+            this.pesan = this.pesan.split('').reverse().join('')
+            }
+            
+        }
+    })
+
+    var app2 = new Vue({
+        el: '#app-2',
+        data: {
+            pesan: 'Anda memuat halaman ini pada jam ' + new Date().toLocaleString() 
+        }
+    })
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            terlihat: true
+        }
+    })
+    var app6 = new Vue({
+        el: '#app-6',
+        data: {
+            pesan: 'Hai Vue!'
+        }
+    })
+  
+</script>

@@ -1,0 +1,33 @@
+.carouselExampleControls #carousel-inner{
+    width: 200px;
+    height: 10px;
+}
+
+.main {
+    width: 50%;
+    margin: 50px auto;
+}
+
+/* Bootstrap 4 text input with search icon */
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.input-group .selectpicker{
+    margin-left: 5px;
+    width: 240px;
+    height: 2.375rem;
+}
+

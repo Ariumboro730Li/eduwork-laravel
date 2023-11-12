@@ -1,0 +1,14 @@
+[
+    {
+        "nama": "Dahlia",
+        "kelas": "Laravel",
+        "tanggal_lahir": "17-08-1994",
+        "nilai":80
+    },
+    {
+        "nama":"Anggrek",
+        "kelas":"Javascript",
+        "tanggal_lahir":"16-09-1995",
+        "nilai": 90
+    }
+]
