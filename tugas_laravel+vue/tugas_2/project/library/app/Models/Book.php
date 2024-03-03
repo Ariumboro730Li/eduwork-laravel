@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
 
-     protected $fillable = ['id_pinjam','id_anggota','tgl_pinjam','tgl_kembali'];
+     // protected $fillable = ['id_pinjam','id_anggota','tgl_pinjam','tgl_kembali'];
+     protected $fillable = ['isbn','title','year','publisher_id','author_id','catalog_id','qty','price'];
 
      
     //  public function publisher(){

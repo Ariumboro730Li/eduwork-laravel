@@ -5,7 +5,7 @@
           data:{},
           actionUrl,
           apiUrl,
-          editStatus : false
+          editStatus : false,
       },
       mounted: function(){
         this.datatable();
@@ -22,7 +22,7 @@
                       columns
                 }).on('xhr', function () {
                    _this.datas = _this.table.ajax.json().data;
-                      });
+                });
           },
           addData(){
               this.data = {};

@@ -43,7 +43,7 @@ Route::get('/transactiondetails', [App\Http\Controllers\TransactionDetailControl
 // Route::put('/catalogs/{catalog}', [App\Http\Controllers\CatalogController::class, 'update']);
 // Route::delete('/catalogs/{catalog}', [App\Http\Controllers\CatalogController::class, 'destroy']);
 
-// Route::resource('/catalogs',App\Http\Controllers\CatalogController::class);
+Route::resource('/catalogs',App\Http\Controllers\CatalogController::class);
 // --akhir menu catalog
 
 // menu publisher
