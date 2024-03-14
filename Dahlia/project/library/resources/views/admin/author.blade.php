@@ -57,12 +57,14 @@ ini adalah halaman Author
                                             <td>{{ date('d/m/y', strtotime ($author->updated_at))}}</td>
                                             
                                             <td>  
-                                                <a href="{{url('authors/'.$author->id.'/edit') }}" class="btn btn-sm btn-primary pull-right">Edit</a>
-                                                <form action="{{ url('authors', ['id' => $author->id]) }}" method="post">
-                                                <input class="btn btn-danger btn-sm" type="submit" value="Delete" onclick="return confirm('Are you sure?')">
+                                                <a href="#" @click="editData({$author})" class="btn btn-sm btn-primary pull-right">Edit</a>
+                                                <!-- <form action="{{ url('authors', ['id' => $author->id]) }}" method="post"> -->
+                                                <!-- <input class="btn btn-danger btn-sm" type="submit" value="Delete" onclick="return confirm('Are you sure?')">
                                                 @method('delete')
                                                 @csrf
-                                                </form>
+                                                </form> -->
+                                                <a href="#" @click="deleteData({$author->id})" class="btn btn-sm btn-primary pull-right">Edit</a>
+                                                
                                             </td>
 
                                             <!-- <td><span class="badge bg-danger"></span></td> -->
@@ -79,7 +81,7 @@ ini adalah halaman Author
             <div class="modal fade" id="modal-default">
                 <div class="modal-dialog">
                 <div class="modal-content">
-                    <form method="POST" action="{{url('authors')}}" autocomplete="off">
+                    <form method="POST" :action="actionUrl" autocomplete="off">
 
                         <div class="modal-header">
                             <h4 class="modal-title">Author</h4>
@@ -90,21 +92,23 @@ ini adalah halaman Author
                             <div class="modal-body">
                                 @csrf
 
+                                <input type="hidden" name="_method" value="PUT" v-if="editStatus">
+                
                                 <div class="form group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" name="name" value="" required="">
+                                    <input type="text" class="form-control" name="name" :value="data.name" required="">
                                 </div>
                                 <div class="form group">
                                     <label>Email</label>
-                                    <input type="text" class="form-control" name="email" value="" required="">
+                                    <input type="text" class="form-control" name="email" :value="data.email" required="">
                                 </div>
                                 <div class="form group">
                                     <label>Phone Number</label>
-                                    <input type="text" class="form-control" name="phone_number" value="" required="">
+                                    <input type="text" class="form-control" name="phone_number" :value="data.phone_number" required="">
                                 </div>
                                 <div class="form group">
                                     <label>Alamat</label>
-                                    <input type="text" class="form-control" name="address" value="" required="">
+                                    <input type="text" class="form-control" name="address" :value="data.address" required="">
                                 </div>
                             </div>
                         <div class="modal-footer justify-content-between">
@@ -133,7 +137,8 @@ ini adalah halaman Author
             el:'#controller',
             data:{
                 data:{}
-                actionUrl : '{{url('authors/create')}}''
+                actionUrl : '{{url('authors')}}',
+                editStatus:false
 
             },
             mounted: fuction (){
@@ -141,13 +146,24 @@ ini adalah halaman Author
             },
             methods:{
                 addData() {
-                    console.log('add data');
+                    this.data={};
+                    this.actionUrl='{{url('authors')}}';
+                    this.editStatus = false;
+                    $('#modal-default').modal();
                 },
-                editData() {
-
+                editData(data) {
+                    this.data=data ;
+                    this.actionUrl='{{url('authors')}}'+'/'+data.id;
+                    this.editStatus = true;
+                    $('#modal-default').modal()
                 },
-                deleteData() {
-
+                deleteData(id) {
+                    this.actionUrl '{{url('authors')}}'+'/'+id;
+                    if(confirm("Are you sure?")){
+                        axios.post(this.actiosUrl,{_method:'DELETE'}).then(response => {
+                            location.reload();
+                        });
+                    }
                 }
 
             }
